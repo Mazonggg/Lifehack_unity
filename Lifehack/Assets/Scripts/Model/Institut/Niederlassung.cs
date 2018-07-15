@@ -3,21 +3,17 @@ using Lifehack.Model.Enum;
 using Lifehack.Model.Stadtplan;
 
 namespace Lifehack.Model.Institut {
-    
+
     public class Niederlassung : Gebaeude {
 
         private Institut institut;
         public Institut Institut {
-            get {  return institut; }
+            get { return institut; }
+            set { this.institut = value; }
         }
 
-        public Niederlassung(int id, string kartenelementAussehen, string interieurAussehen, Institut institut) 
-            : base(id, kartenelementAussehen, interieurAussehen) {
-            this.institut = institut;
-        }
-
-        public override TabellenName Tabelle() {
-            return TabellenName.NIEDERLASSUNG;
+        public override Kartenelement_art Tabelle<Kartenelement_art>() {
+            return Kartenelement_art.NIEDERLASSUNG;
         }
     }
 }

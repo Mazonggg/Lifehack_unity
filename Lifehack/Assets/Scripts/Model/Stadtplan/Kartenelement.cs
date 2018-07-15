@@ -3,7 +3,7 @@ using Lifehack.Model.Enum;
 
 namespace Lifehack.Model.Stadtplan {
 
-    public abstract class Kartenelement : DatenbankEintrag {
+    public abstract class Kartenelement : DatenbankEintrag, IKartenElement {
 
         protected Abmessung[] abmessungen;
         public Abmessung[] Abmessungen {
@@ -16,12 +16,8 @@ namespace Lifehack.Model.Stadtplan {
             set { this.kartenelementAussehen = value; }
         }
 
-        protected Kartenelement (int id, string kartenelementAussehen) : base(id) {
-            this.kartenelementAussehen = kartenelementAussehen;
-        }
-
-        public override TabellenName Tabelle(){
-            return TabellenName.KARTENELEMENT;
+        public override Kartenelement_art Tabelle<Kartenelement_art>() {
+            return Kartenelement_art.KARTENELEMENT;
         }
     }
 }

@@ -21,14 +21,14 @@ namespace Lifehack.Austauschformat {
         private UnityWebRequest anfrage;
 
         private void Start() {
-            macheJSONanfrage();
+            MacheJSONAnfrage();
         }
 
-        private void macheJSONanfrage() {
-            StartCoroutine(frageJSONan());
+        private void MacheJSONAnfrage() {
+            StartCoroutine(FrageJSONan());
         }
 
-        private IEnumerator frageJSONan() {
+        private IEnumerator FrageJSONan() {
             using (anfrage = UnityWebRequest.Get(jsonAnfrage)) {
                 yield return anfrage.SendWebRequest();
                 try {
@@ -41,7 +41,7 @@ namespace Lifehack.Austauschformat {
                             Debug.Log(serverFehler + antwort);
                         } else {
                             // Callback function:
-                            verarbeiteAntwort(antwort);
+                            VerarbeiteAntwort(antwort);
                         }
                     }
                 } catch (Exception e) {
@@ -50,15 +50,21 @@ namespace Lifehack.Austauschformat {
             }
         }
 
-        private void verarbeiteAntwort(string antwort) {
+        private void VerarbeiteAntwort(string antwort) {
             Debug.Log(antwort);
 
-            Debug.Log(Enum.GetName(typeof(TabellenName), TabellenName.INSTITUT).ToLower());
-
             JSONObject json = (JSONObject)JSON.Parse(antwort);
-            string[] institute = AustauschInterpreter.Instance().erzeugeElementArt(TabellenName.INSTITUT, json);
-            foreach(string institut in institute) {
+            string[] institute = AustauschInterpreter.Instance().ErzeugeElementArt(TabellenName.INSTITUT, json);
+            foreach (string institut in institute) {
                 Debug.Log(institut);
+            }
+            string[] items = AustauschInterpreter.Instance().ErzeugeElementArt(TabellenName.ITEM, json);
+            foreach (string item in items) {
+                Debug.Log(item);
+            }
+            string[] kartenelemente = AustauschInterpreter.Instance().ErzeugeElementArt(TabellenName.KARTENELEMENT, json);
+            foreach (string kartenelement in kartenelemente) {
+                Debug.Log(kartenelement);
             }
         }
     }

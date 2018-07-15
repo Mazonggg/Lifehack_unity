@@ -18,8 +18,8 @@ namespace Lifehack.Austauschformat {
             return AustauschInterpreter._instance;
         }
 
-        public string[] erzeugeElementArt(TabellenName tabellenName, JSONObject json) {
-            var elementArtInformation = json["information"][Enum.GetName(typeof(TabellenName), tabellenName).ToLower()].Children;
+        public string[] ErzeugeElementArt(TabellenName tabellenName, JSONObject json) {
+            var elementArtInformation = json["information"][EnumHelfer.TabellenNameToString(tabellenName)].Children;
             List<string> elemente = new List<string>();
             foreach (var information in elementArtInformation) {
                 elemente.Add(information.ToString());
@@ -28,3 +28,4 @@ namespace Lifehack.Austauschformat {
         }
     }
 }
+

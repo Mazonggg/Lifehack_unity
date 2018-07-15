@@ -2,20 +2,18 @@
 using Lifehack.Model.Enum;
 
 namespace Lifehack.Model {
-    
-    public abstract class DatenbankEintrag {
 
-        private int id; 
+    public abstract class DatenbankEintrag : IDatenbankEintrag {
+
+        private int id;
         public int Id {
             get { return this.id; }
             set { this.id = value; }
         }
 
-        protected DatenbankEintrag(int id ) {
-            this.id = id;
-        }
+        public DatenbankEintrag() { }
 
-        abstract public TabellenName Tabelle();
+        abstract public T Tabelle<T>() where T : struct, IConvertible;
     }
 }
 

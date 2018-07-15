@@ -2,21 +2,17 @@
 using Lifehack.Model.Enum;
 
 namespace Lifehack.Model.Stadtplan {
-    
+
     public class Gebaeude : Kartenelement {
 
-        private string interieurAussehen;
-        public string InterieurAussehen {
-            get { return interieurAussehen; }
+        private string interieur_aussehen;
+        public string Interieur_aussehen {
+            get { return interieur_aussehen; }
+            set { this.interieur_aussehen = value; }
         }
 
-        public Gebaeude(int id,string kartenelementAussehen, string interieurAussehen)
-            : base(id, kartenelementAussehen) {
-            this.interieurAussehen = interieurAussehen;
-        }
-
-        public override TabellenName Tabelle() {
-            return TabellenName.GEBAEUDE;
+        public override Kartenelement_art Tabelle<Kartenelement_art>() {
+            return Kartenelement_art.GEBAEUDE;
         }
     }
 }

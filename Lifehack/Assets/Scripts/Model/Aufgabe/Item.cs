@@ -3,34 +3,31 @@
 using Lifehack.Model.Enum;
 
 namespace Lifehack.Model.Aufgabe {
-    
+
     public class Item : DatenbankEintrag {
 
-        private readonly string itemArt;
+        private string itemArt;
         public string ItemArt {
             get { return itemArt; }
+            set { this.itemArt = value; }
         }
-        private readonly string name;
+        private string name;
         public string Name {
             get { return name; }
+            set { this.name = value; }
         }
-        private readonly int gewicht;
+        private int gewicht;
         public int Gewicht {
             get { return gewicht; }
+            set { this.gewicht = value; }
         }
-        private readonly string config;
+        private string config;
         public string Config {
             get { return config; }
+            set { this.config = value; }
         }
 
-        public Item(int id, string itemArt, string name, int gewicht, string config) : base(id) {
-            this.itemArt = itemArt;
-            this.name = name;
-            this.gewicht = gewicht;
-            this.config = config;
-        }
-
-        public override TabellenName Tabelle() {
+        public override TabellenName Tabelle<TabellenName>() {
             return TabellenName.ITEM;
         }
     }
