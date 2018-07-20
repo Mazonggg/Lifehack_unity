@@ -1,11 +1,11 @@
 ﻿using System;
+using Lifehack.Model.Enum;
 
 namespace Lifehack.Model {
 
     public interface IDatenbankEintrag {
 
         int Id { get; set; }
-        T Tabelle<T>() where T : struct, IConvertible;
+        TabellenName Tabelle();
     }
 }
-

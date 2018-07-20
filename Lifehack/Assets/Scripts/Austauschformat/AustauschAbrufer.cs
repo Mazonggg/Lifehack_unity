@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
 using Lifehack.Model.Enum;
+using Lifehack.Model;
 
 /*
  * Nutzt https://github.com/Bunny83/SimpleJSON unter Beruecksichtigung 
@@ -20,15 +21,23 @@ namespace Lifehack.Austauschformat {
         //private static string serverRequest = "http://h2678361.stratoserver.net/";
         private UnityWebRequest anfrage;
 
+        public static AustauschAbrufer _instance;
+
         private void Start() {
-            MacheJSONAnfrage();
+            AustauschAbrufer._instance = this;
+            Debug.Log(AustauschAbrufer._instance);
+            macheJsonAnfrage();
         }
 
-        private void MacheJSONAnfrage() {
-            StartCoroutine(FrageJSONan());
+        public void Log(string log) {
+            Debug.Log(log);
         }
 
-        private IEnumerator FrageJSONan() {
+        private void macheJsonAnfrage() {
+            StartCoroutine(frageJsonAn());
+        }
+
+        private IEnumerator frageJsonAn() {
             using (anfrage = UnityWebRequest.Get(jsonAnfrage)) {
                 yield return anfrage.SendWebRequest();
                 try {
@@ -41,7 +50,7 @@ namespace Lifehack.Austauschformat {
                             Debug.Log(serverFehler + antwort);
                         } else {
                             // Callback function:
-                            VerarbeiteAntwort(antwort);
+                            verarbeiteAntwort(antwort);
                         }
                     }
                 } catch (Exception e) {
@@ -50,21 +59,24 @@ namespace Lifehack.Austauschformat {
             }
         }
 
-        private void VerarbeiteAntwort(string antwort) {
-            Debug.Log(antwort);
+        private void verarbeiteAntwort(string antwort) {
+            JSONObject jsonInformation = (JSONObject)JSON.Parse(antwort)["information"].AsObject;
 
-            JSONObject json = (JSONObject)JSON.Parse(antwort);
-            string[] institute = AustauschInterpreter.Instance().ErzeugeElementArt(TabellenName.INSTITUT, json);
-            foreach (string institut in institute) {
+            IDatenbankEintrag[] institute = AustauschInterpreter.Instance().erzeugeElementArt(TabellenName.INSTITUT, jsonInformation);
+            foreach (IDatenbankEintrag institut in institute) {
                 Debug.Log(institut);
             }
-            string[] items = AustauschInterpreter.Instance().ErzeugeElementArt(TabellenName.ITEM, json);
-            foreach (string item in items) {
+            IDatenbankEintrag[] items = AustauschInterpreter.Instance().erzeugeElementArt(TabellenName.ITEM, jsonInformation);
+            foreach (IDatenbankEintrag item in items) {
                 Debug.Log(item);
             }
-            string[] kartenelemente = AustauschInterpreter.Instance().ErzeugeElementArt(TabellenName.KARTENELEMENT, json);
-            foreach (string kartenelement in kartenelemente) {
-                Debug.Log(kartenelement);
+            IDatenbankEintrag[] aufgaben = AustauschInterpreter.Instance().erzeugeElementArt(TabellenName.AUFGABE, jsonInformation);
+            foreach (IDatenbankEintrag aufgabe in aufgaben) {
+                Debug.Log(aufgabe);
+            }
+            IDatenbankEintrag[] gebaeudes = AustauschInterpreter.Instance().erzeugeElementArt(TabellenName.KARTENELEMENT, jsonInformation);
+            foreach (IDatenbankEintrag gebaeude in gebaeudes) {
+                Debug.Log(gebaeude);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lifehack.Model.Aufgabe {
+namespace Lifehack.Model.Prozess {
     
     public class Dialog {
 

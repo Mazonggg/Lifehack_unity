@@ -3,7 +3,7 @@ using Lifehack.Model.Enum;
 
 namespace Lifehack.Model.Stadtplan {
 
-    public class Umwelt : DatenbankEintrag {
+    public class Umwelt : Kartenelement {
 
         private bool begehbar;
         public bool Begehbar {
@@ -11,8 +11,16 @@ namespace Lifehack.Model.Stadtplan {
             set { this.begehbar = value; }
         }
 
-        public override Kartenelement_art Tabelle<Kartenelement_art>() {
-            return Kartenelement_art.UMWELT;
+        public override KartenelementArt KartenelementArt {
+            get { return KartenelementArt.UMWELT; }
+        }
+
+        public Umwelt(bool begehbar) : base() {
+            this.begehbar = begehbar;
+        }
+
+        public override TabellenName Tabelle() {
+            return TabellenName.UMWELT;
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Lifehack.Model {
             set { this.id = value; }
         }
 
-        public DatenbankEintrag() { }
+        protected DatenbankEintrag() { }
 
-        abstract public T Tabelle<T>() where T : struct, IConvertible;
+        abstract public TabellenName Tabelle();
     }
 }
 

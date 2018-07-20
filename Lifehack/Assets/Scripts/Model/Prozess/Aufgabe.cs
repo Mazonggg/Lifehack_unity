@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using Lifehack.Model.Enum;
 
-namespace Lifehack.Model.Aufgabe {
+namespace Lifehack.Model.Prozess {
 
     public class Aufgabe : DatenbankEintrag {
 
@@ -21,8 +22,18 @@ namespace Lifehack.Model.Aufgabe {
             set { this.teilaufgaben = value; }
         }
 
-        public override Kartenelement_art Tabelle<Kartenelement_art>() {
-            return Kartenelement_art.AUFGABE;
+        public Aufgabe() : base() { }
+
+        public override TabellenName Tabelle() {
+            return TabellenName.AUFGABE;
+        }
+
+        public override string ToString() {
+            string teilauf = "";
+            foreach (Teilaufgabe teilaufgabe in this.teilaufgaben) {
+                teilauf += teilaufgabe.ToString();
+            }
+            return "AUFGABE: id: " + this.Id + "; Bezeichnung: " + this.bezeichnung + "; gesetzesgrundlage: " + this.gesetzesgrundlage + "; teilaufgaben: " + teilauf;
         }
     }
 }

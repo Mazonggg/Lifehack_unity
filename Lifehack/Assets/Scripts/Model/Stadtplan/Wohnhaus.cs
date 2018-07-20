@@ -11,8 +11,14 @@ namespace Lifehack.Model.Stadtplan {
             set { this.wohneinheiten = value; }
         }
 
-        public override Kartenelement_art Tabelle<Kartenelement_art>() {
-            return Kartenelement_art.WOHNHAUS;
+        public override KartenelementArt KartenelementArt {
+            get { return KartenelementArt.WOHNHAUS; }
+        }
+
+        public Wohnhaus() : base() { }
+
+        public override TabellenName Tabelle() {
+            return TabellenName.WOHNHAUS;
         }
     }
 }
