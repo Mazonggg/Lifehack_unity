@@ -5,7 +5,7 @@ using Lifehack.Model.Stadtplan;
 
 namespace Lifehack.Model.Fabrik.Stadtplan {
 
-    public class GebaeudeFabrik<T> : KartenelementFabrik<T> where T : Gebaeude {
+    public class GebaeudeFabrik<T> : KartenelementFabrik<T> where T : Gebaeude, new() {
 
         private static GebaeudeFabrik<Gebaeude> _instance;
 
@@ -18,15 +18,15 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
             return GebaeudeFabrik<Gebaeude>._instance;
         }
 
-        public override KartenelementArt GetKartenelementArt() {
-            return KartenelementArt.GEBAEUDE;
+        public override KartenelementArt GetKartenelementArt {
+            get { return KartenelementArt.GEBAEUDE; }
         }
 
-        protected override IDatenbankEintrag ErzeugeLeeresEintragObjekt() {
-            return new Gebaeude();
+        protected override T ErzeugeLeeresEintragObjekt() {
+            return new T();
         }
 
-        protected override IDatenbankEintrag SetAttribute(T datenbankEintrag, JSONObject json) {
+        protected override T SetAttribute(T datenbankEintrag, JSONObject json) {
             datenbankEintrag.InterieurAussehen = json["interieur_aussehen_url"].Value;
             return base.SetAttribute(datenbankEintrag, json);
         }

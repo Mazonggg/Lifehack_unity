@@ -6,28 +6,28 @@ using System;
 
 namespace Lifehack.Model.Fabrik.Stadtplan {
 
-    public class WohnhausFabrik<T> : GebaeudeFabrik<T> where T : Wohnhaus {
+    public class WohnhausFabrik : GebaeudeFabrik<Wohnhaus> {
 
-        private static WohnhausFabrik<Wohnhaus> _instance;
+        private static WohnhausFabrik _instance;
 
         protected WohnhausFabrik() { }
 
-        public new static WohnhausFabrik<Wohnhaus> Instance() {
-            if (WohnhausFabrik<Wohnhaus>._instance == null) {
-                WohnhausFabrik<Wohnhaus>._instance = new WohnhausFabrik<Wohnhaus>();
+        public new static WohnhausFabrik Instance() {
+            if (WohnhausFabrik._instance == null) {
+                WohnhausFabrik._instance = new WohnhausFabrik();
             }
-            return WohnhausFabrik<Wohnhaus>._instance;
+            return WohnhausFabrik._instance;
         }
 
-        public override KartenelementArt GetKartenelementArt() {
-            return KartenelementArt.WOHNHAUS;
+        public override KartenelementArt GetKartenelementArt {
+            get { return KartenelementArt.WOHNHAUS; }
         }
 
-        protected override IDatenbankEintrag ErzeugeLeeresEintragObjekt() {
+        protected override Wohnhaus ErzeugeLeeresEintragObjekt() {
             return new Wohnhaus();
         }
 
-        protected override IDatenbankEintrag SetAttribute(T datenbankEintrag, JSONObject json) {
+        protected override Wohnhaus SetAttribute(Wohnhaus datenbankEintrag, JSONObject json) {
             int wohneinheiten = 0;
             Int32.TryParse(json["wohneinheiten"].Value, out wohneinheiten);
             datenbankEintrag.Wohneinheiten = wohneinheiten;

@@ -5,27 +5,26 @@ namespace Lifehack.Model.Stadtplan {
 
     public abstract class Kartenelement : DatenbankEintrag, IKartenelement {
 
-        protected Abmessung[] abmessungen;
-        public Abmessung[] Abmessungen {
-            get { return this.abmessungen; }
-            set { this.abmessungen = value; }
-        }
-
         protected string kartenelementAussehen;
         public string KartenelementAussehen {
             get { return this.kartenelementAussehen; }
             set { this.kartenelementAussehen = value; }
         }
 
-        protected KartenelementArt kartenelementArt;
         abstract public KartenelementArt KartenelementArt { get; }
+
+        private string identifier;
+        public string Identifier {
+            get { return this.identifier; }
+            set { this.identifier = value; }
+        }
 
         public override TabellenName Tabelle() {
             return TabellenName.KARTENELEMENT;
         }
 
         public override string ToString() {
-            return "KARTENELEMENT: kartenelementArt: " + this.KartenelementArt + "; kartenelementAussehen: " + this.kartenelementAussehen;
+            return "KARTENELEMENT: identifier: " + this.identifier + "; kartenelementArt: " + this.KartenelementArt + "; kartenelementAussehen: " + this.kartenelementAussehen;
         }
     }
 }

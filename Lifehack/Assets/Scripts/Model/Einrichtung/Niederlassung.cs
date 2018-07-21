@@ -24,3 +24,4 @@ namespace Lifehack.Model.Einrichtung {
         }
     }
 }
+

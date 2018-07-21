@@ -7,15 +7,27 @@ using Lifehack.Model.Enum;
 namespace Lifehack.Model.Fabrik.Stadtplan {
 
     abstract public class KartenelementFabrik<T> : DatenbankEintragFabrik<T> where T : Kartenelement {
+        public override bool Equals(object obj) {
+            return base.Equals(obj);
+        }
 
-        abstract public KartenelementArt GetKartenelementArt();
+        abstract public KartenelementArt GetKartenelementArt { get; }
 
-        protected override IDatenbankEintrag SetAttribute(T datenbankEintrag, JSONObject json) {
+        protected override T SetAttribute(T datenbankEintrag, JSONObject json) {
             int id = -1;
             Int32.TryParse(json["kartenelement_id"].Value, out id);
             datenbankEintrag.Id = id;
             datenbankEintrag.KartenelementAussehen = json["kartenelement_aussehen_url"].Value;
+            datenbankEintrag.Identifier = json["ascii_identifier"].Value;
             return datenbankEintrag;
+        }
+
+        public override IDatenbankEintrag ErzeugeDantebankEintrag(JSONObject jsonObjekt) {
+            if (jsonObjekt["kartenelement_art_name"].IsNull || !jsonObjekt["kartenelement_art_name"].Value.Equals(EnumHandler.AlsString(this.GetKartenelementArt))) {
+                return null;
+            } else {
+                return base.ErzeugeDantebankEintrag(jsonObjekt);
+            }
         }
     }
 }

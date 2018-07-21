@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Lifehack.Model.Prozess {
-    
+
     public class Dialog {
 
         private string menueText;
@@ -37,6 +37,10 @@ namespace Lifehack.Model.Prozess {
             this.antwortText = antwortText;
             this.erfuellungsText = erfuellungsText;
             this.scheiternText = scheiternText;
+        }
+
+        public override string ToString() {
+            return "DIALOG: menueText: " + this.menueText + "; anspracheText: " + this.anspracheText + "; antwortText: " + this.antwortText + "; erfuellungsText: " + this.erfuellungsText + "; scheiternText: " + this.scheiternText + " ";
         }
     }
 }

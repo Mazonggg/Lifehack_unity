@@ -19,11 +19,11 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
             return InstitutFabrik._instance;
         }
 
-        protected override IDatenbankEintrag ErzeugeLeeresEintragObjekt() {
+        protected override Institut ErzeugeLeeresEintragObjekt() {
             return new Institut();
         }
 
-        protected override IDatenbankEintrag SetAttribute(Institut datenbankEintrag, JSONObject json) {
+        protected override Institut SetAttribute(Institut datenbankEintrag, JSONObject json) {
             int id = -1;
             Int32.TryParse(json["institut_id"].Value, out id);
             datenbankEintrag.Id = id;

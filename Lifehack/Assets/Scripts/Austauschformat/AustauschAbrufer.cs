@@ -5,6 +5,13 @@ using UnityEngine.Networking;
 using SimpleJSON;
 using Lifehack.Model.Enum;
 using Lifehack.Model;
+using Lifehack.Model.Einrichtung;
+using Lifehack.Model.Prozess;
+using Lifehack.Model.Stadtplan;
+using Lifehack.Model.Fabrik;
+using Lifehack.Model.Fabrik.Einrichtung;
+using Lifehack.Model.Fabrik.Stadtplan;
+using System.Collections.Generic;
 
 /*
  * Nutzt https://github.com/Bunny83/SimpleJSON unter Beruecksichtigung 
@@ -15,17 +22,12 @@ using Lifehack.Model;
 namespace Lifehack.Austauschformat {
 
     public class AustauschAbrufer : MonoBehaviour {
-        // Flags for Server communication:
         private static string serverFehler = "Error:";
         private static string jsonAnfrage = "http://127.0.0.1/Lifehack/?modus=JSON";
         //private static string serverRequest = "http://h2678361.stratoserver.net/";
         private UnityWebRequest anfrage;
 
-        public static AustauschAbrufer _instance;
-
         private void Start() {
-            AustauschAbrufer._instance = this;
-            Debug.Log(AustauschAbrufer._instance);
             macheJsonAnfrage();
         }
 
@@ -45,11 +47,9 @@ namespace Lifehack.Austauschformat {
                         Debug.Log(serverFehler + anfrage.error);
                     } else {
                         string antwort = anfrage.downloadHandler.text;
-                        // Checks if the request responses with an error
                         if (antwort.StartsWith(serverFehler, StringComparison.Ordinal)) {
                             Debug.Log(serverFehler + antwort);
                         } else {
-                            // Callback function:
                             verarbeiteAntwort(antwort);
                         }
                     }
@@ -60,24 +60,26 @@ namespace Lifehack.Austauschformat {
         }
 
         private void verarbeiteAntwort(string antwort) {
-            JSONObject jsonInformation = (JSONObject)JSON.Parse(antwort)["information"].AsObject;
+            JSONNode jsonInformation = JSON.Parse(antwort)["information"];
 
-            IDatenbankEintrag[] institute = AustauschInterpreter.Instance().erzeugeElementArt(TabellenName.INSTITUT, jsonInformation);
-            foreach (IDatenbankEintrag institut in institute) {
-                Debug.Log(institut);
+            ModelHandler.Instance.Institute = new DatenbankEintragDirektor<Institut>().ParseJsonZuObjekten(jsonInformation["institut"], InstitutFabrik.Instance());
+
+            ModelHandler.Instance.Items = new DatenbankEintragDirektor<Item>().ParseJsonZuObjekten(jsonInformation["item"], ItemFabrik.Instance());
+
+            ModelHandler.Instance.Aufgaben = new DatenbankEintragDirektor<Aufgabe>().ParseJsonZuObjekten(jsonInformation["aufgabe"], AufgabeFabrik.Instance());
+
+            List<Kartenelement> kartenelemente = new List<Kartenelement>();
+            kartenelemente.AddRange(new DatenbankEintragDirektor<Umwelt>().ParseJsonZuObjekten(jsonInformation["kartenelement"], UmweltFabrik.Instance()));
+            kartenelemente.AddRange(new DatenbankEintragDirektor<Gebaeude>().ParseJsonZuObjekten(jsonInformation["kartenelement"], GebaeudeFabrik<Gebaeude>.Instance()));
+            kartenelemente.AddRange(new DatenbankEintragDirektor<Wohnhaus>().ParseJsonZuObjekten(jsonInformation["kartenelement"], WohnhausFabrik.Instance()));
+            kartenelemente.AddRange(new DatenbankEintragDirektor<Niederlassung>().ParseJsonZuObjekten(jsonInformation["kartenelement"], NiederlassungFabrik.Instance()));
+            Dictionary<string, Kartenelement> kartenelementTable = new Dictionary<string, Kartenelement>();
+            foreach (Kartenelement kartenelement in kartenelemente) {
+                kartenelementTable.Add(kartenelement.Identifier, kartenelement);
             }
-            IDatenbankEintrag[] items = AustauschInterpreter.Instance().erzeugeElementArt(TabellenName.ITEM, jsonInformation);
-            foreach (IDatenbankEintrag item in items) {
-                Debug.Log(item);
-            }
-            IDatenbankEintrag[] aufgaben = AustauschInterpreter.Instance().erzeugeElementArt(TabellenName.AUFGABE, jsonInformation);
-            foreach (IDatenbankEintrag aufgabe in aufgaben) {
-                Debug.Log(aufgabe);
-            }
-            IDatenbankEintrag[] gebaeudes = AustauschInterpreter.Instance().erzeugeElementArt(TabellenName.KARTENELEMENT, jsonInformation);
-            foreach (IDatenbankEintrag gebaeude in gebaeudes) {
-                Debug.Log(gebaeude);
-            }
+            ModelHandler.Instance.Kartenelemente = kartenelementTable;
+
+            Debug.Log(ModelHandler.Instance.ToString());
         }
     }
 }

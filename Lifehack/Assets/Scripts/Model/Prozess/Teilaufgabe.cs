@@ -38,7 +38,7 @@ namespace Lifehack.Model.Prozess {
         }
 
         public override string ToString() {
-            return "TEILAUFGABE: id:" + this.Id + "; teilaufgabeArt: " + EnumHandler.AlsString(this.teilaufgabeArt) + "; institutArt: " + EnumHandler.AlsString(this.institutArt);
+            return "TEILAUFGABE: id:" + this.Id + "; teilaufgabeArt: " + this.teilaufgabeArt.ToString() + "; institutArt: " + this.institutArt.ToString() + "; dialog: " + this.dialog.ToString() + "; Bedingung: " + this.bedingung.ToString() + "; Belohnung: " + this.belohnung + "; ";
         }
     }
 }

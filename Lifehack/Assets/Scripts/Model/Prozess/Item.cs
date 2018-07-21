@@ -36,7 +36,7 @@ namespace Lifehack.Model.Prozess {
         }
 
         public override string ToString() {
-            return "ITEM: id:" + this.Id + "; Name: " + this.name + "; Gewicht: " + this.gewicht + "; Konfiguration: " + this.konfiguration + "; item_art: " + EnumHandler.AlsString(this.itemArt);
+            return "ITEM: id:" + this.Id + "; Name: " + this.name + "; Gewicht: " + this.gewicht + "; Konfiguration: " + this.konfiguration + "; item_art: " + this.itemArt.ToString();
         }
     }
 }

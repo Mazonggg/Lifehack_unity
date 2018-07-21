@@ -7,28 +7,33 @@ using Lifehack.Model.Einrichtung;
 
 namespace Lifehack.Model.Fabrik.Stadtplan {
 
-    public class NiederlassungFabrik<T> : GebaeudeFabrik<T> where T : Niederlassung {
+    public class NiederlassungFabrik : GebaeudeFabrik<Niederlassung> {
 
-        private static NiederlassungFabrik<Niederlassung> _instance;
+        private static NiederlassungFabrik _instance;
 
         protected NiederlassungFabrik() { }
 
-        public new static NiederlassungFabrik<Niederlassung> Instance() {
-            if (NiederlassungFabrik<Niederlassung>._instance == null) {
-                NiederlassungFabrik<Niederlassung>._instance = new NiederlassungFabrik<Niederlassung>();
+        public new static NiederlassungFabrik Instance() {
+            if (NiederlassungFabrik._instance == null) {
+                NiederlassungFabrik._instance = new NiederlassungFabrik();
             }
-            return NiederlassungFabrik<Niederlassung>._instance;
+            return NiederlassungFabrik._instance;
         }
 
-        public override KartenelementArt GetKartenelementArt() {
-            return KartenelementArt.WOHNHAUS;
+        public override KartenelementArt GetKartenelementArt {
+            get { return KartenelementArt.NIEDERLASSUNG; }
         }
 
-        protected override IDatenbankEintrag ErzeugeLeeresEintragObjekt() {
-            return new Wohnhaus();
+        protected override Niederlassung ErzeugeLeeresEintragObjekt() {
+            return new Niederlassung();
         }
 
-        protected override IDatenbankEintrag SetAttribute(T datenbankEintrag, JSONObject json) {
+        protected override Niederlassung SetAttribute(Niederlassung datenbankEintrag, JSONObject json) {
+
+            int institutId = 0;
+            Int32.TryParse(json["niederlassung_institut_ref"].Value, out institutId);
+
+            datenbankEintrag.Institut = ModelHandler.Instance.GetInstitut(institutId);
             return base.SetAttribute(datenbankEintrag, json);
         }
     }

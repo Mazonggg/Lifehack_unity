@@ -30,14 +30,12 @@ namespace Lifehack.Model.Einrichtung {
             set { this.institutArt = value; }
         }
 
-        public Institut() : base() { }
-
         public override TabellenName Tabelle() {
             return TabellenName.INSTITUT;
         }
 
         public override string ToString() {
-            return "INSTITUT: id:" + this.Id + "; Name: " + this.name + "; Beschreibung: " + this.beschreibung + "; institut_art: " + EnumHandler.AlsString(this.institutArt);
+            return "INSTITUT: id:" + this.Id + "; Name: " + this.name + "; Beschreibung: " + this.beschreibung + "; institut_art: " + this.institutArt.ToString();
         }
     }
 }

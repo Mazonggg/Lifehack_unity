@@ -3,6 +3,7 @@
 namespace Lifehack.Model.Enum {
 
     public enum TabellenName {
+        ABMESSUNG,
         AUFGABE,
         AUSSEHEN_LINK,
         GEBAEUDE,

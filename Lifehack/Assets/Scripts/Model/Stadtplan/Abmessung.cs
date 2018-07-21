@@ -1,8 +1,9 @@
 ﻿using System;
+using Lifehack.Model.Enum;
 
 namespace Lifehack.Model.Stadtplan {
-    
-    public class Abmessung {
+
+    public class Abmessung : DatenbankEintrag {
 
         private readonly int x, y, breite, hoehe;
         private readonly string identifier;
@@ -32,6 +33,10 @@ namespace Lifehack.Model.Stadtplan {
         }
         public int YMax {
             get { return this.y + this.hoehe; }
+        }
+
+        public override TabellenName Tabelle() {
+            return TabellenName.ABMESSUNG;
         }
     }
 }

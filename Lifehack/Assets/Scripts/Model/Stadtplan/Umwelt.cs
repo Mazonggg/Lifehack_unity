@@ -15,9 +15,7 @@ namespace Lifehack.Model.Stadtplan {
             get { return KartenelementArt.UMWELT; }
         }
 
-        public Umwelt(bool begehbar) : base() {
-            this.begehbar = begehbar;
-        }
+        public Umwelt() : base() { }
 
         public override TabellenName Tabelle() {
             return TabellenName.UMWELT;

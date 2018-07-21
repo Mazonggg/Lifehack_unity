@@ -1,19 +1,25 @@
 ﻿
+using System;
 using SimpleJSON;
 
 namespace Lifehack.Model.Fabrik {
 
     abstract public class DatenbankEintragFabrik<T> : IDatenbankEintragFabrik<IDatenbankEintrag> where T : IDatenbankEintrag {
 
-        abstract protected IDatenbankEintrag ErzeugeLeeresEintragObjekt();
-        abstract protected IDatenbankEintrag SetAttribute(T datenbankEintrag, JSONObject json);
+        abstract protected T ErzeugeLeeresEintragObjekt();
+        abstract protected T SetAttribute(T datenbankEintrag, JSONObject json);
 
-        public IDatenbankEintrag ErzeugeDantebankEintrag(JSONObject json) {
-            IDatenbankEintrag datenbankEintrag = this.ErzeugeLeeresEintragObjekt();
-            if (json.Count > 0) {
-                datenbankEintrag = this.SetAttribute((T)datenbankEintrag, json);
+        public virtual IDatenbankEintrag ErzeugeDantebankEintrag(JSONObject jsonObjekt) {
+            try {
+                T datenbankEintrag = this.ErzeugeLeeresEintragObjekt();
+                if (jsonObjekt.Count > 0) {
+                    datenbankEintrag = this.SetAttribute(datenbankEintrag, jsonObjekt);
+                }
+                return datenbankEintrag;
+            } catch (Exception e) {
+                ModelHandler.Log("DatenbankEintragFabrik.ErzeugeDantebankEintrag: EXCEPTION: " + e.Message);
+                return null;
             }
-            return datenbankEintrag;
         }
     }
 }
