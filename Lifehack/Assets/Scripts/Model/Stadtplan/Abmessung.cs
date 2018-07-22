@@ -1,22 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using Lifehack.Model.Enum;
+using UnityEngine;
 
 namespace Lifehack.Model.Stadtplan {
 
     public class Abmessung : DatenbankEintrag {
 
-        private readonly int x, y, breite, hoehe;
-        private readonly string identifier;
+        private List<Rect> felder = new List<Rect>();
 
-        public Abmessung(int x, int y, int breite, int hoehe, string identifier) {
-            this.x = x;
-            this.y = y;
-            this.breite = breite;
-            this.hoehe = hoehe;
-            this.identifier = identifier;
+        public Abmessung() { }
+
+        public void AddFeld(Rect feld) {
+            this.felder.Add(feld);
         }
 
-        public int XMin {
+        /*public int XMin {
             get { return this.x; }
         }
         public int YMin {
@@ -33,7 +32,7 @@ namespace Lifehack.Model.Stadtplan {
         }
         public int YMax {
             get { return this.y + this.hoehe; }
-        }
+        }*/
 
         public override TabellenName Tabelle() {
             return TabellenName.ABMESSUNG;

@@ -113,6 +113,79 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &444676106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 444676108}
+  - component: {fileID: 444676107}
+  - component: {fileID: 444676109}
+  m_Layer: 0
+  m_Name: Stadtplan
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &444676107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 444676106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99861c7b5aab4ce2af41028c3cbdb01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &444676108
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 444676106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &444676109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 444676106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df2d19e9ecf941e0ab25827e086037c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kartenelemenPrefab: {fileID: 1712141612958256, guid: bc76aa48043114b7d8916c6f57a4e5ee,
+    type: 2}
+  kartenelementSprites:
+  - {fileID: 21300000, guid: 71166221e2c1b42748b5761b495330e9, type: 3}
+  - {fileID: 21300000, guid: b997a49f375ed4de081a1b548787e255, type: 3}
+  - {fileID: 21300000, guid: cb86ae7458145447ab2e1a2448811c1f, type: 3}
+  - {fileID: 21300000, guid: 72e91ec77ab1f45baa0be3dd5a570d5e, type: 3}
+  - {fileID: 21300000, guid: 70007a49e6b884a41ab94f3cf5ca063b, type: 3}
+  - {fileID: 21300000, guid: a600539722172404687306f0b8b4efe1, type: 3}
+  - {fileID: 21300000, guid: e62fef0f75dcd4223871c38aac4199a3, type: 3}
+  - {fileID: 21300000, guid: d16ce076ecfa3404c9310df053edce8c, type: 3}
+  - {fileID: 21300000, guid: e5910255a689147b08fa8355bef32b27, type: 3}
+  - {fileID: 21300000, guid: 3a7fc2a3b386b47668d0c1e1b6948888, type: 3}
+  - {fileID: 21300000, guid: f24175e1e74054bf0a0016e250cf96d7, type: 3}
+  - {fileID: 21300000, guid: e506ef448513f466cbe5b9b1aff80e22, type: 3}
+  - {fileID: 21300000, guid: 168a7401ab2fb40b3a6f30020170409b, type: 3}
+  - {fileID: 21300000, guid: 813b9968003b3410b8b2e678d2152f7a, type: 3}
+  - {fileID: 21300000, guid: 14fec1c8f81cd4cbe843900e13cbee5b, type: 3}
+  - {fileID: 21300000, guid: c5200b468699749fcb1b0858591c1456, type: 3}
+  - {fileID: 21300000, guid: 4413a3142a93743b2a64b7f6f2baf54c, type: 3}
+  - {fileID: 21300000, guid: 12e5a717abbc54407a80b7374ce07c75, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

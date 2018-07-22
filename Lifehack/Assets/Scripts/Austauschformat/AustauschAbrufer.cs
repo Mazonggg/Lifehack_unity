@@ -60,26 +60,7 @@ namespace Lifehack.Austauschformat {
         }
 
         private void verarbeiteAntwort(string antwort) {
-            JSONNode jsonInformation = JSON.Parse(antwort)["information"];
-
-            ModelHandler.Instance.Institute = new DatenbankEintragDirektor<Institut>().ParseJsonZuObjekten(jsonInformation["institut"], InstitutFabrik.Instance());
-
-            ModelHandler.Instance.Items = new DatenbankEintragDirektor<Item>().ParseJsonZuObjekten(jsonInformation["item"], ItemFabrik.Instance());
-
-            ModelHandler.Instance.Aufgaben = new DatenbankEintragDirektor<Aufgabe>().ParseJsonZuObjekten(jsonInformation["aufgabe"], AufgabeFabrik.Instance());
-
-            List<Kartenelement> kartenelemente = new List<Kartenelement>();
-            kartenelemente.AddRange(new DatenbankEintragDirektor<Umwelt>().ParseJsonZuObjekten(jsonInformation["kartenelement"], UmweltFabrik.Instance()));
-            kartenelemente.AddRange(new DatenbankEintragDirektor<Gebaeude>().ParseJsonZuObjekten(jsonInformation["kartenelement"], GebaeudeFabrik<Gebaeude>.Instance()));
-            kartenelemente.AddRange(new DatenbankEintragDirektor<Wohnhaus>().ParseJsonZuObjekten(jsonInformation["kartenelement"], WohnhausFabrik.Instance()));
-            kartenelemente.AddRange(new DatenbankEintragDirektor<Niederlassung>().ParseJsonZuObjekten(jsonInformation["kartenelement"], NiederlassungFabrik.Instance()));
-            Dictionary<string, Kartenelement> kartenelementTable = new Dictionary<string, Kartenelement>();
-            foreach (Kartenelement kartenelement in kartenelemente) {
-                kartenelementTable.Add(kartenelement.Identifier, kartenelement);
-            }
-            ModelHandler.Instance.Kartenelemente = kartenelementTable;
-
-            Debug.Log(ModelHandler.Instance.ToString());
+            ModelHandler.Instance.InitModel(JSON.Parse(antwort));
         }
     }
 }
