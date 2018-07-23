@@ -8,6 +8,9 @@ namespace Lifehack.Model.Stadtplan {
     public class Abmessung : DatenbankEintrag {
 
         private List<Rect> felder = new List<Rect>();
+        public Rect[] Felder {
+            get { return this.felder.ToArray(); }
+        }
 
         public Abmessung() { }
 
@@ -15,27 +18,16 @@ namespace Lifehack.Model.Stadtplan {
             this.felder.Add(feld);
         }
 
-        /*public int XMin {
-            get { return this.x; }
-        }
-        public int YMin {
-            get { return this.y; }
-        }
-        public int Breite {
-            get { return this.breite; }
-        }
-        public int Hoehe {
-            get { return this.hoehe; }
-        }
-        public int XMax {
-            get { return this.x + this.breite; }
-        }
-        public int YMax {
-            get { return this.y + this.hoehe; }
-        }*/
-
         public override TabellenName Tabelle() {
             return TabellenName.ABMESSUNG;
+        }
+
+        public override string ToString() {
+            string rects = "";
+            foreach (Rect feld in this.felder) {
+                rects += "\nx: " + feld.x + "; y" + feld.y + "; breite: " + feld.width + "; hoehe: " + feld.height;
+            }
+            return "Abmessung: " + rects;
         }
     }
 }

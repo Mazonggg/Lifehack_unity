@@ -167,6 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kartenelemenPrefab: {fileID: 1712141612958256, guid: bc76aa48043114b7d8916c6f57a4e5ee,
     type: 2}
+  kachelPrefab: {fileID: 1462584072659694, guid: 8f0acb110d08d4dfb8d93a86a603d854,
+    type: 2}
   kartenelementSprites:
   - {fileID: 21300000, guid: 71166221e2c1b42748b5761b495330e9, type: 3}
   - {fileID: 21300000, guid: b997a49f375ed4de081a1b548787e255, type: 3}
