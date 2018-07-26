@@ -12,11 +12,13 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
 
         protected WohnhausFabrik() { }
 
-        public new static WohnhausFabrik Instance() {
-            if (WohnhausFabrik._instance == null) {
-                WohnhausFabrik._instance = new WohnhausFabrik();
+        public new static WohnhausFabrik Instance {
+            get {
+                if (WohnhausFabrik._instance == null) {
+                    WohnhausFabrik._instance = new WohnhausFabrik();
+                }
+                return WohnhausFabrik._instance;
             }
-            return WohnhausFabrik._instance;
         }
 
         public override KartenelementArt GetKartenelementArt {

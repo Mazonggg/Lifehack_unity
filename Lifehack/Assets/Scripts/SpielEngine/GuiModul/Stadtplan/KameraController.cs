@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lifehack.Spielengine.GUI {
+namespace Lifehack.Spielengine.GuiModul.Stadtplan {
 
     public class KameraController : MonoBehaviour {
 
@@ -12,6 +12,15 @@ namespace Lifehack.Spielengine.GUI {
             HOCH,
             RUNTER
         };
+
+        private static KameraController _instance;
+        public static KameraController Instance {
+            get { return KameraController._instance; }
+        }
+
+        private void Start() {
+            KameraController._instance = this;
+        }
 
         private readonly float tempo = 1f;
 

@@ -1,9 +1,9 @@
 using UnityEngine;
 using SimpleJSON;
 using Lifehack.Austauschformat;
-using Lifehack.SpielEngine.Model.Stadtplan;
 using System;
 using Lifehack.Model;
+using Lifehack.Spielengine.GuiModul.Stadtplan;
 
 public class Initiator : MonoBehaviour {
 

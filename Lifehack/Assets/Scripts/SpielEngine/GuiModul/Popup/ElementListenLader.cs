@@ -11,8 +11,11 @@ namespace Lifehack.GUI.Popup {
 
     public class ElementListenLader : MonoBehaviour {
 
-        public TabellenName tabellenName;
-        public GameObject popupEintragPrefab, popupEintragContainer;
+        private TabellenName tabellenName;
+        public TabellenName TabellenName {
+            set { this.tabellenName = value; }
+        }
+        public GameObject popupEintragPrefab;
 
         private void Start() {
             Button button = GetComponent<Button>();

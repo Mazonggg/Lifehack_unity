@@ -13,11 +13,13 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
 
         private AufgabeFabrik() { }
 
-        public static AufgabeFabrik Instance() {
-            if (AufgabeFabrik._instance == null) {
-                AufgabeFabrik._instance = new AufgabeFabrik();
+        public static AufgabeFabrik Instance {
+            get {
+                if (AufgabeFabrik._instance == null) {
+                    AufgabeFabrik._instance = new AufgabeFabrik();
+                }
+                return AufgabeFabrik._instance;
             }
-            return AufgabeFabrik._instance;
         }
 
         protected override Aufgabe ErzeugeLeeresEintragObjekt() {
@@ -33,7 +35,7 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
             List<Teilaufgabe> teilaufgaben = new List<Teilaufgabe>();
             foreach (JSONObject teilaufgabeDaten in json["teilaufgabe"]) {
                 datenbankEintrag.Gesetzesgrundlage += " # ";
-                teilaufgaben.Add((Teilaufgabe)TeilaufgabeFabrik.Instance().ErzeugeDantebankEintrag(teilaufgabeDaten.AsObject));
+                teilaufgaben.Add((Teilaufgabe)TeilaufgabeFabrik.Instance.ErzeugeDantebankEintrag(teilaufgabeDaten.AsObject));
             }
             datenbankEintrag.Teilaufgaben = teilaufgaben;
             return datenbankEintrag;

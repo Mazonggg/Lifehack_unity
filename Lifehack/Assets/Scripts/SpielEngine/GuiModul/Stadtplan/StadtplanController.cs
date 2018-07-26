@@ -6,7 +6,7 @@ using SimpleJSON;
 using System;
 using Lifehack.Model;
 
-namespace Lifehack.SpielEngine.Model.Stadtplan {
+namespace Lifehack.Spielengine.GuiModul.Stadtplan {
 
     public class StadtplanController : MonoBehaviour {
 

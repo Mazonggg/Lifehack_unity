@@ -2,7 +2,7 @@
 using UnityEngine;
 using Lifehack.Model.Stadtplan;
 
-namespace Lifehack.SpielEngine.Model.Stadtplan {
+namespace Lifehack.Spielengine.GuiModul.Stadtplan {
 
     public class KartenelementControllerGenerator : MonoBehaviour {
 
@@ -23,7 +23,7 @@ namespace Lifehack.SpielEngine.Model.Stadtplan {
             GameObject kartenelementObjekt = Instantiate(this.kartenelemenPrefab);
             kartenelementObjekt.name = kartenelement.KartenelementArt.ToString() + "-" + kartenelement.Id;
             kartenelementObjekt.GetComponent<KartenelementController>().Kartenelement = kartenelement;
-            kartenelementObjekt.transform.parent = gameObject.transform;
+            kartenelementObjekt.transform.SetParent(gameObject.transform);
             int kachelId = 0;
             foreach (Rect feld in StadtplanController.Instance.GetAbmessung(kartenelement.Identifier).Felder) {
                 GameObject kachel = Instantiate(this.kachelPrefab);
@@ -32,7 +32,7 @@ namespace Lifehack.SpielEngine.Model.Stadtplan {
                 kachel.GetComponent<SpriteRenderer>().sprite = sprite;
                 kachel.transform.position = new Vector2(feld.x + (feld.width /2), feld.y - (feld.height / 2));
                 kachel.transform.localScale = this.GetObjektScale(sprite, feld.size) * 4;
-                kachel.transform.parent = kartenelementObjekt.transform;
+                kachel.transform.SetParent(kartenelementObjekt.transform);
             }
         }
 

@@ -11,11 +11,13 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
 
         protected GebaeudeFabrik() { }
 
-        public static GebaeudeFabrik<Gebaeude> Instance() {
-            if (GebaeudeFabrik<Gebaeude>._instance == null) {
-                GebaeudeFabrik<Gebaeude>._instance = new GebaeudeFabrik<Gebaeude>();
+        public static GebaeudeFabrik<Gebaeude> Instance {
+            get {
+                if (GebaeudeFabrik<Gebaeude>._instance == null) {
+                    GebaeudeFabrik<Gebaeude>._instance = new GebaeudeFabrik<Gebaeude>();
+                }
+                return GebaeudeFabrik<Gebaeude>._instance;
             }
-            return GebaeudeFabrik<Gebaeude>._instance;
         }
 
         public override KartenelementArt GetKartenelementArt {

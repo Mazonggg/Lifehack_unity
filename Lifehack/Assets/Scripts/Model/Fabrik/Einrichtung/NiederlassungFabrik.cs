@@ -13,11 +13,13 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
 
         protected NiederlassungFabrik() { }
 
-        public new static NiederlassungFabrik Instance() {
-            if (NiederlassungFabrik._instance == null) {
-                NiederlassungFabrik._instance = new NiederlassungFabrik();
+        public new static NiederlassungFabrik Instance {
+            get {
+                if (NiederlassungFabrik._instance == null) {
+                    NiederlassungFabrik._instance = new NiederlassungFabrik();
+                }
+                return NiederlassungFabrik._instance;
             }
-            return NiederlassungFabrik._instance;
         }
 
         public override KartenelementArt GetKartenelementArt {

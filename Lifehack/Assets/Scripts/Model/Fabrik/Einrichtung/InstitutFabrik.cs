@@ -12,11 +12,13 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
 
         private InstitutFabrik() { }
 
-        public static InstitutFabrik Instance() {
-            if (InstitutFabrik._instance == null) {
-                InstitutFabrik._instance = new InstitutFabrik();
+        public static InstitutFabrik Instance {
+            get {
+                if (InstitutFabrik._instance == null) {
+                    InstitutFabrik._instance = new InstitutFabrik();
+                }
+                return InstitutFabrik._instance;
             }
-            return InstitutFabrik._instance;
         }
 
         protected override Institut ErzeugeLeeresEintragObjekt() {

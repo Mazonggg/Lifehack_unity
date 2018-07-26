@@ -12,11 +12,13 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
 
         private TeilaufgabeFabrik() { }
 
-        public static TeilaufgabeFabrik Instance() {
-            if (TeilaufgabeFabrik._instance == null) {
-                TeilaufgabeFabrik._instance = new TeilaufgabeFabrik();
+        public static TeilaufgabeFabrik Instance {
+            get {
+                if (TeilaufgabeFabrik._instance == null) {
+                    TeilaufgabeFabrik._instance = new TeilaufgabeFabrik();
+                }
+                return TeilaufgabeFabrik._instance;
             }
-            return TeilaufgabeFabrik._instance;
         }
 
         protected override Teilaufgabe ErzeugeLeeresEintragObjekt() {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Lifehack.Model.Stadtplan;
 using UnityEngine;
 
-namespace Lifehack.SpielEngine.Model.Stadtplan {
+namespace Lifehack.Spielengine.GuiModul.Stadtplan {
 
     public class KartenelementController : MonoBehaviour {
 
