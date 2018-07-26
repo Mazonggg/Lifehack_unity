@@ -1,7 +1,7 @@
 ﻿
 using Lifehack.Model.Einrichtung;
 using SimpleJSON;
-using Lifehack.Model.Enum;
+using Lifehack.Model.Konstanten;
 using System;
 
 namespace Lifehack.Model.Fabrik.Einrichtung {

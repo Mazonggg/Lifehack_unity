@@ -2,14 +2,11 @@
 using SimpleJSON;
 using System;
 using Lifehack.Model.Stadtplan;
-using Lifehack.Model.Enum;
+using Lifehack.Model.Konstanten;
 
 namespace Lifehack.Model.Fabrik.Stadtplan {
 
     abstract public class KartenelementFabrik<T> : DatenbankEintragFabrik<T> where T : Kartenelement {
-        public override bool Equals(object obj) {
-            return base.Equals(obj);
-        }
 
         abstract public KartenelementArt GetKartenelementArt { get; }
 

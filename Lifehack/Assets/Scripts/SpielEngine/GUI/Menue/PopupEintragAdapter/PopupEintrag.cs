@@ -18,3 +18,4 @@ namespace Lifehack.GUI.Menue.PopupEintragAdapter {
         protected abstract string GetKurzInfo();
     }
 }
+

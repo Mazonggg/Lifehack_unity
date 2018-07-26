@@ -26,10 +26,10 @@ namespace Lifehack.SpielEngine.Model.Stadtplan {
         }
 
         public void InitStadtplan(JSONNode jsonKarte) {
-            foreach(string identifier in jsonKarte.Keys) {
+            foreach (string identifier in jsonKarte.Keys) {
                 Abmessung abmessung = SimpleAbmessungFabrik.ErzeugeAbmessung();
                 foreach (JSONNode feld in jsonKarte[identifier].Children) {
-                    string[] werte = feld.Value.Split('/');
+                    string[] werte = feld.Value.Split(AustauschKonstanten.ABMESSUNG_TRENNER);
                     float x = 0;
                     float.TryParse(werte[0], out x);
                     float y = 0;

@@ -1,6 +1,6 @@
 ﻿
 using SimpleJSON;
-using Lifehack.Model.Enum;
+using Lifehack.Model.Konstanten;
 using Lifehack.Model.Stadtplan;
 using System;
 using Lifehack.Model.Einrichtung;

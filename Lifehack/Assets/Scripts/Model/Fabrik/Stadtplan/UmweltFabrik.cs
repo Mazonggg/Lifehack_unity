@@ -1,6 +1,6 @@
 ﻿
 using SimpleJSON;
-using Lifehack.Model.Enum;
+using Lifehack.Model.Konstanten;
 using Lifehack.Model.Stadtplan;
 using System;
 
@@ -12,7 +12,7 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
 
         protected UmweltFabrik() { }
 
-        public new static UmweltFabrik Instance() {
+        public static UmweltFabrik Instance() {
             if (UmweltFabrik._instance == null) {
                 UmweltFabrik._instance = new UmweltFabrik();
             }

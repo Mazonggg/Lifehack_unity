@@ -14,7 +14,6 @@ namespace Lifehack.Spielengine.GUI {
         };
 
         private readonly float tempo = 1f;
-        private bool inBewegung = false;
 
         public void Bewegen(Richtung richtung) {
             Vector3 position = gameObject.transform.position;

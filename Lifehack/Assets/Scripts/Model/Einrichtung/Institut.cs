@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Lifehack.Model.Enum;
+using Lifehack.Model.Konstanten;
 
 namespace Lifehack.Model.Einrichtung {
 

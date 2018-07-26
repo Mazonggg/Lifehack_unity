@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lifehack.Model.Enum {
+namespace Lifehack.Model.Konstanten {
 
     public enum TabellenName {
         ABMESSUNG,

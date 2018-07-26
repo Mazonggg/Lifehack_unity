@@ -30,7 +30,6 @@ namespace Lifehack.SpielEngine.Model.Stadtplan {
                 kachel.name = kartenelement.KartenelementArt.ToString() + "-" + kartenelement.Id + "_" + kachelId++;
                 Sprite sprite = this.GetSprite(kartenelement.KartenelementAussehen);
                 kachel.GetComponent<SpriteRenderer>().sprite = sprite;
-                Vector2 scale = this.GetObjektScale(sprite, feld.size);
                 kachel.transform.position = new Vector2(feld.x + (feld.width /2), feld.y - (feld.height / 2));
                 kachel.transform.localScale = this.GetObjektScale(sprite, feld.size) * 4;
                 kachel.transform.parent = kartenelementObjekt.transform;

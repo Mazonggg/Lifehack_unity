@@ -13,9 +13,7 @@ using SimpleJSON;
 namespace Lifehack.Austauschformat {
 
     public class AustauschAbrufer : MonoBehaviour {
-        private static string serverFehler = "Error:";
-        private static string jsonAnfrage = "http://127.0.0.1/Lifehack/?modus=JSON";
-        //private static string serverRequest = "http://h2678361.stratoserver.net/";
+        private static string jsonAnfrage = "http://zielke.projekte.onlinelabor.fh-luebeck.de/Lifehack/?modus=JSON";
         private UnityWebRequest anfrage;
 
         private void Start() {
@@ -34,16 +32,7 @@ namespace Lifehack.Austauschformat {
             using (anfrage = UnityWebRequest.Get(jsonAnfrage)) {
                 yield return anfrage.SendWebRequest();
                 try {
-                    if (anfrage.isNetworkError) {
-                        Debug.Log(serverFehler + anfrage.error);
-                    } else {
-                        string antwort = anfrage.downloadHandler.text;
-                        if (antwort.StartsWith(serverFehler, StringComparison.Ordinal)) {
-                            Debug.Log(serverFehler + antwort);
-                        } else {
-                            verarbeiteAntwort(antwort);
-                        }
-                    }
+                    verarbeiteAntwort(anfrage.downloadHandler.text);
                 } catch (Exception e) {
                     Debug.Log("AustauschAbrufer.frageJSONan -> Exception: " + e);
                 }

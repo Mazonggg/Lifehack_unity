@@ -8,9 +8,10 @@ namespace Lifehack.GUI.Menue.PopupEintragAdapter {
     public class PopupEintragController : MonoBehaviour {
 
         private IPopupEintragAdapter eintragAdapter;
-        public GameObject viewport;
+        private GameObject viewport;
 
         public void InitPopupEintragController(IPopupEintragAdapter eintragAdapter) {
+            viewport = gameObject.transform.parent.gameObject;
             this.eintragAdapter = eintragAdapter;
             Button button = GetComponent<Button>();
             GetComponentInChildren<Text>().text = this.eintragAdapter.GetPopupEintragText();
@@ -19,6 +20,7 @@ namespace Lifehack.GUI.Menue.PopupEintragAdapter {
         }
 
         private void OeffneInfo() {
+            ModelHandler.Log("OeffneInfo: " + this.eintragAdapter.GetPopupEintragText());
         }
     }
 }

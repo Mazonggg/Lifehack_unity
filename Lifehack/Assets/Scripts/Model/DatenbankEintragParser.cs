@@ -1,18 +1,15 @@
 ﻿
 using System.Collections.Generic;
+using Lifehack.Model.Fabrik;
 using SimpleJSON;
-using Lifehack.Model.Enum;
-using Lifehack.Model.Fabrik.Stadtplan;
-using Lifehack.Model.Stadtplan;
-using Lifehack.Austauschformat;
 
-namespace Lifehack.Model.Fabrik {
+namespace Lifehack.Model {
 
-    public class DatenbankEintragDirektor<T> where T : IDatenbankEintrag {
+    public class DatenbankEintragParser<T> where T : IDatenbankEintrag {
 
-        public DatenbankEintragDirektor() { }
+        public DatenbankEintragParser() { }
 
-        public T[] ParseJsonZuObjekten(JSONNode elementDatens, IDatenbankEintragFabrik<IDatenbankEintrag> fabrik) {
+        public T[] ArrayZuObjekten(JSONNode elementDatens, IDatenbankEintragFabrik<IDatenbankEintrag> fabrik) {
             List<T> eintraege = new List<T>();
             //ModelHandler.Log(elementDatens.ToString());
             foreach (JSONNode elementDaten in elementDatens.Children) {

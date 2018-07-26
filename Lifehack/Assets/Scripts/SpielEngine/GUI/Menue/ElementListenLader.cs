@@ -1,7 +1,7 @@
 ﻿
 using Lifehack.GUI.Menue.PopupEintragAdapter;
 using Lifehack.Model.Einrichtung;
-using Lifehack.Model.Enum;
+using Lifehack.Model.Konstanten;
 using Lifehack.Model.Prozess;
 using UnityEngine;
 using UnityEngine.UI;
