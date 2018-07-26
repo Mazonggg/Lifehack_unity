@@ -1,7 +1,7 @@
 
 using Lifehack.Model.Einrichtung;
 
-namespace Lifehack.GUI.Menue.PopupEintragAdapter.Model.Einrichtung {
+namespace Lifehack.GUI.Popup.PopupEintragAdapter.Model.Einrichtung {
 
     public class InstitutPopupEintrag : PopupEintrag<Institut> {
 

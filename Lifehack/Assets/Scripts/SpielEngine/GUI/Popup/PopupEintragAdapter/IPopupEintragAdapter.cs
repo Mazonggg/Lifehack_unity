@@ -1,7 +1,7 @@
 ﻿
 using Lifehack.Model;
 
-namespace Lifehack.GUI.Menue.PopupEintragAdapter {
+namespace Lifehack.GUI.Popup.PopupEintragAdapter {
 
     public interface IPopupEintragAdapter {
         string GetPopupEintragText();

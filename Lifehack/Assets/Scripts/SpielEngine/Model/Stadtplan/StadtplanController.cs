@@ -4,6 +4,7 @@ using Lifehack.Model.Stadtplan;
 using UnityEngine;
 using SimpleJSON;
 using System;
+using Lifehack.Model;
 
 namespace Lifehack.SpielEngine.Model.Stadtplan {
 
@@ -22,10 +23,10 @@ namespace Lifehack.SpielEngine.Model.Stadtplan {
         private int kachelGroesse;
         public int KachelGroesse {
             get { return this.kachelGroesse; }
-            set { this.kachelGroesse = value; }
         }
 
-        public void InitStadtplan(JSONNode jsonKarte) {
+        public void InitStadtplan(JSONNode jsonKarte, int kachelGroesse) {
+            this.kachelGroesse = kachelGroesse;
             foreach (string identifier in jsonKarte.Keys) {
                 Abmessung abmessung = SimpleAbmessungFabrik.ErzeugeAbmessung();
                 foreach (JSONNode feld in jsonKarte[identifier].Children) {

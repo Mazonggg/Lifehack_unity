@@ -1,7 +1,7 @@
 
 using Lifehack.Model.Prozess;
 
-namespace Lifehack.GUI.Menue.PopupEintragAdapter.Model.Prozess {
+namespace Lifehack.GUI.Popup.PopupEintragAdapter.Model.Prozess {
 
     public class ItemPopupEintrag : PopupEintrag<Item> {
 

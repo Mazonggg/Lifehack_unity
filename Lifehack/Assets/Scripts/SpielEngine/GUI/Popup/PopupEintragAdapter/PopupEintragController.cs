@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lifehack.GUI.Menue.PopupEintragAdapter {
+namespace Lifehack.GUI.Popup.PopupEintragAdapter {
 
     public class PopupEintragController : MonoBehaviour {
 
@@ -20,7 +20,7 @@ namespace Lifehack.GUI.Menue.PopupEintragAdapter {
         }
 
         private void OeffneInfo() {
-            ModelHandler.Log("OeffneInfo: " + this.eintragAdapter.GetPopupEintragText());
+            Debug.Log("OeffneInfo: " + this.eintragAdapter.GetPopupEintragText());
         }
     }
 }

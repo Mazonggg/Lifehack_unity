@@ -1,12 +1,13 @@
 ﻿
-using Lifehack.GUI.Menue.PopupEintragAdapter;
+using Lifehack.GUI.Popup.PopupEintragAdapter;
+using Lifehack.Model;
 using Lifehack.Model.Einrichtung;
 using Lifehack.Model.Konstanten;
 using Lifehack.Model.Prozess;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lifehack.GUI.Menue {
+namespace Lifehack.GUI.Popup {
 
     public class ElementListenLader : MonoBehaviour {
 
@@ -32,7 +33,6 @@ namespace Lifehack.GUI.Menue {
                     break;
             }
             foreach (IPopupEintragAdapter eintrag in eintragAdapter) {
-                ModelHandler.Log("foreach: " + eintrag.GetPopupEintragText());
                 GameObject popupEintrag = Instantiate(this.popupEintragPrefab);
                 popupEintrag.GetComponent<PopupEintragController>().InitPopupEintragController(eintrag);
             }

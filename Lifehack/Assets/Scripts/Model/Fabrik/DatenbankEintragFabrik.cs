@@ -1,6 +1,7 @@
 ﻿
 using System;
 using SimpleJSON;
+using UnityEngine;
 
 namespace Lifehack.Model.Fabrik {
 
@@ -17,7 +18,7 @@ namespace Lifehack.Model.Fabrik {
                 }
                 return datenbankEintrag;
             } catch (Exception e) {
-                ModelHandler.Log("DatenbankEintragFabrik.ErzeugeDantebankEintrag: EXCEPTION: " + e.Message);
+                Debug.Log("DatenbankEintragFabrik.ErzeugeDantebankEintrag: EXCEPTION: " + e.Message);
                 return null;
             }
         }

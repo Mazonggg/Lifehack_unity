@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Lifehack.Model;
 
-namespace Lifehack.GUI.Menue.PopupEintragAdapter {
+namespace Lifehack.GUI.Popup.PopupEintragAdapter {
 
     abstract public class PopupEintrag<T> : IPopupEintragAdapter {
 

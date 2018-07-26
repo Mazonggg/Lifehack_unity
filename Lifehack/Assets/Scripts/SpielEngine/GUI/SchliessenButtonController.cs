@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lifehack.GUI.Menue {
+namespace Lifehack.GUI.Popup {
 
     public class SchliessenButtonController : MonoBehaviour {
 

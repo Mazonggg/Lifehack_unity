@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections;
-using Lifehack.GUI.Menue.PopupEintragAdapter;
+using Lifehack.GUI.Popup.PopupEintragAdapter;
 using Lifehack.Model;
 using Lifehack.Model.Prozess;
 using System.Collections.Generic;
-using Lifehack.GUI.Menue.PopupEintragAdapter.Model.Prozess;
+using Lifehack.GUI.Popup.PopupEintragAdapter.Model.Prozess;
 using Lifehack.Model.Einrichtung;
-using Lifehack.GUI.Menue.PopupEintragAdapter.Model.Einrichtung;
+using Lifehack.GUI.Popup.PopupEintragAdapter.Model.Einrichtung;
 
-namespace Lifehack.GUI.Menue.PopupEintragAdapter {
+namespace Lifehack.GUI.Popup.PopupEintragAdapter {
 
     public class SimplePopupEintragFabrik {
 

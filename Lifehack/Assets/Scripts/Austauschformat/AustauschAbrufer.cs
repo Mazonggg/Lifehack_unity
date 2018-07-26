@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-using SimpleJSON;
 
 /*
  * Nutzt https://github.com/Bunny83/SimpleJSON unter Beruecksichtigung 
@@ -12,35 +11,30 @@ using SimpleJSON;
  */
 namespace Lifehack.Austauschformat {
 
-    public class AustauschAbrufer : MonoBehaviour {
-        private static string jsonAnfrage = "http://zielke.projekte.onlinelabor.fh-luebeck.de/Lifehack/?modus=JSON";
-        private UnityWebRequest anfrage;
+    public class AustauschAbrufer {
 
-        private void Start() {
-            macheJsonAnfrage();
-        }
-
-        public void Log(string log) {
-            Debug.Log(log);
-        }
-
-        private void macheJsonAnfrage() {
-            StartCoroutine(frageJsonAn());
-        }
-
-        private IEnumerator frageJsonAn() {
-            using (anfrage = UnityWebRequest.Get(jsonAnfrage)) {
-                yield return anfrage.SendWebRequest();
-                try {
-                    verarbeiteAntwort(anfrage.downloadHandler.text);
-                } catch (Exception e) {
-                    Debug.Log("AustauschAbrufer.frageJSONan -> Exception: " + e);
+        private static AustauschAbrufer _instance;
+        public static AustauschAbrufer Instance {
+            get {
+                if (AustauschAbrufer._instance == null) {
+                    AustauschAbrufer._instance = new AustauschAbrufer();
                 }
+                return AustauschAbrufer._instance;
             }
         }
 
-        private void verarbeiteAntwort(string antwort) {
-            ModelHandler.Instance.InitModel(JSON.Parse(antwort));
+        private static string jsonAnfrage = "http://zielke.projekte.onlinelabor.fh-luebeck.de/Lifehack/?modus=JSON";
+        private UnityWebRequest anfrage;
+
+        public IEnumerator FrageJsonAn(Action<string> callback) {
+            using (anfrage = UnityWebRequest.Get(jsonAnfrage)) {
+                yield return anfrage.SendWebRequest();
+                try {
+                    callback(anfrage.downloadHandler.text);
+                } catch (Exception e) {
+                    Debug.Log("AustauschAbrufer.FrageJSONan() -> Exception: " + e);
+                }
+            }
         }
     }
 }
