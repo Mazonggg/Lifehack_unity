@@ -19,9 +19,30 @@ namespace Lifehack.SpielEngine.Model.Stadtplan {
         }
 
         private Dictionary<string, Abmessung> abmessungen = new Dictionary<string, Abmessung>();
+        private int kachelGroesse;
+        public int KachelGroesse {
+            get { return this.kachelGroesse; }
+            set { this.kachelGroesse = value; }
+        }
 
         public void InitStadtplan(JSONNode jsonKarte) {
-            this.InitKartenAbmessungen(jsonKarte);
+            foreach(string identifier in jsonKarte.Keys) {
+                Abmessung abmessung = SimpleAbmessungFabrik.ErzeugeAbmessung();
+                foreach (JSONNode feld in jsonKarte[identifier].Children) {
+                    string[] werte = feld.Value.Split('/');
+                    float x = 0;
+                    float.TryParse(werte[0], out x);
+                    float y = 0;
+                    float.TryParse(werte[1], out y);
+                    float breite = 0;
+                    float.TryParse(werte[2], out breite);
+                    float hoehe = 0;
+                    float.TryParse(werte[3], out hoehe);
+                    abmessung.AddFeld(new Rect(x, -y, breite, hoehe));
+                }
+                this.abmessungen.Add(identifier, abmessung);
+            }
+
             Dictionary<string, Kartenelement> kartenelemente = ModelHandler.Instance.Kartenelemente;
             foreach (string kartenelementIdentifier in kartenelemente.Keys) {
                 KartenelementControllerGenerator.Instance.ErzeugeKartenelementObjekt(kartenelemente[kartenelementIdentifier]);
@@ -29,63 +50,6 @@ namespace Lifehack.SpielEngine.Model.Stadtplan {
         }
         public Abmessung GetAbmessung(string identifier) {
             return this.abmessungen[identifier];
-        }
-
-        private void InitKartenAbmessungen(JSONNode jsonKarte) {
-            Dictionary<string, Abmessung> werte = new Dictionary<string, Abmessung>();
-            foreach (string yWert in jsonKarte.Keys) {
-                int xMin = this.GetXMin(jsonKarte[yWert]);
-                for (int xWert = xMin; xWert < jsonKarte[yWert].Count; xWert++) {
-                    string identifier = jsonKarte[yWert][xWert.ToString()].Value;
-                    if (this.IstNeuesFeld(identifier)) {
-                        if (werte.ContainsKey(identifier)) {
-                            werte[identifier].AddFeld(this.SammleFeld(xWert.ToString(), yWert, jsonKarte));
-                        } else {
-                            Abmessung abmessung = SimpleAbmessungFabrik.ErzeugeAbmessung();
-                            abmessung.AddFeld(this.SammleFeld(xWert.ToString(), yWert, jsonKarte));
-                            werte[identifier] = abmessung;
-                        }
-                    }
-                }
-            }
-            this.abmessungen = werte;
-        }
-
-        private Rect SammleFeld(string xWert, string yWert, JSONNode jsonKarte) {
-            int x = 0;
-            Int32.TryParse(xWert, out x);
-            int y = 0;
-            Int32.TryParse(yWert, out y);
-            int breite = 1000;
-            int hoehe = 0;
-            string identifier = jsonKarte[yWert][xWert].Value;
-            do {
-                int breiteDieserZeile = 0;
-                do {
-                    breiteDieserZeile++;
-                    x++;
-                } while (jsonKarte[(y).ToString()][(x).ToString()].Value.Equals(identifier.ToLower()));
-                breite = (breiteDieserZeile < breite ? breiteDieserZeile : breite);
-                hoehe++;
-                y++;
-                Int32.TryParse(xWert, out x);
-            } while (jsonKarte[(y).ToString()][(x).ToString()].Value.Equals(identifier.ToLower()));
-            Int32.TryParse(yWert, out y);
-            return new Rect(new Vector2(x, -y), new Vector2(breite, hoehe));
-        }
-
-        private int GetXMin(JSONNode yWert) {
-            int xMin = 0;
-            foreach (string xString in yWert.Keys) {
-                int xWert = 0;
-                Int32.TryParse(xString, out xWert);
-                xMin = (xWert < xMin ? xWert : xMin);
-            }
-            return xMin;
-        }
-
-        private bool IstNeuesFeld(string identifier) {
-            return !identifier.Equals("") && identifier.ToUpper().Equals(identifier);
         }
     }
 }

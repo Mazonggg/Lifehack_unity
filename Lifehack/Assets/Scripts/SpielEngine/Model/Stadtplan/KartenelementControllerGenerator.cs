@@ -28,9 +28,11 @@ namespace Lifehack.SpielEngine.Model.Stadtplan {
             foreach (Rect feld in StadtplanController.Instance.GetAbmessung(kartenelement.Identifier).Felder) {
                 GameObject kachel = Instantiate(this.kachelPrefab);
                 kachel.name = kartenelement.KartenelementArt.ToString() + "-" + kartenelement.Id + "_" + kachelId++;
-                kachel.GetComponent<SpriteRenderer>().sprite = this.GetSprite(kartenelement.KartenelementAussehen);
-                kachel.transform.position = new Vector2(feld.x + (feld.width / 2), feld.y + (feld.height / 2));
-                kachel.transform.localScale = feld.size;
+                Sprite sprite = this.GetSprite(kartenelement.KartenelementAussehen);
+                kachel.GetComponent<SpriteRenderer>().sprite = sprite;
+                Vector2 scale = this.GetObjektScale(sprite, feld.size);
+                kachel.transform.position = new Vector2(feld.x + (feld.width /2), feld.y - (feld.height / 2));
+                kachel.transform.localScale = this.GetObjektScale(sprite, feld.size) * 4;
                 kachel.transform.parent = kartenelementObjekt.transform;
             }
         }
@@ -42,6 +44,12 @@ namespace Lifehack.SpielEngine.Model.Stadtplan {
                 }
             }
             return null;
+        }
+
+        private Vector2 GetObjektScale(Sprite sprite, Vector2 feld) {
+            float breite = feld.x / (sprite.rect.width / StadtplanController.Instance.KachelGroesse);
+            float hoehe = feld.y / (sprite.rect.height / StadtplanController.Instance.KachelGroesse);
+            return new Vector2(breite, hoehe);
         }
     }
 }

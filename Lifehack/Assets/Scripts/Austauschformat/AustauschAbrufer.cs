@@ -3,15 +3,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
-using Lifehack.Model.Enum;
-using Lifehack.Model;
-using Lifehack.Model.Einrichtung;
-using Lifehack.Model.Prozess;
-using Lifehack.Model.Stadtplan;
-using Lifehack.Model.Fabrik;
-using Lifehack.Model.Fabrik.Einrichtung;
-using Lifehack.Model.Fabrik.Stadtplan;
-using System.Collections.Generic;
 
 /*
  * Nutzt https://github.com/Bunny83/SimpleJSON unter Beruecksichtigung 

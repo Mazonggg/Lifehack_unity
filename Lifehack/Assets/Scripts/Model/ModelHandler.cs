@@ -9,6 +9,7 @@ using Lifehack.Model.Stadtplan;
 using Lifehack.SpielEngine.Model.Stadtplan;
 using UnityEngine;
 using SimpleJSON;
+using System;
 
 public class ModelHandler : MonoBehaviour {
 
@@ -28,14 +29,17 @@ public class ModelHandler : MonoBehaviour {
 
     private Institut[] institute = new Institut[] { };
     public Institut[] Institute {
+        get { return this.institute; }
         set { this.institute = value; }
     }
     private Item[] items = new Item[] { };
     public Item[] Items {
+        get { return this.items; }
         set { this.items = value; }
     }
     private Aufgabe[] aufgaben = new Aufgabe[] { };
     public Aufgabe[] Aufgaben {
+        get { return this.aufgaben; }
         set { this.aufgaben = value; }
     }
     private Dictionary<string, Kartenelement> kartenelemente = new Dictionary<string, Kartenelement>();
@@ -73,6 +77,10 @@ public class ModelHandler : MonoBehaviour {
 
     public void InitModel(JSONNode json) {
         this.InitElemente(json["information"]);
+        int kachelGroesse = 0;
+        Int32.TryParse(json["konfiguration"]["kachel_groesse"].Value, out kachelGroesse);
+        ModelHandler.Log("kachel_groesse: " + kachelGroesse);
+        StadtplanController.Instance.KachelGroesse = kachelGroesse;
         StadtplanController.Instance.InitStadtplan(json["karte"]);
     }
 
@@ -81,13 +89,13 @@ public class ModelHandler : MonoBehaviour {
         this.items = new DatenbankEintragDirektor<Item>().ParseJsonZuObjekten(jsonInformation["item"], ItemFabrik.Instance());
         this.aufgaben = new DatenbankEintragDirektor<Aufgabe>().ParseJsonZuObjekten(jsonInformation["aufgabe"], AufgabeFabrik.Instance());
 
-        List<Kartenelement> kartenelemente = new List<Kartenelement>();
-        kartenelemente.AddRange(new DatenbankEintragDirektor<Umwelt>().ParseJsonZuObjekten(jsonInformation["kartenelement"], UmweltFabrik.Instance()));
-        kartenelemente.AddRange(new DatenbankEintragDirektor<Gebaeude>().ParseJsonZuObjekten(jsonInformation["kartenelement"], GebaeudeFabrik<Gebaeude>.Instance()));
-        kartenelemente.AddRange(new DatenbankEintragDirektor<Wohnhaus>().ParseJsonZuObjekten(jsonInformation["kartenelement"], WohnhausFabrik.Instance()));
-        kartenelemente.AddRange(new DatenbankEintragDirektor<Niederlassung>().ParseJsonZuObjekten(jsonInformation["kartenelement"], NiederlassungFabrik.Instance()));
+        List<Kartenelement> elemente = new List<Kartenelement>();
+        elemente.AddRange(new DatenbankEintragDirektor<Umwelt>().ParseJsonZuObjekten(jsonInformation["kartenelement"], UmweltFabrik.Instance()));
+        elemente.AddRange(new DatenbankEintragDirektor<Gebaeude>().ParseJsonZuObjekten(jsonInformation["kartenelement"], GebaeudeFabrik<Gebaeude>.Instance()));
+        elemente.AddRange(new DatenbankEintragDirektor<Wohnhaus>().ParseJsonZuObjekten(jsonInformation["kartenelement"], WohnhausFabrik.Instance()));
+        elemente.AddRange(new DatenbankEintragDirektor<Niederlassung>().ParseJsonZuObjekten(jsonInformation["kartenelement"], NiederlassungFabrik.Instance()));
         Dictionary<string, Kartenelement> kartenelementTable = new Dictionary<string, Kartenelement>();
-        foreach (Kartenelement kartenelement in kartenelemente) {
+        foreach (Kartenelement kartenelement in elemente) {
             kartenelementTable.Add(kartenelement.Identifier, kartenelement);
         }
         this.kartenelemente = kartenelementTable;
