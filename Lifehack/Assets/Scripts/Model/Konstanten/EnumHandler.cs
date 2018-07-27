@@ -33,12 +33,11 @@ namespace Lifehack.Model.Konstanten {
     };
 
     public enum InstitutArt {
-        WOHNHAUS = 1,
-        BANK = 2,
-        STADTTEILBUERO = 3,
-        SCHULE = 4,
-        VERSICHERUNG = 5,  
-        EINZELHAENDLER = 6
+        BANK = 1,
+        STADTTEILBUERO = 2,
+        SCHULE = 3,
+        VERSICHERUNG = 4,
+        EINZELHAENDLER = 5
     };
 
     public enum TeilaufgabeArt {
@@ -53,6 +52,14 @@ namespace Lifehack.Model.Konstanten {
         FORMULAR = 4,
         BANKKONTO = 5,
         CHIPKARTE = 6
+    };
+
+    public enum Status {
+        OFFEN,
+        AKTIV,
+        BEENDET,
+        GESCHEITERT,
+        NICHT_ERHALTEN
     };
 
     public class EnumHandler {

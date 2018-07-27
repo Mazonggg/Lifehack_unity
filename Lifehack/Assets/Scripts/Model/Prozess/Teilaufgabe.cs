@@ -31,6 +31,12 @@ namespace Lifehack.Model.Prozess {
             set { this.institutArt = value; }
         }
 
+        private bool abgeschlossen = false;
+        public bool Abgeschlossen {
+            get { return this.abgeschlossen; }
+            set { this.abgeschlossen = value; }
+        }
+
         public Teilaufgabe() : base() { }
 
         public override TabellenName Tabelle() {

@@ -3,21 +3,21 @@ using UnityEngine;
 using Lifehack.Model.Stadtplan;
 using Lifehack.SpielEngine.GuiModul.Stadtplan.Model.Stadtplan;
 
-namespace Lifehack.Spielengine.GuiModul.Stadtplan {
+namespace Lifehack.Spielengine.GuiModul.Stadtplan.StadtplanController {
 
-    public class KartenelementControllerGenerator : MonoBehaviour {
+    public class KartenelementControllerFabrik : MonoBehaviour {
 
         public GameObject kartenelemenPrefab;
         public GameObject kachelPrefab;
         public Sprite[] kartenelementSprites;
 
-        private static KartenelementControllerGenerator _instance;
-        public static KartenelementControllerGenerator Instance {
-            get { return KartenelementControllerGenerator._instance; }
+        private static KartenelementControllerFabrik _instance;
+        public static KartenelementControllerFabrik Instance {
+            get { return KartenelementControllerFabrik._instance; }
         }
 
         private void Start() {
-            KartenelementControllerGenerator._instance = this;
+            KartenelementControllerFabrik._instance = this;
         }
 
         public void ErzeugeKartenelementObjekt(IKartenelement kartenelement) {
@@ -26,9 +26,8 @@ namespace Lifehack.Spielengine.GuiModul.Stadtplan {
             kartenelementObjekt.GetComponent<KartenelementController>().Kartenelement = kartenelement;
             kartenelementObjekt.transform.SetParent(gameObject.transform);
             int kachelId = 0;
-            foreach (Rect feld in StadtplanController.Instance.GetAbmessung(kartenelement.Identifier).Felder) {
+            foreach (Rect feld in StadtplanModulController.Instance.GetAbmessung(kartenelement.Identifier).Felder) {
                 GameObject kachel = Instantiate(this.kachelPrefab);
-                Debug.Log("type: " + kartenelement.GetType());
                 if (typeof(Umwelt).IsAssignableFrom(kartenelement.GetType())) {
                     kachel.AddComponent<UmweltKachelController>();
                 } else if (typeof(Gebaeude).IsAssignableFrom(kartenelement.GetType())) {

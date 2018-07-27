@@ -22,6 +22,12 @@ namespace Lifehack.Model.Prozess {
             set { this.teilaufgaben = value; }
         }
 
+        private Status status = Status.OFFEN;
+        public Status Status {
+            get { return this.status; }
+            set { this.status = value; }
+        }
+
         public Aufgabe() : base() { }
 
         public override TabellenName Tabelle() {

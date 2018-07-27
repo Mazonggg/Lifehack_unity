@@ -8,15 +8,15 @@ using Lifehack.Model;
 
 namespace Lifehack.Spielengine.GuiModul.Stadtplan {
 
-    public class StadtplanController : MonoBehaviour {
+    public class StadtplanModulController : MonoBehaviour {
 
-        private static StadtplanController _instance;
-        public static StadtplanController Instance {
-            get { return StadtplanController._instance; }
+        private static StadtplanModulController _instance;
+        public static StadtplanModulController Instance {
+            get { return StadtplanModulController._instance; }
         }
 
         private void Start() {
-            StadtplanController._instance = this;
+            StadtplanModulController._instance = this;
         }
 
         private Dictionary<string, Abmessung> abmessungen = new Dictionary<string, Abmessung>();

@@ -22,7 +22,7 @@ public class Initiator : MonoBehaviour {
     private void InitStadtplanController(JSONNode json) {
         int kachelGroesse = 0;
         Int32.TryParse(json[AustauschKonstanten.KONFIGURATION][AustauschKonstanten.KACHEL_GROESSE].Value, out kachelGroesse);
-        StadtplanController.Instance.InitStadtplan(json[AustauschKonstanten.KARTE], kachelGroesse);
+        StadtplanModulController.Instance.InitStadtplan(json[AustauschKonstanten.KARTE], kachelGroesse);
     }
 }
 
