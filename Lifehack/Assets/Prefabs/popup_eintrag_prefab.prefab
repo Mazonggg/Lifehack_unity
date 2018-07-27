@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 222857498479473994}
   - component: {fileID: 114529570793828314}
   - component: {fileID: 114883552585928664}
-  - component: {fileID: 114694421303760888}
+  - component: {fileID: 114904502442855224}
   m_Layer: 5
   m_Name: popup_eintrag_prefab
   m_TagString: Untagged
@@ -74,17 +74,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114694421303760888
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1749113085829288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26ab4b5ee1e24f74ba7fdb9c7d8e984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114883552585928664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -159,6 +148,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Button
+--- !u!114 &114904502442855224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749113085829288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26ab4b5ee1e24f74ba7fdb9c7d8e984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222857498479473994
 CanvasRenderer:
   m_ObjectHideFlags: 1
