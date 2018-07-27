@@ -14,22 +14,14 @@ namespace Lifehack.Austauschformat {
 
     public class AustauschAbrufer : MonoBehaviour {
 
+        public GameObject modelHandler;
+
         private static string jsonAnfrage = "http://zielke.projekte.onlinelabor.fh-luebeck.de/Lifehack/?modus=JSON";
         private UnityWebRequest anfrage;
 
         private static AustauschAbrufer _instance;
         public static AustauschAbrufer Instance {
-            get {
-                if (AustauschAbrufer._instance == null) {
-                    AustauschAbrufer._instance = new AustauschAbrufer();
-                }
-                return AustauschAbrufer._instance;
-            }
-        }
-
-        private bool geladen = false;
-        public bool Geladen {
-            get { return this.geladen; }
+            get { return AustauschAbrufer._instance; }
         }
 
         private JSONNode json;
@@ -38,6 +30,7 @@ namespace Lifehack.Austauschformat {
         }
 
         private void Start() {
+            AustauschAbrufer._instance = this;
             StartCoroutine(this.FrageJsonAn());
         }
 
@@ -46,7 +39,7 @@ namespace Lifehack.Austauschformat {
                 yield return anfrage.SendWebRequest();
                 try {
                     this.json = JSON.Parse(anfrage.downloadHandler.text);
-                    this.geladen = true;
+                    modelHandler.SetActive(true);
                 } catch (Exception e) {
                     Debug.Log("AustauschAbrufer.FrageJSONan() -> Exception: " + e);
                 }

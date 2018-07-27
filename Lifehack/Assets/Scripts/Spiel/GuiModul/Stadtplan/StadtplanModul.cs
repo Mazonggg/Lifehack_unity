@@ -1,11 +1,10 @@
 ﻿
 using System.Collections.Generic;
 using Lifehack.Model.Stadtplan;
-using UnityEngine;
 using SimpleJSON;
 using System;
 using Lifehack.Model;
-using Lifehack.Spiel.GuiModul.Stadtplan.StadtplanController;
+using Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter;
 using Lifehack.Austauschformat;
 
 namespace Lifehack.Spiel.GuiModul.Stadtplan {
@@ -19,10 +18,11 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan {
 
         protected new void Start() {
             StadtplanModul._instance = this;
+            this.GetInhalt();
         }
 
         private Dictionary<string, Abmessung> abmessungen = new Dictionary<string, Abmessung>();
-        private int kachelGroesse = 0;
+        private int kachelGroesse;
         public int KachelGroesse {
             get { return this.kachelGroesse; }
         }
@@ -31,32 +31,30 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan {
             return this.abmessungen[identifier];
         }
 
-        protected override void LeereModul() { }
+        protected override void LeereInhalt() { }
 
-        protected override void BefuelleModul() {
+        protected override void GetInhalt() {
             JSONNode json = AustauschAbrufer.Instance.Json;
-            Int32.TryParse(json[AustauschKonstanten.KONFIGURATION][AustauschKonstanten.KACHEL_GROESSE].Value, out this.kachelGroesse);
 
-            foreach (string identifier in json[AustauschKonstanten.KARTE].Keys) {
-                Abmessung abmessung = SimpleAbmessungFabrik.ErzeugeAbmessung();
-                foreach (JSONNode feld in json[AustauschKonstanten.KARTE][identifier].Children) {
-                    string[] werte = feld.Value.Split(AustauschKonstanten.ABMESSUNG_TRENNER);
-                    float x = 0;
-                    float.TryParse(werte[0], out x);
-                    float y = 0;
-                    float.TryParse(werte[1], out y);
-                    float breite = 0;
-                    float.TryParse(werte[2], out breite);
-                    float hoehe = 0;
-                    float.TryParse(werte[3], out hoehe);
-                    abmessung.AddFeld(new Rect(x, -y, breite, hoehe));
-                }
+            this.SetKonfiguration(json[AustauschKonstanten.KONFIGURATION]);
+            this.SammleAbmessungen(json[AustauschKonstanten.KARTE]);
+            this.PlatziereKacheln(ModelHandler.Instance.Kartenelemente);
+        }
+
+        private void SetKonfiguration(JSONNode jsonKonfiguration) {
+            Int32.TryParse(jsonKonfiguration[AustauschKonstanten.KACHEL_GROESSE].Value, out this.kachelGroesse);
+        }
+
+        private void SammleAbmessungen(JSONNode jsonKarte) {
+            foreach (string identifier in jsonKarte.Keys) {
+                Abmessung abmessung = SimpleAbmessungFabrik.ErzeugeAbmessung(jsonKarte, identifier);
                 this.abmessungen.Add(identifier, abmessung);
             }
+        }
 
-            Dictionary<string, Kartenelement> kartenelemente = ModelHandler.Instance.Kartenelemente;
+        private void PlatziereKacheln(Dictionary<string, Kartenelement> kartenelemente) {
             foreach (string kartenelementIdentifier in kartenelemente.Keys) {
-                KartenelementControllerFabrik.Instance.ErzeugeKartenelementObjekt(kartenelemente[kartenelementIdentifier]);
+                GetComponent<KachelFabrik>().ErzeugeKachel(kartenelemente[kartenelementIdentifier]);
             }
         }
     }

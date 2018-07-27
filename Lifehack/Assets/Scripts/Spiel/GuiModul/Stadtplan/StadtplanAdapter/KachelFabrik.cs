@@ -3,28 +3,14 @@ using UnityEngine;
 using Lifehack.Model.Stadtplan;
 using Lifehack.Spiel.GuiModul.Stadtplan.Model.Stadtplan;
 
-namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanController {
+namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter {
 
-    public class KartenelementControllerFabrik : MonoBehaviour {
+    public class KachelFabrik : MonoBehaviour {
 
-        public GameObject kartenelemenPrefab;
         public GameObject kachelPrefab;
         public Sprite[] kartenelementSprites;
 
-        private static KartenelementControllerFabrik _instance;
-        public static KartenelementControllerFabrik Instance {
-            get { return KartenelementControllerFabrik._instance; }
-        }
-
-        private void Start() {
-            KartenelementControllerFabrik._instance = this;
-        }
-
-        public void ErzeugeKartenelementObjekt(IKartenelement kartenelement) {
-            GameObject kartenelementObjekt = Instantiate(this.kartenelemenPrefab);
-            kartenelementObjekt.name = kartenelement.KartenelementArt.ToString() + "-" + kartenelement.Id;
-            kartenelementObjekt.GetComponent<KartenelementController>().Kartenelement = kartenelement;
-            kartenelementObjekt.transform.SetParent(gameObject.transform);
+        public void ErzeugeKachel(IKartenelement kartenelement) {
             int kachelId = 0;
             foreach (Rect feld in StadtplanModul.Instance.GetAbmessung(kartenelement.Identifier).Felder) {
                 GameObject kachel = Instantiate(this.kachelPrefab);
@@ -38,7 +24,7 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanController {
                 kachel.GetComponent<SpriteRenderer>().sprite = sprite;
                 kachel.transform.position = new Vector2(feld.x + (feld.width / 2), feld.y - (feld.height / 2));
                 kachel.transform.localScale = this.GetObjektScale(sprite, feld.size) * 4;
-                kachel.transform.SetParent(kartenelementObjekt.transform);
+                kachel.transform.SetParent(gameObject.transform);
             }
         }
 

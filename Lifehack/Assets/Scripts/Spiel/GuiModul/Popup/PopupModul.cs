@@ -19,13 +19,13 @@ namespace Lifehack.Spiel.GuiModul.Popup {
             base.Start();
         }
 
-        protected override void BefuelleModul() {
+        protected override void GetInhalt() {
             //GameObject eintrag = Instantiate(popupEintragPrefab);
             //eintrag.GetComponent<PopupEintragController>().InitPopupEintragController();
             //content
         }
 
-        protected override void LeereModul() {
+        protected override void LeereInhalt() {
             this.content.transform.DetachChildren();
         }
     }

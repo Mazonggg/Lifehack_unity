@@ -11,18 +11,18 @@ namespace Lifehack.Spiel.GuiModul {
             wechselButton.GetComponent<Button>().onClick.AddListener(this.SchliesseModul);
         }
 
-        abstract protected void LeereModul();
-        abstract protected void BefuelleModul();
+        abstract protected void LeereInhalt();
+        abstract protected void GetInhalt();
 
         public void SchliesseModul() {
             gameObject.SetActive(false);
-            this.LeereModul();
+            this.LeereInhalt();
             this.oeffnendesModul.GetComponent<SpielModul>().OeffneModul();
         }
 
         public void OeffneModul() {
             gameObject.SetActive(true);
-            this.BefuelleModul();
+            this.GetInhalt();
         }
     }
 }

@@ -14,14 +14,11 @@ namespace Lifehack.Model {
 
     public class ModelHandler : MonoBehaviour {
 
+        public GameObject spielContainer;
+
         private static ModelHandler _instance;
         public static ModelHandler Instance {
-            get {
-                if (ModelHandler._instance == null) {
-                    ModelHandler._instance = new ModelHandler();
-                }
-                return ModelHandler._instance;
-            }
+            get { return ModelHandler._instance; }
         }
 
         private Institut[] institute;
@@ -46,6 +43,7 @@ namespace Lifehack.Model {
         }
 
         private void Start() {
+            ModelHandler._instance = this;
             JSONNode jsonInformation = AustauschAbrufer.Instance.Json[AustauschKonstanten.INFORMATION];
             this.institute = new DatenbankEintragParser<Institut>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.INSTITUT)], InstitutFabrik.Instance);
             this.items = new DatenbankEintragParser<Item>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.ITEM)], ItemFabrik.Instance);
@@ -61,6 +59,7 @@ namespace Lifehack.Model {
                 kartenelementTable.Add(kartenelement.Identifier, kartenelement);
             }
             this.kartenelemente = kartenelementTable;
+            spielContainer.SetActive(true);
         }
 
         public Institut GetInstitut(int institutId) {

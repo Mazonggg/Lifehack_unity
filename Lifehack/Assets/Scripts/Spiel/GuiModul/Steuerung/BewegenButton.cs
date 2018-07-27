@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Lifehack.Spiel.GuiModul.Stadtplan {
+namespace Lifehack.Spiel.GuiModul.Steuerung {
 
     public class BewegenButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler {
 

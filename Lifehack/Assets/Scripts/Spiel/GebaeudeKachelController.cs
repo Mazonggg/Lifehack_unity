@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Lifehack.Spiel.GuiModul.Popup;
 
-namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanController.Model.Stadtplan {
+namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter.Model.Stadtplan {
 
     public class GebaeudeKachelController : KachelController, IPointerClickHandler {
         private void Start() {

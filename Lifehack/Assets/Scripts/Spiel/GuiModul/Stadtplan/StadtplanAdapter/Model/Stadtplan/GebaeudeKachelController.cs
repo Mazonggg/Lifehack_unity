@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Lifehack.Spiel.GuiModul.Popup;
-using Lifehack.Spiel.GuiModul.Stadtplan.StadtplanController;
+using Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter;
 
 namespace Lifehack.Spiel.GuiModul.Stadtplan.Model.Stadtplan {
 

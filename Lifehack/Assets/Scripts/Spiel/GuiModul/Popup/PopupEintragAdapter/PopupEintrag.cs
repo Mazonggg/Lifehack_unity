@@ -4,7 +4,7 @@ using Lifehack.Model;
 
 namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
 
-    abstract public class PopupEintrag<T> : IPopupEintragAdapter {
+    abstract public class PopupEintrag<T> : IPopupEintragAdapter where T : IDatenbankEintrag {
 
         protected T eintrag;
 

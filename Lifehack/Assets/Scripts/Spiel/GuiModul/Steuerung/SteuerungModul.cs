@@ -4,11 +4,11 @@ using System.Collections;
 namespace Lifehack.Spiel.GuiModul.Steuerung {
 
     public class SteuerungModul : SpielModul {
-        protected override void BefuelleModul() {
+        protected override void GetInhalt() {
             return;
         }
 
-        protected override void LeereModul() {
+        protected override void LeereInhalt() {
             return;
         }
     }

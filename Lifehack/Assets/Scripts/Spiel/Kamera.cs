@@ -34,10 +34,8 @@ namespace Lifehack.Spiel {
         private void SetPosition(Vector3 altePosition, Richtung richtung) {
             try {
                 if (spieler.GetComponent<ColliderController>().IstCollidiert) {
-                    Debug.Log("collidiert");
                     gameObject.transform.position = AenderePosition(altePosition, richtung, -10f);
                 } else {
-                    Debug.Log("nicht");
                     gameObject.transform.position = AenderePosition(altePosition, richtung, 1f);
                 }
             } catch {
