@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections;
+using Lifehack.Spielengine.GuiModul.Stadtplan;
 using UnityEngine.EventSystems;
 using Lifehack.SpielEngine.GuiModul.Popup;
+using Lifehack.Spielengine.GuiModul.Stadtplan.Kachel;
 
-namespace Lifehack.Spielengine.GuiModul.Stadtplan {
+namespace Lifehack.SpielEngine.GuiModul.Stadtplan.Model.Stadtplan {
 
-    public class KachelController : MonoBehaviour, IPointerClickHandler {
-
+    public class GebaeudeKachelController : KachelController, IPointerClickHandler {
         private void Start() {
             gameObject.AddComponent<PolygonCollider2D>();
+            gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
         }
 
         public void OnPointerClick(PointerEventData eventData) {

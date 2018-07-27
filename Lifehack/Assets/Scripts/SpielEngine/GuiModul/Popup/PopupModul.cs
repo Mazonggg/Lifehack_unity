@@ -14,7 +14,7 @@ namespace Lifehack.SpielEngine.GuiModul.Popup {
             get { return PopupModul._instance; }
         }
 
-        protected void Start() {
+        protected new void Start() {
             Debug.Log("HUHUUUUUUUUU");
             PopupModul._instance = this;
             base.Start();

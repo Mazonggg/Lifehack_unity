@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using Lifehack.Model.Stadtplan;
+using Lifehack.SpielEngine.GuiModul.Stadtplan.Model.Stadtplan;
 
 namespace Lifehack.Spielengine.GuiModul.Stadtplan {
 
@@ -27,10 +28,16 @@ namespace Lifehack.Spielengine.GuiModul.Stadtplan {
             int kachelId = 0;
             foreach (Rect feld in StadtplanController.Instance.GetAbmessung(kartenelement.Identifier).Felder) {
                 GameObject kachel = Instantiate(this.kachelPrefab);
+                Debug.Log("type: " + kartenelement.GetType());
+                if (typeof(Umwelt).IsAssignableFrom(kartenelement.GetType())) {
+                    kachel.AddComponent<UmweltKachelController>();
+                } else if (typeof(Gebaeude).IsAssignableFrom(kartenelement.GetType())) {
+                    kachel.AddComponent<GebaeudeKachelController>();
+                }
                 kachel.name = kartenelement.KartenelementArt.ToString() + "-" + kartenelement.Id + "_" + kachelId++;
                 Sprite sprite = this.GetSprite(kartenelement.KartenelementAussehen);
                 kachel.GetComponent<SpriteRenderer>().sprite = sprite;
-                kachel.transform.position = new Vector2(feld.x + (feld.width /2), feld.y - (feld.height / 2));
+                kachel.transform.position = new Vector2(feld.x + (feld.width / 2), feld.y - (feld.height / 2));
                 kachel.transform.localScale = this.GetObjektScale(sprite, feld.size) * 4;
                 kachel.transform.SetParent(kartenelementObjekt.transform);
             }
