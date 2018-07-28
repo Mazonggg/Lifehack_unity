@@ -1,0 +1,17 @@
+﻿
+using Lifehack.Model.Stadtplan;
+using Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter;
+using UnityEngine;
+
+namespace Lifehack.Spiel.GuiModul.Stadtplan.Model.Stadtplan {
+
+    public class UmweltKachel : Kachel<Umwelt> {
+        private void Start() {
+            if (!this.Kartenelement.Begehbar) {
+                gameObject.AddComponent<PolygonCollider2D>();
+                gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
+            }
+        }
+    }
+}
+

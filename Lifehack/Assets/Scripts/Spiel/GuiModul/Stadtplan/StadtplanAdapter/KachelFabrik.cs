@@ -7,17 +7,19 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter {
 
     public class KachelFabrik : MonoBehaviour {
 
-        public GameObject kachelPrefab;
+        public GameObject umweltKachel, gebaeudeKachel;
         public Sprite[] kartenelementSprites;
 
         public void ErzeugeKachel(IKartenelement kartenelement) {
             int kachelId = 0;
             foreach (Rect feld in StadtplanModul.Instance.GetAbmessung(kartenelement.Identifier).Felder) {
-                GameObject kachel = Instantiate(this.kachelPrefab);
+                GameObject kachel;
                 if (typeof(Umwelt).IsAssignableFrom(kartenelement.GetType())) {
-                    kachel.AddComponent<UmweltKachelController>();
-                } else if (typeof(Gebaeude).IsAssignableFrom(kartenelement.GetType())) {
-                    kachel.AddComponent<GebaeudeKachelController>();
+                    kachel = Instantiate(this.umweltKachel);
+                    kachel.GetComponent<UmweltKachel>().Kartenelement = (Umwelt)kartenelement;
+                } else {
+                    kachel = Instantiate(this.gebaeudeKachel);
+                    kachel.GetComponent<GebaeudeKachel>().Kartenelement = (Gebaeude)kartenelement;
                 }
                 kachel.name = kartenelement.KartenelementArt.ToString() + "-" + kartenelement.Id + "_" + kachelId++;
                 Sprite sprite = this.GetSprite(kartenelement.KartenelementAussehen);
@@ -25,6 +27,7 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter {
                 kachel.transform.position = new Vector2(feld.x + (feld.width / 2), feld.y - (feld.height / 2));
                 kachel.transform.localScale = this.GetObjektScale(sprite, feld.size) * 4;
                 kachel.transform.SetParent(gameObject.transform);
+                kachel.SetActive(true);
             }
         }
 

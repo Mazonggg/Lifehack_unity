@@ -3,6 +3,7 @@ using SimpleJSON;
 using Lifehack.Model.Konstanten;
 using Lifehack.Model.Stadtplan;
 using System;
+using UnityEngine;
 
 namespace Lifehack.Model.Fabrik.Stadtplan {
 
@@ -31,7 +32,9 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
 
         protected override Umwelt SetAttribute(Umwelt datenbankEintrag, JSONObject json) {
             bool begehbar = true;
-            Boolean.TryParse(json["wohneinheiten"].Value, out begehbar);
+            if (!json["begehbar"].IsNull) {
+                begehbar = json["begehbar"].Value.Equals("1");
+            }
             datenbankEintrag.Begehbar = begehbar;
             return base.SetAttribute(datenbankEintrag, json);
         }

@@ -6,6 +6,7 @@ using System;
 using Lifehack.Model;
 using Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter;
 using Lifehack.Austauschformat;
+using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter;
 
 namespace Lifehack.Spiel.GuiModul.Stadtplan {
 
@@ -16,7 +17,7 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan {
             get { return StadtplanModul._instance; }
         }
 
-        protected new void Start() {
+        private void Start() {
             StadtplanModul._instance = this;
             this.GetInhalt();
         }
@@ -31,7 +32,9 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan {
             return this.abmessungen[identifier];
         }
 
-        protected override void LeereInhalt() { }
+        public override void LeereInhalt() {
+            return;
+        }
 
         protected override void GetInhalt() {
             JSONNode json = AustauschAbrufer.Instance.Json;

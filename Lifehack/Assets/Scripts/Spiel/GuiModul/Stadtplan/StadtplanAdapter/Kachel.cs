@@ -1,10 +1,10 @@
 
 using Lifehack.Model.Stadtplan;
-
+using UnityEngine;
 
 namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter {
 
-    public class Kachel<T> : IKachelAdapter<T> where T : IKartenelement {
+    public class Kachel<T> : MonoBehaviour, IKachelAdapter<T> where T : IKartenelement {
 
         private T kartenelement;
 

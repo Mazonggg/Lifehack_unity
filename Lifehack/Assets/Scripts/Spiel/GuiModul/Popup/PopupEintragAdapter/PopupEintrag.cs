@@ -1,16 +1,14 @@
 using UnityEngine;
-using System.Collections;
-using Lifehack.Model;
 
 namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
 
-    abstract public class PopupEintrag<T> : IPopupEintragAdapter where T : IDatenbankEintrag {
+    abstract public class PopupEintrag<T> : MonoBehaviour, IPopupEintragAdapter {
 
         protected T eintrag;
-
-        public PopupEintrag(T eintrag) {
-            this.eintrag = eintrag;
+        public T Eintrag {
+            set { this.eintrag = value; }
         }
+
         public string GetPopupEintragText() {
             return this.GetKurzInfo();
         }
