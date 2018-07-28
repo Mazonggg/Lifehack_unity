@@ -48,15 +48,15 @@ namespace Lifehack.Spiel.GuiModul.Popup {
 
         private void PositioniereEintrag(GameObject eintrag, int index) {
             Vector2 min = eintrag.GetComponent<RectTransform>().offsetMin;
-            min = new Vector2(20, -100 - (100 * index));
+            min = new Vector2(0, -120 - (120 * index));
             eintrag.GetComponent<RectTransform>().offsetMin = min;
             Vector2 max = eintrag.GetComponent<RectTransform>().offsetMax;
-            max = new Vector2(-20, -20 - (100 * index));
+            max = new Vector2(0, -30 - (120 * index));
             eintrag.GetComponent<RectTransform>().offsetMax = max;
         }
 
         private void PasseContentGroesseAn() {
-            this.content.GetComponent<RectTransform>().offsetMin = new Vector2(0, 430 - (100 * this.popupEintraege.Count));
+            this.content.GetComponent<RectTransform>().offsetMin = new Vector2(0, 440 - (120 * this.popupEintraege.Count));
             this.content.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         }
     }

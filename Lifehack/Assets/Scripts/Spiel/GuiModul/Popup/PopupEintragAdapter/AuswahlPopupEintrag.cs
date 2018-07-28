@@ -28,6 +28,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
             foreach (var datenbankEintrag in datenbankEintraege) {
                 PopupModul.Instance.AddPopupEintrag(PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(datenbankEintrag));
             }
+            PopupModul.Instance.SetzeTitel(EnumHandler.AlsString(this.eintrag));
             PopupModul.Instance.OeffneModul();
         }
     }
