@@ -14,6 +14,9 @@ namespace Lifehack.Spiel.GuiModul.Popup {
             get { return PopupModul._instance; }
         }
 
+        private readonly int gesamtPlatz = 440;
+        private readonly int zwischenRaum = 30;
+
         private void Start() {
             PopupModul._instance = this;
             gameObject.SetActive(false);
@@ -56,7 +59,11 @@ namespace Lifehack.Spiel.GuiModul.Popup {
         }
 
         private void PasseContentGroesseAn() {
-            this.content.GetComponent<RectTransform>().offsetMin = new Vector2(0, 440 - (120 * this.popupEintraege.Count));
+            float offSetMinY = this.gesamtPlatz;
+            foreach (GameObject popupEintrag in this.popupEintraege) {
+                offSetMinY -= popupEintrag.GetComponent<RectTransform>().sizeDelta.y + this.zwischenRaum;
+            }
+            this.content.GetComponent<RectTransform>().offsetMin = new Vector2(0, offSetMinY);
             this.content.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         }
     }

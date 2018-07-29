@@ -6,7 +6,7 @@ using System;
 using Lifehack.Model;
 using Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter;
 using Lifehack.Austauschformat;
-using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter;
+using UnityEngine;
 
 namespace Lifehack.Spiel.GuiModul.Stadtplan {
 

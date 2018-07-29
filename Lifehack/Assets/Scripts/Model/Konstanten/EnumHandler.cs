@@ -63,8 +63,8 @@ namespace Lifehack.Model.Konstanten {
     };
 
     public class EnumHandler {
-        public static string AlsString(System.Enum enumWert) {
-            return System.Enum.GetName(enumWert.GetType(), enumWert).ToLower();
+        public static string AlsString(Enum enumWert) {
+            return Enum.GetName(enumWert.GetType(), enumWert).ToLower();
         }
     }
 }

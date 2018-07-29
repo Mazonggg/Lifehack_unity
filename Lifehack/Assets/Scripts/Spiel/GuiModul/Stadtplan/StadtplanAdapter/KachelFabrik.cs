@@ -2,24 +2,31 @@
 using UnityEngine;
 using Lifehack.Model.Stadtplan;
 using Lifehack.Spiel.GuiModul.Stadtplan.Model.Stadtplan;
+using Lifehack.Model.Einrichtung;
 
 namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter {
 
     public class KachelFabrik : MonoBehaviour {
 
-        public GameObject umweltKachel, gebaeudeKachel;
+        public GameObject kartenelementKachel;
         public Sprite[] kartenelementSprites;
 
         public void ErzeugeKachel(IKartenelement kartenelement) {
             int kachelId = 0;
             foreach (Rect feld in StadtplanModul.Instance.GetAbmessung(kartenelement.Identifier).Felder) {
-                GameObject kachel;
+                GameObject kachel = Instantiate(this.kartenelementKachel);
                 if (typeof(Umwelt).IsAssignableFrom(kartenelement.GetType())) {
-                    kachel = Instantiate(this.umweltKachel);
+                    kachel.AddComponent<UmweltKachel>();
                     kachel.GetComponent<UmweltKachel>().Kartenelement = (Umwelt)kartenelement;
+                } else if (typeof(Niederlassung).IsAssignableFrom(kartenelement.GetType())) {
+                    kachel.AddComponent<NiederlassungKachel>();
+                    kachel.GetComponent<NiederlassungKachel>().Kartenelement = (Niederlassung)kartenelement;
+                } else if (typeof(Wohnhaus).IsAssignableFrom(kartenelement.GetType())) {
+                    kachel.AddComponent<WohnhausKachel>();
+                    kachel.GetComponent<WohnhausKachel>().Kartenelement = (Wohnhaus)kartenelement;
                 } else {
-                    kachel = Instantiate(this.gebaeudeKachel);
-                    kachel.GetComponent<GebaeudeKachel>().Kartenelement = (Gebaeude)kartenelement;
+                    kachel.AddComponent<GebaeudeKachel<Gebaeude>>();
+                    kachel.GetComponent<GebaeudeKachel<Gebaeude>>().Kartenelement = (Gebaeude)kartenelement;
                 }
                 kachel.name = kartenelement.KartenelementArt.ToString() + "-" + kartenelement.Id + "_" + kachelId++;
                 Sprite sprite = this.GetSprite(kartenelement.KartenelementAussehen);

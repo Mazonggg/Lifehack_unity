@@ -11,7 +11,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
             return EnumHandler.AlsString(this.eintrag);
         }
 
-        public void OnPointerClick(PointerEventData eventData) {
+        public override void OnPointerClick(PointerEventData eventData) {
             PopupModul.Instance.LeereInhalt();
             var datenbankEintraege = new IDatenbankEintrag[] { };
             switch (this.eintrag) {
@@ -28,7 +28,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
             foreach (var datenbankEintrag in datenbankEintraege) {
                 PopupModul.Instance.AddPopupEintrag(PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(datenbankEintrag));
             }
-            PopupModul.Instance.SetzeTitel(EnumHandler.AlsString(this.eintrag));
+            PopupModul.Instance.SetzeTitel(StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag)));
             PopupModul.Instance.OeffneModul();
         }
     }
