@@ -21,10 +21,11 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
                 case TabellenName.INSTITUT:
                     datenbankEintraege = ModelHandler.Instance.Institute;
                     break;
-                case TabellenName.AUFGABE:
+                default:
                     datenbankEintraege = ModelHandler.Instance.Aufgaben;
                     break;
             }
+
             foreach (var datenbankEintrag in datenbankEintraege) {
                 PopupModul.Instance.AddPopupEintrag(PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(datenbankEintrag));
             }

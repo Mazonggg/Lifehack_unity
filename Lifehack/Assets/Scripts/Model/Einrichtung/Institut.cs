@@ -6,25 +6,25 @@ namespace Lifehack.Model.Einrichtung {
 
     public class Institut : DatenbankEintrag {
 
-        private List<Niederlassung> niederlassungen;
+        List<Niederlassung> niederlassungen;
         public List<Niederlassung> Niederlassungen {
             get { return this.niederlassungen; }
             set { this.niederlassungen = value; }
         }
 
-        private string name;
+        string name;
         public string Name {
             get { return this.name; }
             set { this.name = value; }
         }
 
-        private string beschreibung;
+        string beschreibung;
         public string Beschreibung {
             get { return this.beschreibung; }
             set { this.beschreibung = value; }
         }
 
-        private InstitutArt institutArt;
+        InstitutArt institutArt;
         public InstitutArt InstitutArt {
             get { return this.institutArt; }
             set { this.institutArt = value; }

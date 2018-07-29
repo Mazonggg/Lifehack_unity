@@ -9,13 +9,9 @@ using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter;
 
 namespace Lifehack.Spiel.GuiModul.Stadtplan.Model.Stadtplan {
 
-    public class GebaeudeKachel<T> : Kachel<T>, IPointerClickHandler where T : Gebaeude {
+    public class GebaeudeKachel : Kachel<Gebaeude>, IPointerClickHandler {
 
-        protected virtual string PrototypErklaerung {
-            get { return "An dieser Stelle betritt der Spieler das Gebäude und kann sich dort frei bewegen."; }
-        }
-
-        private void Start() {
+        void Start() {
             gameObject.AddComponent<PolygonCollider2D>();
             gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
         }
@@ -23,7 +19,6 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan.Model.Stadtplan {
         public void OnPointerClick(PointerEventData eventData) {
             SteuerungModul.Instance.SchliesseModul();
             PopupModul.Instance.AddPopupEintrag(PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(this.Kartenelement));
-            PopupModul.Instance.AddPopupEintrag(PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugeErklaerungEintrag(this.PrototypErklaerung));
             PopupModul.Instance.OeffneModul();
         }
     }

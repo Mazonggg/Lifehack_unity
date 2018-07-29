@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using SimpleJSON;
 using UnityEngine;
 
 namespace Lifehack.Model.Stadtplan {
 
-    public class SimpleAbmessungFabrik {
+    public static class SimpleAbmessungFabrik {
 
         public static Abmessung ErzeugeAbmessung(JSONNode jsonKarte, string identifier) {
-            Abmessung abmessung = new Abmessung();
+            var abmessung = new Abmessung();
             foreach (JSONNode feld in jsonKarte[identifier].Children) {
-                string[] werte = feld.Value.Split(AustauschKonstanten.ABMESSUNG_TRENNER);
+                var werte = feld.Value.Split(AustauschKonstanten.ABMESSUNG_TRENNER);
                 float x = 0;
                 float.TryParse(werte[0], out x);
                 float y = 0;

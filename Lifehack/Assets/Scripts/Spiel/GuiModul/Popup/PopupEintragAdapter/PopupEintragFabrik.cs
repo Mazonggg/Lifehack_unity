@@ -8,7 +8,6 @@ using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Prozess;
 using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung;
 using UnityEngine.UI;
 using Lifehack.Model.Konstanten;
-using System;
 
 namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
 
@@ -19,42 +18,49 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
         erklaerungPrefab;
 
         public GameObject ErzeugePopupEintrag(IDatenbankEintrag datenbankEintrag) {
-            GameObject popupEintrag = Instantiate(popupEintragPrefab);
-            if (typeof(Aufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
-                popupEintrag.AddComponent<AufgabePopupEintrag>();
-                popupEintrag.GetComponent<AufgabePopupEintrag>().Eintrag = (Aufgabe)datenbankEintrag;
-            } else if (typeof(Item).IsAssignableFrom(datenbankEintrag.GetType())) {
-                popupEintrag.AddComponent<ItemPopupEintrag>();
-                popupEintrag.GetComponent<ItemPopupEintrag>().Eintrag = (Item)datenbankEintrag;
-            } else if (typeof(Institut).IsAssignableFrom(datenbankEintrag.GetType())) {
-                popupEintrag.AddComponent<InstitutPopupEintrag>();
-                popupEintrag.GetComponent<InstitutPopupEintrag>().Eintrag = (Institut)datenbankEintrag;
-            } else if (typeof(Kartenelement).IsAssignableFrom(datenbankEintrag.GetType())) {
-                popupEintrag.AddComponent<KartenelementPopupEintrag>();
-                popupEintrag.GetComponent<KartenelementPopupEintrag>().Eintrag = (Kartenelement)datenbankEintrag;
-            } else {
-                throw new System.Exception();
-            }
-            return this.SetzeText(popupEintrag);
+            var popupEintrag = Instantiate(popupEintragPrefab);
+            this.ErzeugePopupButton(popupEintrag, datenbankEintrag);
+            return this.SetzeButtonText(popupEintrag);
         }
 
         public GameObject ErzeugeAuswahlEintrag(TabellenName tabellenName) {
-            GameObject popupEintrag;
-            popupEintrag = Instantiate(this.popupEintragPrefab);
-            popupEintrag.AddComponent<AuswahlPopupEintrag>();
-            popupEintrag.GetComponent<AuswahlPopupEintrag>().Eintrag = tabellenName;
-            return this.SetzeText(popupEintrag);
+            var popupEintrag = Instantiate(this.popupEintragPrefab);
+            this.ErzeugeAuswahlButton(popupEintrag, tabellenName);
+            return this.SetzeButtonText(popupEintrag);
         }
 
-        public GameObject ErzeugeErklaerungEintrag(string erklaerung) {
-            GameObject popupEintrag;
-            popupEintrag = Instantiate(this.erklaerungPrefab);
-            popupEintrag.GetComponentInChildren<Text>().text = erklaerung;
-            return popupEintrag;
+        void ErzeugeErklaerungEintrag(GameObject popupEintrag, string erklaerung) {
+            var popupErklaerung = Instantiate(this.erklaerungPrefab);
+            popupErklaerung.GetComponentInChildren<Text>().text = erklaerung;
+            popupErklaerung.transform.SetParent(popupEintrag.transform);
         }
 
-        private GameObject SetzeText(GameObject popupEintrag) {
-             popupEintrag.GetComponentInChildren<Text>().text = popupEintrag.GetComponent<IPopupEintragAdapter>().GetPopupEintragText();
+        void ErzeugeAuswahlButton(GameObject popupEintrag, TabellenName tabellenName) {
+            GameObject popupButton = popupEintrag.transform.GetChild(0).gameObject;
+            popupButton.AddComponent<AuswahlPopupEintrag>();
+            popupButton.GetComponent<AuswahlPopupEintrag>().Eintrag = tabellenName;
+        }
+        void ErzeugePopupButton(GameObject popupEintrag, IDatenbankEintrag datenbankEintrag) {
+            var popupButton = popupEintrag.transform.GetChild(0).gameObject;
+            if (typeof(Aufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
+                popupButton.AddComponent<AufgabePopupEintrag>();
+                popupButton.GetComponent<AufgabePopupEintrag>().Eintrag = (Aufgabe)datenbankEintrag;
+            } else if (typeof(Item).IsAssignableFrom(datenbankEintrag.GetType())) {
+                popupButton.AddComponent<ItemPopupEintrag>();
+                popupButton.GetComponent<ItemPopupEintrag>().Eintrag = (Item)datenbankEintrag;
+            } else if (typeof(Institut).IsAssignableFrom(datenbankEintrag.GetType())) {
+                popupButton.AddComponent<InstitutPopupEintrag>();
+                popupButton.GetComponent<InstitutPopupEintrag>().Eintrag = (Institut)datenbankEintrag;
+            } else if (typeof(Kartenelement).IsAssignableFrom(datenbankEintrag.GetType())) {
+                popupButton.AddComponent<KartenelementPopupEintrag>();
+                popupButton.GetComponent<KartenelementPopupEintrag>().Eintrag = (Kartenelement)datenbankEintrag;
+                this.ErzeugeErklaerungEintrag(popupEintrag, "HALLI HALLO!");
+            }
+        }
+
+        GameObject SetzeButtonText(GameObject popupEintrag) {
+            var popupButton = popupEintrag.transform.GetChild(0).gameObject;
+            popupButton.GetComponentInChildren<Text>().text = popupButton.GetComponent<IPopupEintragAdapter>().GetPopupEintragText();
             return popupEintrag;
         }
     }

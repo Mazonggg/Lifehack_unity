@@ -17,9 +17,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
 
         protected abstract string GetKurzInfo();
 
-        public virtual void OnPointerClick(PointerEventData eventData) {
-            Debug.Log("PopupEintrag.OnPointerClick: " + this.eintrag.ToString());
-        }
+        public abstract void OnPointerClick(PointerEventData eventData);
     }
 }
 

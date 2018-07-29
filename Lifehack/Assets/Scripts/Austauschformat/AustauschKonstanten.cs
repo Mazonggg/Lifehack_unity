@@ -1,15 +1,15 @@
 
-public class AustauschKonstanten {
+public static class AustauschKonstanten {
 
-    public static readonly string KONFIGURATION = "konfiguration";
-    public static readonly char ABMESSUNG_TRENNER = '/';
-    public static readonly char ABMESSUNG_EINTRAG_TRENNER = ',';
-    public static readonly string KARTE = "karte";
-    public static readonly string INFORMATION = "information";
+    public const string KONFIGURATION = "konfiguration";
+    public const char ABMESSUNG_TRENNER = '/';
+    public const char ABMESSUNG_EINTRAG_TRENNER = ',';
+    public const string KARTE = "karte";
+    public const string INFORMATION = "information";
 
-    public static readonly int ASCII_CODE_LAENGE = 2;
-    public static readonly string ASCII_LAENGE = "asciiLaenge";
-    public static readonly string ASCII_IDENTIFIERT = "ascii_identifier";
-    public static readonly string KACHEL_GROESSE = "kachel_groesse";
+    public const int ASCII_CODE_LAENGE = 2;
+    public const string ASCII_LAENGE = "asciiLaenge";
+    public const string ASCII_IDENTIFIERT = "ascii_identifier";
+    public const string KACHEL_GROESSE = "kachel_groesse";
 }
  

@@ -16,45 +16,45 @@ namespace Lifehack.Model {
 
         public GameObject spielContainer;
 
-        private static ModelHandler _instance;
+        static ModelHandler _instance;
         public static ModelHandler Instance {
             get { return ModelHandler._instance; }
         }
 
-        private Institut[] institute;
+        Institut[] institute;
         public Institut[] Institute {
             get { return this.institute; }
             set { this.institute = value; }
         }
-        private Item[] items;
+        Item[] items;
         public Item[] Items {
             get { return this.items; }
             set { this.items = value; }
         }
-        private Aufgabe[] aufgaben;
+        Aufgabe[] aufgaben;
         public Aufgabe[] Aufgaben {
             get { return this.aufgaben; }
             set { this.aufgaben = value; }
         }
-        private Dictionary<string, Kartenelement> kartenelemente;
+        Dictionary<string, Kartenelement> kartenelemente;
         public Dictionary<string, Kartenelement> Kartenelemente {
             get { return this.kartenelemente; }
             set { this.kartenelemente = value; }
         }
 
-        private void Start() {
+        void Start() {
             ModelHandler._instance = this;
             JSONNode jsonInformation = AustauschAbrufer.Instance.Json[AustauschKonstanten.INFORMATION];
             this.institute = new DatenbankEintragParser<Institut>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.INSTITUT)], InstitutFabrik.Instance);
             this.items = new DatenbankEintragParser<Item>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.ITEM)], ItemFabrik.Instance);
             this.aufgaben = new DatenbankEintragParser<Aufgabe>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.AUFGABE)], AufgabeFabrik.Instance);
 
-            List<Kartenelement> elemente = new List<Kartenelement>();
+            var elemente = new List<Kartenelement>();
             elemente.AddRange(new DatenbankEintragParser<Umwelt>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.KARTENELEMENT)], UmweltFabrik.Instance));
             elemente.AddRange(new DatenbankEintragParser<Gebaeude>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.KARTENELEMENT)], GebaeudeFabrik<Gebaeude>.Instance));
             elemente.AddRange(new DatenbankEintragParser<Wohnhaus>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.KARTENELEMENT)], WohnhausFabrik.Instance));
             elemente.AddRange(new DatenbankEintragParser<Niederlassung>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.KARTENELEMENT)], NiederlassungFabrik.Instance));
-            Dictionary<string, Kartenelement> kartenelementTable = new Dictionary<string, Kartenelement>();
+            var kartenelementTable = new Dictionary<string, Kartenelement>();
             foreach (Kartenelement kartenelement in elemente) {
                 kartenelementTable.Add(kartenelement.Identifier, kartenelement);
             }

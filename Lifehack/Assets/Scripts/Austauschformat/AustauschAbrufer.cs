@@ -16,26 +16,26 @@ namespace Lifehack.Austauschformat {
 
         public GameObject modelHandler;
 
-        private static string jsonAnfrage = "http://zielke.projekte.onlinelabor.fh-luebeck.de/Lifehack/?modus=JSON";
-        private UnityWebRequest anfrage;
+        const string jsonAnfrage = "http://zielke.projekte.onlinelabor.fh-luebeck.de/Lifehack/?modus=JSON";
+        UnityWebRequest anfrage;
 
-        private static AustauschAbrufer _instance;
+        static AustauschAbrufer _instance;
         public static AustauschAbrufer Instance {
             get { return AustauschAbrufer._instance; }
         }
 
-        private JSONNode json;
+        JSONNode json;
         public JSONNode Json {
             get { return this.json; }
         }
 
-        private void Start() {
+        void Start() {
             AustauschAbrufer._instance = this;
             StartCoroutine(this.FrageJsonAn());
         }
 
-        private IEnumerator FrageJsonAn() {
-            using (anfrage = UnityWebRequest.Get(jsonAnfrage)) {
+        IEnumerator FrageJsonAn() {
+            using (anfrage = UnityWebRequest.Get(AustauschAbrufer.jsonAnfrage)) {
                 yield return anfrage.SendWebRequest();
                 try {
                     this.json = JSON.Parse(anfrage.downloadHandler.text);

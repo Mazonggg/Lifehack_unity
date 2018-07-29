@@ -3,12 +3,15 @@ using System.Collections;
 using UnityEngine.UI;
 using Lifehack.Spiel.GuiModul;
 
-public class WechselButton : MonoBehaviour {
+namespace Lifehack.Spiel.GuiModul {
 
-    public GameObject spielModulContainer;
+    public class WechselButton : MonoBehaviour {
 
-    void Start() {
-        GetComponent<Button>().onClick.AddListener(this.spielModulContainer.GetComponent<ISpielModul>().SchliesseModul);
+        public GameObject spielModulContainer;
+
+        void Start() {
+            GetComponent<Button>().onClick.AddListener(this.spielModulContainer.GetComponent<ISpielModul>().SchliesseModul);
+        }
     }
 }
 

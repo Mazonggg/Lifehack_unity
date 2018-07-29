@@ -20,11 +20,10 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
         }
 
         public override IDatenbankEintrag ErzeugeDantebankEintrag(JSONObject jsonObjekt) {
-            if (jsonObjekt["kartenelement_art_name"].IsNull || !jsonObjekt["kartenelement_art_name"].Value.Equals(EnumHandler.AlsString(this.GetKartenelementArt))) {
-                return null;
-            } else {
+            if (!jsonObjekt["kartenelement_art_name"].IsNull && jsonObjekt["kartenelement_art_name"].Value.Equals(EnumHandler.AlsString(this.GetKartenelementArt))) {
                 return base.ErzeugeDantebankEintrag(jsonObjekt);
             }
+            return null;
         }
     }
 }

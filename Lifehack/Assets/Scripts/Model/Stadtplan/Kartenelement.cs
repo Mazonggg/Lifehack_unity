@@ -13,7 +13,7 @@ namespace Lifehack.Model.Stadtplan {
 
         abstract public KartenelementArt KartenelementArt { get; }
 
-        private string identifier;
+        string identifier;
         public string Identifier {
             get { return this.identifier; }
             set { this.identifier = value; }

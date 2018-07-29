@@ -9,9 +9,9 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
 
     public class AufgabeFabrik : DatenbankEintragFabrik<Aufgabe> {
 
-        private static AufgabeFabrik _instance;
+        static AufgabeFabrik _instance;
 
-        private AufgabeFabrik() { }
+        AufgabeFabrik() { }
 
         public static AufgabeFabrik Instance {
             get {
@@ -32,7 +32,7 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
             datenbankEintrag.Id = id;
             datenbankEintrag.Bezeichnung = json["bezeichnung"].Value;
             datenbankEintrag.Gesetzesgrundlage = json["gesetzesgrundlage"].Value;
-            List<Teilaufgabe> teilaufgaben = new List<Teilaufgabe>();
+            var teilaufgaben = new List<Teilaufgabe>();
             foreach (JSONObject teilaufgabeDaten in json["teilaufgabe"]) {
                 datenbankEintrag.Gesetzesgrundlage += " # ";
                 teilaufgaben.Add((Teilaufgabe)TeilaufgabeFabrik.Instance.ErzeugeDantebankEintrag(teilaufgabeDaten.AsObject));

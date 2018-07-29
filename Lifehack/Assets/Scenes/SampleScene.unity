@@ -148,7 +148,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 3}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &189183420
 MonoBehaviour:
@@ -458,7 +458,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 3, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &267600446
 MonoBehaviour:
@@ -1405,7 +1405,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &786574832
 MonoBehaviour:
@@ -1809,7 +1809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071f1c126888429ab86ce8473bb0194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupEintragPrefab: {fileID: 1749113085829288, guid: 761fb02800a8043ffb9fcb5a599b8ca5,
+  popupEintragPrefab: {fileID: 1553881826877860, guid: 761fb02800a8043ffb9fcb5a599b8ca5,
     type: 2}
   erklaerungPrefab: {fileID: 1169807592385708, guid: 149beb7eda19746f0beb299008464f21,
     type: 2}

@@ -7,12 +7,10 @@ namespace Lifehack.Model.Stadtplan {
 
     public class Abmessung : DatenbankEintrag {
 
-        private List<Rect> felder = new List<Rect>();
+        readonly List<Rect> felder = new List<Rect>();
         public Rect[] Felder {
             get { return this.felder.ToArray(); }
         }
-
-        public Abmessung() { }
 
         public void AddFeld(Rect feld) {
             this.felder.Add(feld);

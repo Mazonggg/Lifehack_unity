@@ -1,5 +1,7 @@
 
 using Lifehack.Model.Einrichtung;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
 
@@ -7,6 +9,10 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
 
         protected override string GetKurzInfo() {
             return this.eintrag.Name;
+        }
+
+        public override void OnPointerClick(PointerEventData eventData) {
+            Debug.Log("InstitutPopupEintrag.OnPointerClick: " + this.eintrag);
         }
     }
 }

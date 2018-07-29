@@ -6,29 +6,27 @@ namespace Lifehack.Model.Prozess {
 
     public class Aufgabe : DatenbankEintrag {
 
-        private string bezeichnung;
+        string bezeichnung;
         public string Bezeichnung {
             get { return this.bezeichnung; }
             set { this.bezeichnung = value; }
         }
-        private string gesetzesgrundlage;
+        string gesetzesgrundlage;
         public string Gesetzesgrundlage {
             get { return this.gesetzesgrundlage; }
             set { this.gesetzesgrundlage = value; }
         }
-        private List<Teilaufgabe> teilaufgaben;
+        List<Teilaufgabe> teilaufgaben;
         public List<Teilaufgabe> Teilaufgaben {
             get { return teilaufgaben; }
             set { this.teilaufgaben = value; }
         }
 
-        private Status status = Status.OFFEN;
+        Status status = Status.OFFEN;
         public Status Status {
             get { return this.status; }
             set { this.status = value; }
         }
-
-        public Aufgabe() : base() { }
 
         public override TabellenName Tabelle() {
             return TabellenName.AUFGABE;

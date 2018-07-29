@@ -9,20 +9,20 @@ namespace Lifehack.Spiel.GuiModul.Popup {
 
         public GameObject content, popupTitel;
 
-        private static PopupModul _instance;
+        static PopupModul _instance;
         public static PopupModul Instance {
             get { return PopupModul._instance; }
         }
 
-        private readonly int gesamtPlatz = 440;
-        private readonly int zwischenRaum = 30;
+        const int gesamtPlatz = 440;
+        const int zwischenRaum = 30;
 
-        private void Start() {
+        void Start() {
             PopupModul._instance = this;
             gameObject.SetActive(false);
         }
 
-        private List<GameObject> popupEintraege = new List<GameObject>();
+        List<GameObject> popupEintraege = new List<GameObject>();
         public void AddPopupEintrag(GameObject eintrag) {
             this.popupEintraege.Add(eintrag);
         }
@@ -49,7 +49,7 @@ namespace Lifehack.Spiel.GuiModul.Popup {
             this.popupEintraege = new List<GameObject>();
         }
 
-        private void PositioniereEintrag(GameObject eintrag, int index) {
+        void PositioniereEintrag(GameObject eintrag, int index) {
             Vector2 min = eintrag.GetComponent<RectTransform>().offsetMin;
             min = new Vector2(0, -120 - (120 * index));
             eintrag.GetComponent<RectTransform>().offsetMin = min;
@@ -58,10 +58,10 @@ namespace Lifehack.Spiel.GuiModul.Popup {
             eintrag.GetComponent<RectTransform>().offsetMax = max;
         }
 
-        private void PasseContentGroesseAn() {
-            float offSetMinY = this.gesamtPlatz;
+        void PasseContentGroesseAn() {
+            float offSetMinY = PopupModul.gesamtPlatz;
             foreach (GameObject popupEintrag in this.popupEintraege) {
-                offSetMinY -= popupEintrag.GetComponent<RectTransform>().sizeDelta.y + this.zwischenRaum;
+                offSetMinY -= popupEintrag.GetComponent<RectTransform>().sizeDelta.y + PopupModul.zwischenRaum;
             }
             this.content.GetComponent<RectTransform>().offsetMin = new Vector2(0, offSetMinY);
             this.content.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);

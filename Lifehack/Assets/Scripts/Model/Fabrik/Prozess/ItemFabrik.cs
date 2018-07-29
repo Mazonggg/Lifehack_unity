@@ -8,9 +8,9 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
 
     public class ItemFabrik : DatenbankEintragFabrik<Item> {
 
-        private static ItemFabrik _instance;
+        static ItemFabrik _instance;
 
-        private ItemFabrik() { }
+        ItemFabrik() { }
 
         public static ItemFabrik Instance {
             get {

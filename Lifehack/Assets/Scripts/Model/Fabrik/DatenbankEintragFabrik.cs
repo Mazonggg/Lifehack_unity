@@ -12,7 +12,7 @@ namespace Lifehack.Model.Fabrik {
 
         public virtual IDatenbankEintrag ErzeugeDantebankEintrag(JSONObject jsonObjekt) {
             try {
-                T datenbankEintrag = this.ErzeugeLeeresEintragObjekt();
+                var datenbankEintrag = this.ErzeugeLeeresEintragObjekt();
                 if (jsonObjekt.Count > 0) {
                     datenbankEintrag = this.SetAttribute(datenbankEintrag, jsonObjekt);
                 }

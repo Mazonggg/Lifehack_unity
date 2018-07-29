@@ -7,7 +7,7 @@ namespace Lifehack.Spiel.GuiModul.Steuerung {
     public class BewegenButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler {
 
         public Kamera.Richtung richtung;
-        private bool innerhalb = false;
+        bool innerhalb;
 
         public void OnPointerEnter(PointerEventData eventData) {
             this.innerhalb = true;
@@ -17,7 +17,7 @@ namespace Lifehack.Spiel.GuiModul.Steuerung {
             this.innerhalb = false;
         }
 
-        private void FixedUpdate() {
+        void FixedUpdate() {
             if (Input.GetMouseButton(0) && this.innerhalb) {
                 Kamera.Instance.Bewegen(this.richtung);
             }

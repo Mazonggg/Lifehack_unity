@@ -5,7 +5,7 @@ namespace Lifehack.Model.Stadtplan {
 
     public class Gebaeude : Kartenelement {
 
-        private string interieurAussehen;
+        string interieurAussehen;
         public string InterieurAussehen {
             get { return interieurAussehen; }
             set { this.interieurAussehen = value; }
@@ -14,8 +14,6 @@ namespace Lifehack.Model.Stadtplan {
         public override KartenelementArt KartenelementArt {
             get { return KartenelementArt.GEBAEUDE; }
         }
-
-        public Gebaeude() : base() { }
 
         public override TabellenName Tabelle() {
             return TabellenName.GEBAEUDE;

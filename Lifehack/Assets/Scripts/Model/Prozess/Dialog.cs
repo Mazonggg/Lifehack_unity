@@ -4,23 +4,23 @@ namespace Lifehack.Model.Prozess {
 
     public class Dialog {
 
-        private string menueText;
+        readonly string menueText;
         public string MenueText {
             get { return this.menueText; }
         }
-        private string anspracheText;
+        readonly string anspracheText;
         public string AnspracheText {
             get { return this.anspracheText; }
         }
-        private string antwortText;
+        readonly string antwortText;
         public string AntwortText {
             get { return this.antwortText; }
         }
-        private string erfuellungsText;
+        readonly string erfuellungsText;
         public string ErfuellungsText {
             get { return this.erfuellungsText; }
         }
-        private string scheiternText;
+        readonly string scheiternText;
         public string ScheiternText {
             get { return this.scheiternText; }
         }

@@ -8,7 +8,7 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
 
     public class WohnhausFabrik : GebaeudeFabrik<Wohnhaus> {
 
-        private static WohnhausFabrik _instance;
+        static WohnhausFabrik _instance;
 
         protected WohnhausFabrik() { }
 

@@ -9,7 +9,7 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
 
     public class NiederlassungFabrik : GebaeudeFabrik<Niederlassung> {
 
-        private static NiederlassungFabrik _instance;
+        static NiederlassungFabrik _instance;
 
         protected NiederlassungFabrik() { }
 

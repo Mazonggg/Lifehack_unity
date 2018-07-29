@@ -7,12 +7,12 @@ namespace Lifehack.Spiel.GuiModul.Steuerung {
 
     public class SteuerungModul : SpielModul {
 
-        private static SteuerungModul _instance;
+        static SteuerungModul _instance;
         public static SteuerungModul Instance {
             get { return SteuerungModul._instance; }
         }
 
-        private void Start() {
+        void Start() {
             SteuerungModul._instance = this;
         }
 

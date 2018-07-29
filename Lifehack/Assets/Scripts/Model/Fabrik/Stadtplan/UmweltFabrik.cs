@@ -9,7 +9,7 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
 
     public class UmweltFabrik : KartenelementFabrik<Umwelt> {
 
-        private static UmweltFabrik _instance;
+        static UmweltFabrik _instance;
 
         protected UmweltFabrik() { }
 

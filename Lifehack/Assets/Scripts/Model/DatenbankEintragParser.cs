@@ -7,16 +7,11 @@ namespace Lifehack.Model {
 
     public class DatenbankEintragParser<T> where T : IDatenbankEintrag {
 
-        public DatenbankEintragParser() { }
-
         public T[] ArrayZuObjekten(JSONNode elementDatens, IDatenbankEintragFabrik<IDatenbankEintrag> fabrik) {
-            List<T> eintraege = new List<T>();
-            //ModelHandler.Log(elementDatens.ToString());
+            var eintraege = new List<T>();
             foreach (JSONNode elementDaten in elementDatens.Children) {
-                //ModelHandler.Log(elementDaten.ToString());
-                T element = (T)fabrik.ErzeugeDantebankEintrag(elementDaten.AsObject);
+                var element = (T)fabrik.ErzeugeDantebankEintrag(elementDaten.AsObject);
                 if (element != null) {
-                    // ModelHandler.Log(element.ToString());
                     eintraege.Add(element);
                 }
             }

@@ -7,7 +7,7 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
 
     public class GebaeudeFabrik<T> : KartenelementFabrik<T> where T : Gebaeude, new() {
 
-        private static GebaeudeFabrik<Gebaeude> _instance;
+        static GebaeudeFabrik<Gebaeude> _instance;
 
         protected GebaeudeFabrik() { }
 
