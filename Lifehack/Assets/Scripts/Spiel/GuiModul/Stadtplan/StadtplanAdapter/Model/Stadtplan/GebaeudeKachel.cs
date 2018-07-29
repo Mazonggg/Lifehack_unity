@@ -17,9 +17,11 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan.Model.Stadtplan {
         }
 
         public void OnPointerClick(PointerEventData eventData) {
-            SteuerungModul.Instance.SchliesseModul();
-            PopupModul.Instance.AddPopupEintrag(PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(this.Kartenelement));
-            PopupModul.Instance.OeffneModul();
+            if (SteuerungModul.Instance.gameObject.activeInHierarchy) {
+                SteuerungModul.Instance.SchliesseModul();
+                PopupModul.Instance.AddPopupEintrag(PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(this.Kartenelement));
+                PopupModul.Instance.OeffneModul();
+            }
         }
     }
 }

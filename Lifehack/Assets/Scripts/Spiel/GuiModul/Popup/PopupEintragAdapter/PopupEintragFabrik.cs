@@ -54,7 +54,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
             } else if (typeof(Kartenelement).IsAssignableFrom(datenbankEintrag.GetType())) {
                 popupButton.AddComponent<KartenelementPopupEintrag>();
                 popupButton.GetComponent<KartenelementPopupEintrag>().Eintrag = (Kartenelement)datenbankEintrag;
-                this.ErzeugeErklaerungEintrag(popupEintrag, "HALLI HALLO!");
+                this.ErzeugeErklaerungEintrag(popupEintrag, datenbankEintrag.ToString());
             }
         }
 
