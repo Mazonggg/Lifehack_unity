@@ -18,5 +18,9 @@ namespace Lifehack.Model.Stadtplan {
         public override TabellenName Tabelle() {
             return TabellenName.GEBAEUDE;
         }
-    }
+
+		public override string ToString() {
+            return "Es ist nicht ganz klar, was das für ein Gebäude ist.";
+		}
+	}
 }

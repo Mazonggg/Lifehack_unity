@@ -1,11 +1,10 @@
 
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Lifehack.Spiel.GuiModul.Popup {
 
-    public class PopupModul : SpielModul {
+    public class PopupModul : SpielModul<GameObject[]> {
 
         public GameObject content, popupTitel;
 
@@ -22,23 +21,8 @@ namespace Lifehack.Spiel.GuiModul.Popup {
             gameObject.SetActive(false);
         }
 
-        List<GameObject> popupEintraege = new List<GameObject>();
-        public void AddPopupEintrag(GameObject eintrag) {
-            this.popupEintraege.Add(eintrag);
-        }
-
         public void SetzeTitel(string titel) {
             this.popupTitel.GetComponent<Text>().text = titel;
-        }
-
-        protected override void GetInhalt() {
-            this.content.transform.DetachChildren();
-            for (int i = 0; i < popupEintraege.Count; i++) {
-                popupEintraege[i].transform.SetParent(this.content.transform);
-                this.PositioniereEintrag(popupEintraege[i], i);
-            }
-            this.PasseContentGroesseAn();
-            return;
         }
 
         public override void LeereInhalt() {
@@ -46,7 +30,6 @@ namespace Lifehack.Spiel.GuiModul.Popup {
             foreach (Transform child in this.content.transform) {
                 Destroy(child.gameObject);
             }
-            this.popupEintraege = new List<GameObject>();
         }
 
         void PositioniereEintrag(GameObject eintrag, int index) {
@@ -58,13 +41,23 @@ namespace Lifehack.Spiel.GuiModul.Popup {
             eintrag.GetComponent<RectTransform>().offsetMax = max;
         }
 
-        void PasseContentGroesseAn() {
+        void PasseContentGroesseAn(GameObject[] popupEintraege) {
             float offSetMinY = PopupModul.gesamtPlatz;
-            foreach (GameObject popupEintrag in this.popupEintraege) {
+            foreach (GameObject popupEintrag in popupEintraege) {
                 offSetMinY -= popupEintrag.GetComponent<RectTransform>().sizeDelta.y + PopupModul.zwischenRaum;
             }
             this.content.GetComponent<RectTransform>().offsetMin = new Vector2(0, offSetMinY);
             this.content.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+        }
+
+        public override void GetInhalt(GameObject[] inhalt) {
+            this.content.transform.DetachChildren();
+            for (int i = 0; i < inhalt.Length; i++) {
+                inhalt[i].transform.SetParent(this.content.transform);
+                this.PositioniereEintrag(inhalt[i], i);
+            }
+            this.PasseContentGroesseAn(inhalt);
+            this.OeffneModul();
         }
     }
 }

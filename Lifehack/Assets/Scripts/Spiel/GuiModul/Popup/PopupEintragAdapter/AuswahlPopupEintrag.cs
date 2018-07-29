@@ -1,6 +1,7 @@
 
 using Lifehack.Model;
 using Lifehack.Model.Konstanten;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
@@ -25,12 +26,12 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
                     datenbankEintraege = ModelHandler.Instance.Aufgaben;
                     break;
             }
-
-            foreach (var datenbankEintrag in datenbankEintraege) {
-                PopupModul.Instance.AddPopupEintrag(PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(datenbankEintrag));
+            var popupEintraege = new GameObject[datenbankEintraege.Length];
+            for (int i = 0; i < datenbankEintraege.Length; i++) {
+                popupEintraege[i] = PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(datenbankEintraege[i]);
             }
             PopupModul.Instance.SetzeTitel(StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag)));
-            PopupModul.Instance.OeffneModul();
+            PopupModul.Instance.GetInhalt(popupEintraege);
         }
     }
 }

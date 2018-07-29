@@ -22,10 +22,6 @@ namespace Lifehack.Model.Stadtplan {
         public override TabellenName Tabelle() {
             return TabellenName.KARTENELEMENT;
         }
-
-        public override string ToString() {
-            return "KARTENELEMENT: identifier: " + this.identifier + "; kartenelementArt: " + this.KartenelementArt + "; kartenelementAussehen: " + this.kartenelementAussehen;
-        }
     }
 }
 

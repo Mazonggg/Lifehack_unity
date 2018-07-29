@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Lifehack.Spiel.GuiModul {
 
-    abstract public class SpielModul : MonoBehaviour, ISpielModul {
+    abstract public class SpielModul<T> : MonoBehaviour, ISpielModul {
 
         public GameObject oeffnendesModul, schliessendesModul;
 
         abstract public void LeereInhalt();
-        abstract protected void GetInhalt();
+        abstract public void GetInhalt(T inhalt);
 
         public void SchliesseModul() {
             this.schliessendesModul.SetActive(false);
@@ -18,7 +18,6 @@ namespace Lifehack.Spiel.GuiModul {
 
         public void OeffneModul() {
             gameObject.SetActive(true);
-            this.GetInhalt();
         }
     }
 }

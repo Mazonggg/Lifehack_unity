@@ -19,6 +19,10 @@ namespace Lifehack.Model.Einrichtung {
         public override TabellenName Tabelle() {
             return TabellenName.NIEDERLASSUNG;
         }
+
+        public override string ToString() {
+            return "Diese Einrichtung gehört zu: " + this.institut.Name;
+        }
     }
 }
 

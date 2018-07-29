@@ -18,7 +18,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
         erklaerungPrefab;
 
         public GameObject ErzeugePopupEintrag(IDatenbankEintrag datenbankEintrag) {
-            var popupEintrag = Instantiate(popupEintragPrefab);
+            var popupEintrag = Instantiate(this.popupEintragPrefab);
             this.ErzeugePopupButton(popupEintrag, datenbankEintrag);
             return this.SetzeButtonText(popupEintrag);
         }
@@ -42,7 +42,10 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
         }
         void ErzeugePopupButton(GameObject popupEintrag, IDatenbankEintrag datenbankEintrag) {
             var popupButton = popupEintrag.transform.GetChild(0).gameObject;
-            if (typeof(Aufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
+            if (typeof(Teilaufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
+                popupButton.AddComponent<TeilaufgabePopupEintrag>();
+                popupButton.GetComponent<TeilaufgabePopupEintrag>().Eintrag = (Teilaufgabe)datenbankEintrag;
+            } else if(typeof(Aufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
                 popupButton.AddComponent<AufgabePopupEintrag>();
                 popupButton.GetComponent<AufgabePopupEintrag>().Eintrag = (Aufgabe)datenbankEintrag;
             } else if (typeof(Item).IsAssignableFrom(datenbankEintrag.GetType())) {

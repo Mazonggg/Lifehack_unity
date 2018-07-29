@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Prozess {
 
-    public class AufgabePopupEintrag : DatenbankEintragPopupEintrag<Aufgabe> {
+    public class TeilaufgabePopupEintrag : DatenbankEintragPopupEintrag<Teilaufgabe> {
 
         protected override string GetKurzInfo() {
-            return this.eintrag.Bezeichnung;
+            return this.eintrag.Dialog.MenueText;
         }
     }
 }

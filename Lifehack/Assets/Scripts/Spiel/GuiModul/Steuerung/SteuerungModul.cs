@@ -1,11 +1,12 @@
-using UnityEngine;
-using System.Collections;
+
 using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter;
-using Lifehack.Model;
+using Lifehack.Spiel.GuiModul.Popup;
+using Lifehack.Model.Konstanten;
+using UnityEngine;
 
 namespace Lifehack.Spiel.GuiModul.Steuerung {
 
-    public class SteuerungModul : SpielModul {
+    public class SteuerungModul : SpielModul<TabellenName[]> {
 
         static SteuerungModul _instance;
         public static SteuerungModul Instance {
@@ -16,12 +17,17 @@ namespace Lifehack.Spiel.GuiModul.Steuerung {
             SteuerungModul._instance = this;
         }
 
-        protected override void GetInhalt() {
+        public override void LeereInhalt() {
             return;
         }
 
-        public override void LeereInhalt() {
-            return;
+        public override void GetInhalt(TabellenName[] inhalt) {
+            var auswahlEintraege = new GameObject[inhalt.Length];
+            for (int i = 0; i < inhalt.Length; i++) {
+                auswahlEintraege[i] = PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugeAuswahlEintrag(inhalt[i]);
+            }
+            PopupModul.Instance.GetInhalt(auswahlEintraege);
+            PopupModul.Instance.SetzeTitel("Menü");
         }
     }
 }

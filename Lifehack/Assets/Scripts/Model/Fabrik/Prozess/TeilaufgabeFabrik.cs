@@ -35,8 +35,8 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
                 json["antwort_text"].Value,
                 json["erfuellungs_text"].Value,
                 json["scheitern_text"].Value);
-            datenbankEintrag.TeilaufgabeArt = (TeilaufgabeArt)System.Enum.Parse(typeof(TeilaufgabeArt), json["teilaufgabe_art_ref"].Value);
-            datenbankEintrag.InstitutArt = (InstitutArt)System.Enum.Parse(typeof(InstitutArt), json["teilaufgabe_art_ref"].Value);
+            datenbankEintrag.TeilaufgabeArt = (TeilaufgabeArt)Enum.Parse(typeof(TeilaufgabeArt), json["teilaufgabe_art_ref"].Value);
+            datenbankEintrag.InstitutArt = (InstitutArt)Enum.Parse(typeof(InstitutArt), json["institut_art_ref"].Value);
 
             int bedingungId = 0;
             int belohnungId = 0;

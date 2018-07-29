@@ -18,6 +18,14 @@ namespace Lifehack.Model.Stadtplan {
         public override TabellenName Tabelle() {
             return TabellenName.WOHNHAUS;
         }
+
+        public override string ToString() {
+            if (this.wohneinheiten > 0) {
+                return "Hier sind noch " + this.wohneinheiten + " Wohneinheiten verfügbar.";
+            } else {
+                return "Hier ist kein freier Wohnraum mehr verfügbar.";
+            }
+        }
     }
 }
 

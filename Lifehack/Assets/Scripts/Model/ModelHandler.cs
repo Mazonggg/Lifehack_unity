@@ -9,6 +9,7 @@ using UnityEngine;
 using SimpleJSON;
 using Lifehack.Model.Konstanten;
 using Lifehack.Austauschformat;
+using System;
 
 namespace Lifehack.Model {
 
@@ -26,6 +27,28 @@ namespace Lifehack.Model {
             get { return this.institute; }
             set { this.institute = value; }
         }
+
+        public Teilaufgabe[] GetInstitutNaechsteTeilaufgaben(InstitutArt institutArt) {
+            var aufgabens = new List<Teilaufgabe>();
+            foreach (Aufgabe aufgabe in this.aufgaben) {
+                var teilaufgabe = this.NaechsteTeilaugabeInAufgabe(aufgabe);
+                if (teilaufgabe != null && teilaufgabe.InstitutArt.Equals(institutArt)) {
+                    aufgabens.Add(teilaufgabe);
+                }
+            }
+            return aufgabens.ToArray();
+        }
+
+        public Teilaufgabe NaechsteTeilaugabeInAufgabe(Aufgabe aufgabe) {
+            foreach (Teilaufgabe teilaufgabe in aufgabe.Teilaufgaben) {
+                Debug.Log("Teilaufgabe: " + teilaufgabe.Dialog.MenueText + "\ninstitutArt: " + EnumHandler.AlsString(teilaufgabe.InstitutArt));
+                if (!teilaufgabe.Abgeschlossen) {
+                    return teilaufgabe;
+                }
+            }
+            return null;
+        }
+
         Item[] items;
         public Item[] Items {
             get { return this.items; }
