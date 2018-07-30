@@ -1,7 +1,6 @@
 
-using System.Collections.Generic;
 using Lifehack.Model;
-using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter;
+using Lifehack.Spiel.GuiModul.Form;
 using UnityEngine;
 
 namespace Lifehack.Spiel.GuiModul.Popup {
@@ -20,22 +19,12 @@ namespace Lifehack.Spiel.GuiModul.Popup {
             gameObject.SetActive(false);
         }
 
-        List<GameObject> teilForms = new List<GameObject>();
-        public void AddTeilForm(GameObject eintrag) {
-            this.teilForms.Add(eintrag);
-        }
-
         public override void LeereInhalt() {
-            foreach (Transform child in this.content.transform) {
-                Destroy(child.gameObject);
-            }
-            this.teilForms = new List<GameObject>();
+            PopupModul.Instance.LeereInhalt();
         }
 
         public override void GetInhalt(IDatenbankEintrag inhalt) {
-            PopupModul.Instance.LeereInhalt();
-            // TODO hier die Logik zum Befuellen des "Formulars".
-            Debug.Log("FormModul -> Eintrag:\n" + inhalt);
+            this.LeereInhalt();
             PopupModul.Instance.GetInhalt(new GameObject[] { GetComponent<FormFabrik>().ErzeugeForm(inhalt) });
             PopupModul.Instance.SetzeTitel(inhalt.ToString());
         }

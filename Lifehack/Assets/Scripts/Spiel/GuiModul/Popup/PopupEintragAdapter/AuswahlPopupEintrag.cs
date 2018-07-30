@@ -17,7 +17,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
             var datenbankEintraege = new IDatenbankEintrag[] { };
             switch (this.eintrag) {
                 case TabellenName.ITEM:
-                    datenbankEintraege = ModelHandler.Instance.Items;
+                    datenbankEintraege = ModelHandler.Instance.ItemsInBesitz;
                     break;
                 case TabellenName.INSTITUT:
                     datenbankEintraege = ModelHandler.Instance.Institute;

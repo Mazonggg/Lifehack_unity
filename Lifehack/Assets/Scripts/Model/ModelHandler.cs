@@ -49,11 +49,13 @@ namespace Lifehack.Model {
             return null;
         }
 
-        Item[] items;
-        public Item[] Items {
-            get { return this.items; }
-            set { this.items = value; }
+        Item[] alleItems;
+
+        List<Item> itemsInBesitz = new List<Item>();
+        public Item[] ItemsInBesitz {
+            get { return this.itemsInBesitz.ToArray(); }
         }
+
         Aufgabe[] aufgaben;
         public Aufgabe[] Aufgaben {
             get { return this.aufgaben; }
@@ -69,7 +71,7 @@ namespace Lifehack.Model {
             ModelHandler._instance = this;
             JSONNode jsonInformation = AustauschAbrufer.Instance.Json[AustauschKonstanten.INFORMATION];
             this.institute = new DatenbankEintragParser<Institut>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.INSTITUT)], InstitutFabrik.Instance);
-            this.items = new DatenbankEintragParser<Item>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.ITEM)], ItemFabrik.Instance);
+            this.alleItems = new DatenbankEintragParser<Item>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.ITEM)], ItemFabrik.Instance);
             this.aufgaben = new DatenbankEintragParser<Aufgabe>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.AUFGABE)], AufgabeFabrik.Instance);
 
             var elemente = new List<Kartenelement>();
@@ -82,7 +84,20 @@ namespace Lifehack.Model {
                 kartenelementTable.Add(kartenelement.Identifier, kartenelement);
             }
             this.kartenelemente = kartenelementTable;
+
+            this.InitItemsInBesitz(this.alleItems);
+
             spielContainer.SetActive(true);
+        }
+
+        Stack<string> itemNamenInBesitz = new Stack<string>(new[] { "Personalausweis" });
+        // Initialisierung eines grundliegenden Ausgangspunktes fuer das Spiel.
+        void InitItemsInBesitz(Item[] items) {
+            foreach (Item item in items) {
+                if (itemNamenInBesitz.Contains(item.Name)) {
+                    this.itemsInBesitz.Add(item);
+                }
+            }
         }
 
         public Institut GetInstitut(int institutId) {
@@ -95,7 +110,7 @@ namespace Lifehack.Model {
         }
 
         public Item GetItem(int itemId) {
-            foreach (Item item in this.items) {
+            foreach (Item item in this.alleItems) {
                 if (item.Id.Equals(itemId)) {
                     return item;
                 }
@@ -112,6 +127,20 @@ namespace Lifehack.Model {
             return null;
         }
 
+        public bool SchliesseTeilaufgabeAb(Teilaufgabe teilaufgabe, Item abgegebenesItem) {
+            Debug.Log("SchliesseTeilaufgabeAb:\nbedingung:\n" + teilaufgabe.Bedingung + "\nbelohnung:\n" + teilaufgabe.Belohnung + "\nabgegebenesItem:\n" + abgegebenesItem);
+            if (abgegebenesItem.Equals(teilaufgabe.Bedingung)) {
+                teilaufgabe.Abgeschlossen = true;
+                Debug.Log("true");
+                if (teilaufgabe.TeilaufgabeArt.Equals(TeilaufgabeArt.ITEM_WIRD_ABGEGEBEN)) {
+                    this.itemsInBesitz.Remove(teilaufgabe.Bedingung);
+                }
+                this.itemsInBesitz.Add(teilaufgabe.Belohnung);
+                return true;
+            }
+            Debug.Log("false");
+            return false;
+        }
     }
 }
 

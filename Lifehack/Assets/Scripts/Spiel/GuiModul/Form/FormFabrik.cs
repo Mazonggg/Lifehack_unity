@@ -7,7 +7,7 @@ using Lifehack.Spiel.GuiModul.Form.Model.Einrichtung;
 using Lifehack.Spiel.GuiModul.Form.Model.Prozess;
 using UnityEngine;
 
-namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
+namespace Lifehack.Spiel.GuiModul.Form {
 
     public class FormFabrik : MonoBehaviour {
 
@@ -15,6 +15,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
         itemFormPrefab,
         institutFormPrefab,
         aufgabeFormPrefab,
+        teilaufgabeFormPrefab,
         niederlassungFormPrefab,
         gebaeudeFormPrefab;
 
@@ -23,6 +24,9 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
             if (typeof(Aufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
                 form = Instantiate(aufgabeFormPrefab);
                 form.GetComponent<AufgabeForm>().Eintrag = (Aufgabe)datenbankEintrag;
+            } else if (typeof(Teilaufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
+                form = Instantiate(teilaufgabeFormPrefab);
+                form.GetComponent<TeilaufgabeForm>().Eintrag = (Teilaufgabe)datenbankEintrag;
             } else if (typeof(Item).IsAssignableFrom(datenbankEintrag.GetType())) {
                 form = Instantiate(itemFormPrefab);
                 form.GetComponent<ItemForm>().Eintrag = (Item)datenbankEintrag;
