@@ -10,7 +10,7 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Prozess {
 
         public GameObject itemArtText, gewichtText, konfigurationText;
 
-        void Start() {
+        protected override void InitForm() {
             itemArtText.GetComponent<Text>().text = StringHelfer.Ucfirst(EnumHandler.AlsString(this.Eintrag.ItemArt));
             gewichtText.GetComponent<Text>().text = this.Eintrag.Gewicht.ToString();
             konfigurationText.GetComponent<Text>().text = this.Eintrag.Konfiguration;

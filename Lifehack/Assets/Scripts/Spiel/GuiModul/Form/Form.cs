@@ -11,6 +11,17 @@ namespace Lifehack.Spiel.GuiModul.Form {
             get { return this.eintrag; }
             set { this.eintrag = value; }
         }
+
+        void Start() {
+            this.InitForm();
+            this.PasseInhaltAn();
+        }
+
+        abstract protected void InitForm();
+
+        void PasseInhaltAn() {
+
+        }
     }
 }
 

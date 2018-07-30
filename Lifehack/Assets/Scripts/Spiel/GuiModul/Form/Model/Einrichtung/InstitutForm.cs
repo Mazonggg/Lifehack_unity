@@ -5,6 +5,8 @@ using Lifehack.Model.Konstanten;
 using UnityEngine.UI;
 using Lifehack.Model.Prozess;
 using Lifehack.Model;
+using Lifehack.Spiel.GuiModul.Popup;
+using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter;
 
 namespace Lifehack.Spiel.GuiModul.Form.Model.Einrichtung {
 
@@ -12,11 +14,13 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Einrichtung {
 
         public GameObject institutArtText, beschreibungText, aufgabenListe;
 
-        void Start() {
+        protected override void InitForm() {
             institutArtText.GetComponent<Text>().text = StringHelfer.Ucfirst(EnumHandler.AlsString(this.Eintrag.InstitutArt));
             beschreibungText.GetComponent<Text>().text = this.Eintrag.Beschreibung;
             foreach (Teilaufgabe teilaufgabe in ModelHandler.Instance.GetInstitutNaechsteTeilaufgaben(this.Eintrag.InstitutArt)) {
-                aufgabenListe.GetComponent<Text>().text += "- " + teilaufgabe.Dialog.MenueText + "\n";
+                GameObject teilaufgabeInfo = PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugeInfoEintrag(teilaufgabe.Dialog.MenueText);
+                Debug.Log("teilaufgabeInfo: " + teilaufgabeInfo);
+                teilaufgabeInfo.transform.SetParent(aufgabenListe.transform);
             }
         }
     }

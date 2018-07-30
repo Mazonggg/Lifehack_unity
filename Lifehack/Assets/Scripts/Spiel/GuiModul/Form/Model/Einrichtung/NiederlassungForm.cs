@@ -12,7 +12,7 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Einrichtung {
 
         public GameObject teilaufgabeAuswahlContainer;
 
-        void Start() {
+        protected override void InitForm() {
             foreach (Teilaufgabe teilaufgabe in ModelHandler.Instance.GetInstitutNaechsteTeilaufgaben(this.Eintrag.Institut.InstitutArt)) {
                 var teilaufgabeEintrag = PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(teilaufgabe);
                 teilaufgabeEintrag.transform.SetParent(teilaufgabeAuswahlContainer.transform);

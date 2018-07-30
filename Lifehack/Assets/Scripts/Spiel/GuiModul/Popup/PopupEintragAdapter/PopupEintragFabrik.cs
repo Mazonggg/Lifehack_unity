@@ -15,7 +15,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
 
         public GameObject
         popupEintragPrefab,
-        erklaerungPrefab;
+        infoPrefab;
 
         public GameObject ErzeugePopupEintrag(IDatenbankEintrag datenbankEintrag) {
             var popupEintrag = Instantiate(this.popupEintragPrefab);
@@ -29,10 +29,10 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
             return this.SetzeButtonText(popupEintrag);
         }
 
-        void ErzeugeErklaerungEintrag(GameObject popupEintrag, string erklaerung) {
-            var popupErklaerung = Instantiate(this.erklaerungPrefab);
-            popupErklaerung.GetComponentInChildren<Text>().text = erklaerung;
-            popupErklaerung.transform.SetParent(popupEintrag.transform);
+        public GameObject ErzeugeInfoEintrag(string erklaerung) {
+            var popupInfo = Instantiate(this.infoPrefab);
+            popupInfo.GetComponentInChildren<Text>().text = erklaerung;
+            return popupInfo;
         }
 
         void ErzeugeAuswahlButton(GameObject popupEintrag, TabellenName tabellenName) {
@@ -45,7 +45,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
             if (typeof(Teilaufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
                 popupButton.AddComponent<TeilaufgabePopupEintrag>();
                 popupButton.GetComponent<TeilaufgabePopupEintrag>().Eintrag = (Teilaufgabe)datenbankEintrag;
-            } else if(typeof(Aufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
+            } else if (typeof(Aufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
                 popupButton.AddComponent<AufgabePopupEintrag>();
                 popupButton.GetComponent<AufgabePopupEintrag>().Eintrag = (Aufgabe)datenbankEintrag;
             } else if (typeof(Item).IsAssignableFrom(datenbankEintrag.GetType())) {
@@ -57,7 +57,8 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
             } else if (typeof(Kartenelement).IsAssignableFrom(datenbankEintrag.GetType())) {
                 popupButton.AddComponent<KartenelementPopupEintrag>();
                 popupButton.GetComponent<KartenelementPopupEintrag>().Eintrag = (Kartenelement)datenbankEintrag;
-                this.ErzeugeErklaerungEintrag(popupEintrag, datenbankEintrag.ToString());
+                GameObject popupInfo = this.ErzeugeInfoEintrag(datenbankEintrag.ToString());
+                popupInfo.transform.SetParent(popupEintrag.transform);
             }
         }
 

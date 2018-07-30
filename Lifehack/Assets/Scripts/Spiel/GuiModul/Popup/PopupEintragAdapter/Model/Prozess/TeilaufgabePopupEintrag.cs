@@ -1,7 +1,5 @@
 
 using Lifehack.Model.Prozess;
-using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Prozess {
 
