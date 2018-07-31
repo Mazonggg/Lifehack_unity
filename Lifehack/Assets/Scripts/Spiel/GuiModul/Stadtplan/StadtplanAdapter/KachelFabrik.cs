@@ -25,7 +25,7 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter {
                 kachel.name = kartenelement.KartenelementArt.ToString() + "-" + kartenelement.Id + "_" + kachelId++;
                 var sprite = this.GetSprite(kartenelement.KartenelementAussehen);
                 kachel.GetComponent<SpriteRenderer>().sprite = sprite;
-                kachel.transform.position = new Vector2(feld.x + (feld.width / 2), feld.y - (feld.height / 2));
+                kachel.transform.position = new Vector3(feld.x + (feld.width / 2), feld.y - (feld.height / 2), -1);
                 kachel.transform.localScale = this.GetObjektScale(sprite, feld.size) * 4;
                 kachel.transform.SetParent(gameObject.transform);
                 kachel.SetActive(true);

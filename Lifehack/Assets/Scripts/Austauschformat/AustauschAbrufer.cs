@@ -3,12 +3,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
+using RestSharp.Contrib;
 
 /*
- * Nutzt https://github.com/Bunny83/SimpleJSON unter Beruecksichtigung 
- * der MIT License, wie im Verzeichnis: 
- * Lifehack/Assets/Scripts/Austauschformat/SimpleJSON-master
- * zu finden.
+ * Nutzt https://github.com/Bunny83/SimpleJSON 
+ * und https://github.com/Cratesmith/RestSharp-for-unity3d
  */
 namespace Lifehack.Austauschformat {
 
@@ -38,8 +37,7 @@ namespace Lifehack.Austauschformat {
             using (anfrage = UnityWebRequest.Get(AustauschAbrufer.jsonAnfrage)) {
                 yield return anfrage.SendWebRequest();
                 try {
-                    Debug.Log(anfrage.downloadHandler.text);
-                    this.json = JSON.Parse(anfrage.downloadHandler.text);
+                    this.json = JSON.Parse(HttpUtility.HtmlDecode(anfrage.downloadHandler.text));
                     modelHandler.SetActive(true);
                 } catch (Exception e) {
                     Debug.Log("AustauschAbrufer.FrageJSONan() -> Exception: " + e);
