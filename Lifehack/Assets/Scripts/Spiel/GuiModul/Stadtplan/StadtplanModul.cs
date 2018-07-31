@@ -64,8 +64,12 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan {
         public override void GetInhalt(IKartenelement inhalt) {
             if (SteuerungModul.Instance.gameObject.activeInHierarchy) {
                 SteuerungModul.Instance.SchliesseModul();
-                PopupModul.Instance.GetInhalt(new GameObject[] { PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(inhalt) });
+                PopupModul.Instance.GetInhalt(new GameObject[] { PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(inhalt) }, this);
             }
+        }
+
+        public override string GetPopupTitel() {
+            return "StadtplanModul";
         }
     }
 }

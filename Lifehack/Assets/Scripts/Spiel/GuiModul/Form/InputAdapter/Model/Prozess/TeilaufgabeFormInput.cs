@@ -13,10 +13,7 @@ namespace Lifehack.Spiel.GuiModul.Form.InputAdapter.Model.Prozess {
         }
 
         public override void OnPointerClick(PointerEventData eventData) {
-            // TODO HIEAER!
-            Debug.Log("TeilaufgabeFormInput.OnPointerClick()");
-            FormModul.Instance.LeereInhalt();
-            PopupModul.Instance.GetInhalt(new GameObject[] { FormModul.Instance.GetComponent<FormFabrik>().ErzeugeForm(this.eintrag) });
+            FormModul.Instance.GetInhalt(this.eintrag);
         }
     }
 }

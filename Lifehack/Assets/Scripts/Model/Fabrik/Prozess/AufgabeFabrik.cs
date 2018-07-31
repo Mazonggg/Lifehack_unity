@@ -5,7 +5,7 @@ using System;
 using Lifehack.Model.Prozess;
 using System.Collections.Generic;
 
-namespace Lifehack.Model.Fabrik.Einrichtung {
+namespace Lifehack.Model.Fabrik.Prozess {
 
     public class AufgabeFabrik : DatenbankEintragFabrik<Aufgabe> {
 
@@ -35,9 +35,11 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
             var teilaufgaben = new List<Teilaufgabe>();
             foreach (JSONObject teilaufgabeDaten in json["teilaufgabe"]) {
                 datenbankEintrag.Gesetzesgrundlage += " # ";
-                teilaufgaben.Add((Teilaufgabe)TeilaufgabeFabrik.Instance.ErzeugeDantebankEintrag(teilaufgabeDaten.AsObject));
+                Teilaufgabe teilaufgabe = (Teilaufgabe)TeilaufgabeFabrik.Instance.ErzeugeDantebankEintrag(teilaufgabeDaten.AsObject);
+                teilaufgabe.Aufgabe = datenbankEintrag;
+                teilaufgaben.Add(teilaufgabe);
             }
-            datenbankEintrag.Teilaufgaben = teilaufgaben;
+            datenbankEintrag.Teilaufgaben = teilaufgaben.ToArray();
             return datenbankEintrag;
         }
     }

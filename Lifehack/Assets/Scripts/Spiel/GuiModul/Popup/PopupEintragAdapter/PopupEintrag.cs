@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
 
-    abstract public class PopupEintrag<T> : MonoBehaviour, IPopupEintragAdapter, IPointerClickHandler {
+    abstract public class PopupEintrag<T> : MonoBehaviour, IPopupEintragAdapter, IPopupTitelgeber, IPointerClickHandler {
 
         protected T eintrag;
         public T Eintrag {
@@ -15,9 +15,13 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
             return StringHelfer.Ucfirst(this.GetKurzInfo());
         }
 
-        protected abstract string GetKurzInfo();
+        public string GetPopupEintragTitel() {
+            throw new System.NotImplementedException();
+        }
 
-        public abstract void OnPointerClick(PointerEventData eventData);
+        abstract protected string GetKurzInfo();
+        abstract public void OnPointerClick(PointerEventData eventData);
+        abstract public string GetPopupTitel();
     }
 }
 

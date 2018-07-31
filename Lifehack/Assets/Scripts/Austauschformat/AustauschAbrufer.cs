@@ -38,6 +38,7 @@ namespace Lifehack.Austauschformat {
             using (anfrage = UnityWebRequest.Get(AustauschAbrufer.jsonAnfrage)) {
                 yield return anfrage.SendWebRequest();
                 try {
+                    Debug.Log(anfrage.downloadHandler.text);
                     this.json = JSON.Parse(anfrage.downloadHandler.text);
                     modelHandler.SetActive(true);
                 } catch (Exception e) {

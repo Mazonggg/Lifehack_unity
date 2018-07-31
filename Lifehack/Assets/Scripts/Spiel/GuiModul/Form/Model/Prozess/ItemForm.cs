@@ -15,6 +15,10 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Prozess {
             gewichtText.GetComponent<Text>().text = this.Eintrag.Gewicht.ToString();
             konfigurationText.GetComponent<Text>().text = this.Eintrag.Konfiguration;
         }
+
+        public override string GetPopupTitel() {
+            return this.Eintrag.Name;
+        }
     }
 }
 

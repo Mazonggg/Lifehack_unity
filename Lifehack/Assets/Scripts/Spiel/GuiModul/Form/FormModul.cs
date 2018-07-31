@@ -25,8 +25,11 @@ namespace Lifehack.Spiel.GuiModul.Popup {
 
         public override void GetInhalt(IDatenbankEintrag inhalt) {
             this.LeereInhalt();
-            PopupModul.Instance.GetInhalt(new GameObject[] { GetComponent<FormFabrik>().ErzeugeForm(inhalt) });
-            PopupModul.Instance.SetzeTitel(inhalt.ToString());
+            PopupModul.Instance.GetInhalt(new GameObject[] { GetComponent<FormFabrik>().ErzeugeForm(inhalt) }, this);
+        }
+
+        public override string GetPopupTitel() {
+            return "FormModul";
         }
     }
 }

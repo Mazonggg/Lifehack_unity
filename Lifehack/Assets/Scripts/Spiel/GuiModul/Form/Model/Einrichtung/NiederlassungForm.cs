@@ -5,7 +5,6 @@ using Lifehack.Model;
 using Lifehack.Model.Prozess;
 using Lifehack.Spiel.GuiModul.Popup;
 using Lifehack.Spiel.GuiModul.Form.InputAdapter;
-using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter;
 
 namespace Lifehack.Spiel.GuiModul.Form.Model.Einrichtung {
 
@@ -18,6 +17,10 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Einrichtung {
                 var teilaufgabeEintrag = FormModul.Instance.GetComponent<FormInputFabrik>().ErzeugeFormInput(teilaufgabe);
                 teilaufgabeEintrag.transform.SetParent(teilaufgabeAuswahlContainer.transform);
             }
+        }
+
+        public override string GetPopupTitel() {
+            return this.Eintrag.Institut.Name;
         }
     }
 }

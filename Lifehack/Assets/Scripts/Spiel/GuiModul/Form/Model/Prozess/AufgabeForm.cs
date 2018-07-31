@@ -16,6 +16,10 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Prozess {
             gesetzesgrundlageText.GetComponent<Text>().text = this.Eintrag.Gesetzesgrundlage;
             teilaufgabe_info.GetComponent<Text>().text = ModelHandler.Instance.NaechsteTeilaugabeInAufgabe(this.Eintrag).Dialog.MenueText;
         }
+
+        public override string GetPopupTitel() {
+            return this.Eintrag.Bezeichnung;
+        }
     }
 }
 

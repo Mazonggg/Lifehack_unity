@@ -25,10 +25,12 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Prozess {
                 GameObject itemEintrag = FormModul.Instance.GetComponent<FormInputFabrik>().ErzeugeFormInput(item);
                 itemEintrag.transform.SetParent(auswahlContainer.transform);
             }
+            PopupModul.Instance.SetzeTitel("Benötigtes Item auswählen");
             this.WechselInhalt(false);
         }
 
         public void WaehleItem(Item item) {
+            PopupModul.Instance.SetzeTitel(this.GetPopupTitel());
             this.WechselInhalt(true);
             this.ZeigeAbschlussAn(ModelHandler.Instance.SchliesseTeilaufgabeAb(this.Eintrag, item));
         }
@@ -49,6 +51,10 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Prozess {
                     Destroy(child.gameObject);
                 }
             }
+        }
+
+        public override string GetPopupTitel() {
+            return this.Eintrag.Dialog.MenueText;
         }
     }
 }

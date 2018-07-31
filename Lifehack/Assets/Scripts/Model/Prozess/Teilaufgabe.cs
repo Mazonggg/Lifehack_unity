@@ -5,6 +5,12 @@ namespace Lifehack.Model.Prozess {
 
     public class Teilaufgabe : DatenbankEintrag {
 
+        Aufgabe aufgabe;
+        public Aufgabe Aufgabe {
+            get { return this.aufgabe; }
+            set { this.aufgabe = value; }
+        }
+
         Item bedingung;
         public Item Bedingung {
             get { return this.bedingung; }

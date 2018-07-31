@@ -4,7 +4,7 @@ using Lifehack.Model.Konstanten;
 using Lifehack.Model.Prozess;
 using System;
 
-namespace Lifehack.Model.Fabrik.Einrichtung {
+namespace Lifehack.Model.Fabrik.Prozess {
 
     public class TeilaufgabeFabrik : DatenbankEintragFabrik<Teilaufgabe> {
 

@@ -30,8 +30,11 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
             for (int i = 0; i < datenbankEintraege.Length; i++) {
                 popupEintraege[i] = PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(datenbankEintraege[i]);
             }
-            PopupModul.Instance.SetzeTitel(StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag)));
-            PopupModul.Instance.GetInhalt(popupEintraege);
+            PopupModul.Instance.GetInhalt(popupEintraege, this);
+        }
+
+        public override string GetPopupTitel() {
+            return StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag));
         }
     }
 }

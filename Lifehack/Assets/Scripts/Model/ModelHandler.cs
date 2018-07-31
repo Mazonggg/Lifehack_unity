@@ -9,7 +9,7 @@ using UnityEngine;
 using SimpleJSON;
 using Lifehack.Model.Konstanten;
 using Lifehack.Austauschformat;
-using System;
+using Lifehack.Model.Fabrik.Prozess;
 
 namespace Lifehack.Model {
 
@@ -136,10 +136,21 @@ namespace Lifehack.Model {
                     this.itemsInBesitz.Remove(teilaufgabe.Bedingung);
                 }
                 this.itemsInBesitz.Add(teilaufgabe.Belohnung);
+                this.SchliesseAufgabeAb(teilaufgabe);
                 return true;
             }
             Debug.Log("false");
             return false;
+        }
+
+        private void SchliesseAufgabeAb(Teilaufgabe teilaufgabe) {
+            Aufgabe aufgabe = teilaufgabe.Aufgabe;
+            Teilaufgabe[] aufgabenTeilaufgabe = aufgabe.Teilaufgaben;
+            if (teilaufgabe.Abgeschlossen && aufgabenTeilaufgabe[aufgabenTeilaufgabe.Length - 1].Equals(teilaufgabe)) {
+                aufgabe.Status = Status.BEENDET;
+            } else if (aufgabenTeilaufgabe[0].Equals(teilaufgabe)) {
+                aufgabe.Status = Status.AKTIV;
+            }
         }
     }
 }
