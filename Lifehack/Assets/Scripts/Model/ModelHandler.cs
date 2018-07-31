@@ -90,7 +90,7 @@ namespace Lifehack.Model {
             spielContainer.SetActive(true);
         }
 
-        Stack<string> itemNamenInBesitz = new Stack<string>(new[] { "Personalausweis" });
+        Stack<string> itemNamenInBesitz = new Stack<string>(new[] { "Geburtsurkunde" });
         // Initialisierung eines grundliegenden Ausgangspunktes fuer das Spiel.
         void InitItemsInBesitz(Item[] items) {
             foreach (Item item in items) {
