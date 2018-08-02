@@ -5,8 +5,8 @@ namespace Lifehack.Model {
 
     public abstract class DatenbankEintrag : IDatenbankEintrag {
 
-        int id;
-        public int Id {
+        string id;
+        public string Id {
             get { return this.id; }
             set { this.id = value; }
         }

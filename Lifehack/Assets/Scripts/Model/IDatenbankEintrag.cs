@@ -5,7 +5,7 @@ namespace Lifehack.Model {
 
     public interface IDatenbankEintrag {
 
-        int Id { get; set; }
+        string Id { get; set; }
         TabellenName Tabelle();
     }
 }

@@ -13,12 +13,6 @@ namespace Lifehack.Model.Stadtplan {
 
         abstract public KartenelementArt KartenelementArt { get; }
 
-        string identifier;
-        public string Identifier {
-            get { return this.identifier; }
-            set { this.identifier = value; }
-        }
-
         public override TabellenName Tabelle() {
             return TabellenName.KARTENELEMENT;
         }

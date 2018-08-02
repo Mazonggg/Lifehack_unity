@@ -26,12 +26,10 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
         }
 
         protected override Institut SetAttribute(Institut datenbankEintrag, JSONObject json) {
-            int id = -1;
-            Int32.TryParse(json["institut_id"].Value, out id);
-            datenbankEintrag.Id = id;
+            datenbankEintrag.Id = json["institut_id"].Value;
             datenbankEintrag.Name = json["institut_name"].Value;
             datenbankEintrag.Beschreibung = json["beschreibung"].Value;
-            datenbankEintrag.InstitutArt = (InstitutArt)System.Enum.Parse(typeof(InstitutArt), json["institut_art_ref"].Value);
+            datenbankEintrag.InstitutArt = (InstitutArt)Enum.Parse(typeof(InstitutArt), json["institut_art_ref"].Value);
             return datenbankEintrag;
         }
     }

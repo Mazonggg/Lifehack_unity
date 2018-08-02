@@ -31,11 +31,7 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
         }
 
         protected override Niederlassung SetAttribute(Niederlassung datenbankEintrag, JSONObject json) {
-
-            int institutId = 0;
-            Int32.TryParse(json["niederlassung_institut_ref"].Value, out institutId);
-
-            datenbankEintrag.Institut = ModelHandler.Instance.GetInstitut(institutId);
+            datenbankEintrag.Institut = ModelHandler.Instance.GetInstitut(json["niederlassung_institut_ref"].Value);
             return base.SetAttribute(datenbankEintrag, json);
         }
     }

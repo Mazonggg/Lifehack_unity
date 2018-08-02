@@ -26,9 +26,7 @@ namespace Lifehack.Model.Fabrik.Prozess {
         }
 
         protected override Item SetAttribute(Item datenbankEintrag, JSONObject json) {
-            int id = -1;
-            Int32.TryParse(json["item_id"].Value, out id);
-            datenbankEintrag.Id = id;
+            datenbankEintrag.Id = json["item_id"].Value;
             datenbankEintrag.Name = json["item_name"].Value;
             int gewicht = 0;
             Int32.TryParse(json["gewicht"].Value, out gewicht);

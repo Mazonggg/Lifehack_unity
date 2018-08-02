@@ -41,7 +41,6 @@ namespace Lifehack.Model {
 
         public Teilaufgabe NaechsteTeilaugabeInAufgabe(Aufgabe aufgabe) {
             foreach (Teilaufgabe teilaufgabe in aufgabe.Teilaufgaben) {
-                Debug.Log("Teilaufgabe: " + teilaufgabe.Dialog.MenueText + "\ninstitutArt: " + EnumHandler.AlsString(teilaufgabe.InstitutArt));
                 if (!teilaufgabe.Abgeschlossen) {
                     return teilaufgabe;
                 }
@@ -81,7 +80,7 @@ namespace Lifehack.Model {
             elemente.AddRange(new DatenbankEintragParser<Niederlassung>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.KARTENELEMENT)], NiederlassungFabrik.Instance));
             var kartenelementTable = new Dictionary<string, Kartenelement>();
             foreach (Kartenelement kartenelement in elemente) {
-                kartenelementTable.Add(kartenelement.Identifier, kartenelement);
+                kartenelementTable.Add(kartenelement.Id, kartenelement);
             }
             this.kartenelemente = kartenelementTable;
 
@@ -100,7 +99,7 @@ namespace Lifehack.Model {
             }
         }
 
-        public Institut GetInstitut(int institutId) {
+        public Institut GetInstitut(string institutId) {
             foreach (Institut institut in this.institute) {
                 if (institut.Id.Equals(institutId)) {
                     return institut;
@@ -109,7 +108,7 @@ namespace Lifehack.Model {
             return null;
         }
 
-        public Item GetItem(int itemId) {
+        public Item GetItem(string itemId) {
             foreach (Item item in this.alleItems) {
                 if (item.Id.Equals(itemId)) {
                     return item;
@@ -118,7 +117,7 @@ namespace Lifehack.Model {
             return null;
         }
 
-        public Aufgabe GetAufgabe(int aufgabeId) {
+        public Aufgabe GetAufgabe(string aufgabeId) {
             foreach (Aufgabe aufgabe in this.aufgaben) {
                 if (aufgabe.Id.Equals(aufgabeId)) {
                     return aufgabe;
@@ -128,10 +127,8 @@ namespace Lifehack.Model {
         }
 
         public bool SchliesseTeilaufgabeAb(Teilaufgabe teilaufgabe, Item abgegebenesItem) {
-            Debug.Log("SchliesseTeilaufgabeAb:\nbedingung:\n" + teilaufgabe.Bedingung + "\nbelohnung:\n" + teilaufgabe.Belohnung + "\nabgegebenesItem:\n" + abgegebenesItem);
             if (abgegebenesItem.Equals(teilaufgabe.Bedingung)) {
                 teilaufgabe.Abgeschlossen = true;
-                Debug.Log("true");
                 if (teilaufgabe.TeilaufgabeArt.Equals(TeilaufgabeArt.ITEM_WIRD_ABGEGEBEN)) {
                     this.itemsInBesitz.Remove(teilaufgabe.Bedingung);
                 }
@@ -139,7 +136,6 @@ namespace Lifehack.Model {
                 this.SchliesseAufgabeAb(teilaufgabe);
                 return true;
             }
-            Debug.Log("false");
             return false;
         }
 

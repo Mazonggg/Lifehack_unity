@@ -27,9 +27,7 @@ namespace Lifehack.Model.Fabrik.Prozess {
         }
 
         protected override Aufgabe SetAttribute(Aufgabe datenbankEintrag, JSONObject json) {
-            int id = -1;
-            Int32.TryParse(json["aufgabe_id"].Value, out id);
-            datenbankEintrag.Id = id;
+            datenbankEintrag.Id = json["aufgabe_id"].Value;
             datenbankEintrag.Bezeichnung = json["bezeichnung"].Value;
             datenbankEintrag.Gesetzesgrundlage = json["gesetzesgrundlage"].Value;
             var teilaufgaben = new List<Teilaufgabe>();

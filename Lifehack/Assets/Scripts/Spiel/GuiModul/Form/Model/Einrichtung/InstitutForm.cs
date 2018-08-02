@@ -19,7 +19,6 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Einrichtung {
             beschreibungText.GetComponent<Text>().text = this.Eintrag.Beschreibung;
             foreach (Teilaufgabe teilaufgabe in ModelHandler.Instance.GetInstitutNaechsteTeilaufgaben(this.Eintrag.InstitutArt)) {
                 GameObject teilaufgabeInfo = PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugeInfoEintrag(teilaufgabe.Dialog.MenueText);
-                Debug.Log("teilaufgabeInfo: " + teilaufgabeInfo);
                 teilaufgabeInfo.transform.SetParent(aufgabenListe.transform);
             }
         }

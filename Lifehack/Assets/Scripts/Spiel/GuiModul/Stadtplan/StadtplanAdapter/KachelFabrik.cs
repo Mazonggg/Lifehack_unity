@@ -13,7 +13,7 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter {
 
         public void ErzeugeKachel(IKartenelement kartenelement) {
             int kachelId = 0;
-            foreach (Rect feld in StadtplanModul.Instance.GetAbmessung(kartenelement.Identifier).Felder) {
+            foreach (Rect feld in StadtplanModul.Instance.GetAbmessung(kartenelement.Id).Felder) {
                 var kachel = Instantiate(this.kartenelementKachel);
                 if (typeof(Umwelt).IsAssignableFrom(kartenelement.GetType())) {
                     kachel.AddComponent<UmweltKachel>();

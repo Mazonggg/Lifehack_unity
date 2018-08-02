@@ -11,11 +11,8 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
         abstract public KartenelementArt GetKartenelementArt { get; }
 
         protected override T SetAttribute(T datenbankEintrag, JSONObject json) {
-            int id = -1;
-            Int32.TryParse(json["kartenelement_id"].Value, out id);
-            datenbankEintrag.Id = id;
+            datenbankEintrag.Id = json["kartenelement_id"].Value;
             datenbankEintrag.KartenelementAussehen = json["kartenelement_aussehen_url"].Value;
-            datenbankEintrag.Identifier = json["ascii_identifier"].Value;
             return datenbankEintrag;
         }
 
