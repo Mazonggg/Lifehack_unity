@@ -24,7 +24,7 @@ namespace Lifehack.Spiel.GuiModul.Steuerung {
         public override void GetInhalt(TabellenName[] inhalt) {
             var auswahlEintraege = new GameObject[inhalt.Length];
             for (int i = 0; i < inhalt.Length; i++) {
-                auswahlEintraege[i] = PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugeAuswahlEintrag(inhalt[i]);
+                auswahlEintraege[i] = PopupModul.Instance.GetComponent<SimplePopupEintragFabrik>().ErzeugeAuswahlEintrag(inhalt[i]);
             }
             PopupModul.Instance.GetInhalt(auswahlEintraege, this);
         }

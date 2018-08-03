@@ -4,7 +4,7 @@ using Lifehack.Model.Stadtplan;
 using SimpleJSON;
 using System;
 using Lifehack.Model;
-using Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter;
+using Lifehack.Spiel.GuiModul.Stadtplan.KachelAdapter;
 using Lifehack.Austauschformat;
 using UnityEngine;
 using Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter;
@@ -57,14 +57,14 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan {
 
         void PlatziereKacheln(Dictionary<string, Kartenelement> kartenelemente) {
             foreach (string kartenelementIdentifier in kartenelemente.Keys) {
-                GetComponent<KachelFabrik>().ErzeugeKachel(kartenelemente[kartenelementIdentifier]);
+                GetComponent<SimpleKachelFabrik>().ErzeugeKachel(kartenelemente[kartenelementIdentifier]);
             }
         }
 
         public override void GetInhalt(IKartenelement inhalt) {
             if (SteuerungModul.Instance.gameObject.activeInHierarchy) {
                 SteuerungModul.Instance.SchliesseModul();
-                PopupModul.Instance.GetInhalt(new GameObject[] { PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(inhalt) }, this);
+                PopupModul.Instance.GetInhalt(new GameObject[] { PopupModul.Instance.GetComponent<SimplePopupEintragFabrik>().ErzeugePopupEintrag(inhalt) }, this);
             }
         }
 

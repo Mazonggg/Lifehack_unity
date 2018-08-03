@@ -1,6 +1,6 @@
 ﻿
 using Lifehack.Model.Stadtplan;
-using Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter;
+using Lifehack.Spiel.GuiModul.Stadtplan.KachelAdapter;
 using UnityEngine;
 
 namespace Lifehack.Spiel.GuiModul.Stadtplan.Model.Stadtplan {

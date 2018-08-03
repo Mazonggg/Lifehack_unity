@@ -2,11 +2,10 @@
 using UnityEngine;
 using Lifehack.Model.Stadtplan;
 using Lifehack.Spiel.GuiModul.Stadtplan.Model.Stadtplan;
-using Lifehack.Model.Einrichtung;
 
-namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter {
+namespace Lifehack.Spiel.GuiModul.Stadtplan.KachelAdapter {
 
-    public class KachelFabrik : MonoBehaviour {
+    public class SimpleKachelFabrik : MonoBehaviour {
 
         public GameObject kartenelementKachel;
         public Sprite[] kartenelementSprites;

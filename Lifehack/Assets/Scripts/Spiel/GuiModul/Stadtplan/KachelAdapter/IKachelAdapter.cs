@@ -2,7 +2,7 @@
 using Lifehack.Model.Stadtplan;
 
 
-namespace Lifehack.Spiel.GuiModul.Stadtplan.StadtplanAdapter {
+namespace Lifehack.Spiel.GuiModul.Stadtplan.KachelAdapter {
 
     public interface IKachelAdapter<T> where T : IKartenelement {
 

@@ -11,7 +11,7 @@ using Lifehack.Model.Konstanten;
 
 namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter {
 
-    public class PopupEintragFabrik : MonoBehaviour {
+    public class SimplePopupEintragFabrik : MonoBehaviour {
 
         public GameObject
         popupEintragPrefab,

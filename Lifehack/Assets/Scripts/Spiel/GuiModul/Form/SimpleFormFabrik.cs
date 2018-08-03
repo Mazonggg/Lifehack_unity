@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Lifehack.Spiel.GuiModul.Form {
 
-    public class FormFabrik : MonoBehaviour {
+    public class SimpleFormFabrik : MonoBehaviour {
 
         public GameObject
         itemFormPrefab,

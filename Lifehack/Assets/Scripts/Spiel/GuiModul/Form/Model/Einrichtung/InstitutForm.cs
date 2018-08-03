@@ -18,7 +18,7 @@ namespace Lifehack.Spiel.GuiModul.Form.Model.Einrichtung {
             institutArtText.GetComponent<Text>().text = StringHelfer.Ucfirst(EnumHandler.AlsString(this.Eintrag.InstitutArt));
             beschreibungText.GetComponent<Text>().text = this.Eintrag.Beschreibung;
             foreach (Teilaufgabe teilaufgabe in ModelHandler.Instance.GetInstitutNaechsteTeilaufgaben(this.Eintrag.InstitutArt)) {
-                GameObject teilaufgabeInfo = PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugeInfoEintrag(teilaufgabe.Dialog.MenueText);
+                GameObject teilaufgabeInfo = PopupModul.Instance.GetComponent<SimplePopupEintragFabrik>().ErzeugeInfoEintrag(teilaufgabe.Dialog.MenueText);
                 teilaufgabeInfo.transform.SetParent(aufgabenListe.transform);
             }
         }

@@ -28,7 +28,7 @@ namespace Lifehack.Spiel.GuiModul.Popup.PopupEintragAdapter.Model.Einrichtung {
             }
             var popupEintraege = new GameObject[datenbankEintraege.Length];
             for (int i = 0; i < datenbankEintraege.Length; i++) {
-                popupEintraege[i] = PopupModul.Instance.GetComponent<PopupEintragFabrik>().ErzeugePopupEintrag(datenbankEintraege[i]);
+                popupEintraege[i] = PopupModul.Instance.GetComponent<SimplePopupEintragFabrik>().ErzeugePopupEintrag(datenbankEintraege[i]);
             }
             PopupModul.Instance.GetInhalt(popupEintraege, this);
         }
