@@ -7,13 +7,13 @@ namespace Lifehack.Spiel.GuiModul.Stadtplan.KachelAdapter {
 
     public class SimpleKachelFabrik : MonoBehaviour {
 
-        public GameObject kartenelementKachel;
+        public GameObject kartenelementKachelPrefab;
         public Sprite[] kartenelementSprites;
 
         public void ErzeugeKachel(IKartenelement kartenelement) {
             int kachelId = 0;
             foreach (Rect feld in StadtplanModul.Instance.GetAbmessung(kartenelement.Id).Felder) {
-                var kachel = Instantiate(this.kartenelementKachel);
+                var kachel = Instantiate(this.kartenelementKachelPrefab);
                 if (typeof(Umwelt).IsAssignableFrom(kartenelement.GetType())) {
                     kachel.AddComponent<UmweltKachel>();
                     kachel.GetComponent<UmweltKachel>().Kartenelement = (Umwelt)kartenelement;
