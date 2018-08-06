@@ -698,9 +698,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41f6f38ba9214ab5b82f7bd8e2a5550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusText: {fileID: 1130880228113452}
-  gesetzesgrundlageText: {fileID: 1859582942982074}
-  teilaufgabe_info: {fileID: 1824301135155290}
+  statusText: {fileID: 1957994301630964}
+  gesetzesgrundlageText: {fileID: 1437270257501748}
+  teilaufgabe_info: {fileID: 1586393290201140}
 --- !u!114 &114798178435080296
 MonoBehaviour:
   m_ObjectHideFlags: 1
