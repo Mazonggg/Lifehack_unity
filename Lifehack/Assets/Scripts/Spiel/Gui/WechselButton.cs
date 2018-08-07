@@ -1,7 +1,6 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using Lifehack.Spiel.Gui;
+using Lifehack.Spiel.Gui.Stadtplan;
 
 namespace Lifehack.Spiel.Gui {
 

@@ -28,6 +28,19 @@ namespace Lifehack.Model {
             set { this.institute = value; }
         }
 
+        Item[] alleItems;
+
+        List<Item> itemsInBesitz = new List<Item>();
+        public Item[] ItemsInBesitz {
+            get { return this.itemsInBesitz.ToArray(); }
+        }
+
+        Aufgabe[] aufgaben;
+        public Aufgabe[] Aufgaben {
+            get { return this.aufgaben; }
+            set { this.aufgaben = value; }
+        }
+
         public Teilaufgabe[] GetInstitutNaechsteTeilaufgaben(InstitutArt institutArt) {
             var aufgabens = new List<Teilaufgabe>();
             foreach (Aufgabe aufgabe in this.aufgaben) {
@@ -48,22 +61,26 @@ namespace Lifehack.Model {
             return null;
         }
 
-        Item[] alleItems;
-
-        List<Item> itemsInBesitz = new List<Item>();
-        public Item[] ItemsInBesitz {
-            get { return this.itemsInBesitz.ToArray(); }
-        }
-
-        Aufgabe[] aufgaben;
-        public Aufgabe[] Aufgaben {
-            get { return this.aufgaben; }
-            set { this.aufgaben = value; }
-        }
-        Dictionary<string, Kartenelement> kartenelemente;
-        public Dictionary<string, Kartenelement> Kartenelemente {
+        List<IKartenelement> kartenelemente;
+        public List<IKartenelement> Kartenelemente {
             get { return this.kartenelemente; }
             set { this.kartenelemente = value; }
+        }
+
+        public List<IDatenbankEintrag> GetEintraegeFuerTabelle(TabellenName tabelle) {
+            var eintraege = new List<IDatenbankEintrag>();
+            switch (tabelle) {
+                case TabellenName.ITEM:
+                    eintraege.AddRange(ModelHandler.Instance.ItemsInBesitz);
+                    break;
+                case TabellenName.INSTITUT:
+                    eintraege.AddRange(ModelHandler.Instance.Institute);
+                    break;
+                case TabellenName.AUFGABE:
+                    eintraege.AddRange(ModelHandler.Instance.Aufgaben);
+                    break;
+            }
+            return eintraege;
         }
 
         void Start() {
@@ -73,16 +90,12 @@ namespace Lifehack.Model {
             this.alleItems = new DatenbankEintragParser<Item>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.ITEM)], ItemFabrik.Instance);
             this.aufgaben = new DatenbankEintragParser<Aufgabe>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.AUFGABE)], AufgabeFabrik.Instance);
 
-            var elemente = new List<Kartenelement>();
+            var elemente = new List<IKartenelement>();
             elemente.AddRange(new DatenbankEintragParser<Umwelt>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.KARTENELEMENT)], UmweltFabrik.Instance));
             elemente.AddRange(new DatenbankEintragParser<Gebaeude>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.KARTENELEMENT)], GebaeudeFabrik<Gebaeude>.Instance));
             elemente.AddRange(new DatenbankEintragParser<Wohnhaus>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.KARTENELEMENT)], WohnhausFabrik.Instance));
             elemente.AddRange(new DatenbankEintragParser<Niederlassung>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.KARTENELEMENT)], NiederlassungFabrik.Instance));
-            var kartenelementTable = new Dictionary<string, Kartenelement>();
-            foreach (Kartenelement kartenelement in elemente) {
-                kartenelementTable.Add(kartenelement.Id, kartenelement);
-            }
-            this.kartenelemente = kartenelementTable;
+            this.kartenelemente = elemente;
 
             this.InitItemsInBesitz(this.alleItems);
 

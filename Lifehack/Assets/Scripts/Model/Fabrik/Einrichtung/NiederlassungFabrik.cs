@@ -26,7 +26,7 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
             get { return KartenelementArt.NIEDERLASSUNG; }
         }
 
-        protected override Niederlassung ErzeugeLeeresEintragObjekt() {
+        public override Niederlassung ErzeugeLeeresEintragObjekt() {
             return new Niederlassung();
         }
 

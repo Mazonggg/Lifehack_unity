@@ -26,7 +26,7 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
             get { return KartenelementArt.UMWELT; }
         }
 
-        protected override Umwelt ErzeugeLeeresEintragObjekt() {
+        public override Umwelt ErzeugeLeeresEintragObjekt() {
             return new Umwelt();
         }
 

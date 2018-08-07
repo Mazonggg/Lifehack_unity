@@ -7,7 +7,7 @@ namespace Lifehack.Model.Fabrik {
 
     abstract public class DatenbankEintragFabrik<T> : IDatenbankEintragFabrik<IDatenbankEintrag> where T : IDatenbankEintrag {
 
-        abstract protected T ErzeugeLeeresEintragObjekt();
+        abstract public T ErzeugeLeeresEintragObjekt();
         abstract protected T SetAttribute(T datenbankEintrag, JSONObject json);
 
         public virtual IDatenbankEintrag ErzeugeDantebankEintrag(JSONObject jsonObjekt) {

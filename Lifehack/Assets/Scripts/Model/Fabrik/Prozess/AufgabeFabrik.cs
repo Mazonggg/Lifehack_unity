@@ -22,7 +22,7 @@ namespace Lifehack.Model.Fabrik.Prozess {
             }
         }
 
-        protected override Aufgabe ErzeugeLeeresEintragObjekt() {
+        public override Aufgabe ErzeugeLeeresEintragObjekt() {
             return new Aufgabe();
         }
 

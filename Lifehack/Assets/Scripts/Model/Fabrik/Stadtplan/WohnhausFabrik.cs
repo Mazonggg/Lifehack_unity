@@ -25,7 +25,7 @@ namespace Lifehack.Model.Fabrik.Stadtplan {
             get { return KartenelementArt.WOHNHAUS; }
         }
 
-        protected override Wohnhaus ErzeugeLeeresEintragObjekt() {
+        public override Wohnhaus ErzeugeLeeresEintragObjekt() {
             return new Wohnhaus();
         }
 

@@ -21,7 +21,7 @@ namespace Lifehack.Model.Fabrik.Prozess {
             }
         }
 
-        protected override Teilaufgabe ErzeugeLeeresEintragObjekt() {
+        public override Teilaufgabe ErzeugeLeeresEintragObjekt() {
             return new Teilaufgabe();
         }
 

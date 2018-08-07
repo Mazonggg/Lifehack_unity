@@ -21,7 +21,7 @@ namespace Lifehack.Model.Fabrik.Einrichtung {
             }
         }
 
-        protected override Institut ErzeugeLeeresEintragObjekt() {
+        public override Institut ErzeugeLeeresEintragObjekt() {
             return new Institut();
         }
 

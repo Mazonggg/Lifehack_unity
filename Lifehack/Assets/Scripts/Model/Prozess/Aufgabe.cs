@@ -16,7 +16,7 @@ namespace Lifehack.Model.Prozess {
             get { return this.gesetzesgrundlage; }
             set { this.gesetzesgrundlage = value; }
         }
-        Teilaufgabe[] teilaufgaben;
+        Teilaufgabe[] teilaufgaben = new Teilaufgabe[] { };
         public Teilaufgabe[] Teilaufgaben {
             get { return teilaufgaben; }
             set { this.teilaufgaben = value; }
