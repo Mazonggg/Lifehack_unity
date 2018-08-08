@@ -27,7 +27,7 @@ namespace Lifehack.Model.Fabrik.Prozess {
 
         protected override Teilaufgabe SetAttribute(Teilaufgabe datenbankEintrag, JSONObject json) {
             datenbankEintrag.Id = json["teilaufgabe_id"].Value;
-            datenbankEintrag.Dialog = new Dialog(
+            datenbankEintrag.Dialog = SimpleDiaglogFabrik.ErzeugeDialog(
                 json["menue_text"].Value,
                 json["ansprache_text"].Value,
                 json["antwort_text"].Value,

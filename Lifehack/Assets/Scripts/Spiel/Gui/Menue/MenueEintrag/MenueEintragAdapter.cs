@@ -21,7 +21,7 @@ namespace Lifehack.Spiel.Gui.Menue.MenueEintrag {
 
         public void OnPointerClick(PointerEventData eventData) {
             Debug.Log("MenueEintragAdapter.OnPointerClick(): " + this.tabelle);
-            // TODO HAE?
+            // TODO Warum verschwindet der Wert für tabelle hier zwischen setter und abruf???
             PopupModulAdapter.Instance.GetInhalt(ModelHandler.Instance.GetEintraegeFuerTabelle(TabellenName.ITEM));
         }
     }

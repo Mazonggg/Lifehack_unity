@@ -1,42 +1,32 @@
-﻿using System;
-
+﻿
 namespace Lifehack.Model.Prozess {
 
     public class Dialog {
 
-        readonly string menueText;
+        string menueText;
         public string MenueText {
             get { return this.menueText; }
+            set { this.menueText = value; }
         }
-        readonly string anspracheText;
+        string anspracheText;
         public string AnspracheText {
             get { return this.anspracheText; }
+            set { this.anspracheText = value; }
         }
-        readonly string antwortText;
+        string antwortText;
         public string AntwortText {
             get { return this.antwortText; }
+            set { this.antwortText = value; }
         }
-        readonly string erfuellungsText;
+        string erfuellungsText;
         public string ErfuellungsText {
             get { return this.erfuellungsText; }
+            set { this.erfuellungsText = value; }
         }
-        readonly string scheiternText;
+        string scheiternText;
         public string ScheiternText {
             get { return this.scheiternText; }
-        }
-
-        public Dialog(
-            string menueText,
-            string anspracheText,
-            string antwortText,
-            string erfuellungsText,
-            string scheiternText) {
-
-            this.menueText = menueText;
-            this.anspracheText = anspracheText;
-            this.antwortText = antwortText;
-            this.erfuellungsText = erfuellungsText;
-            this.scheiternText = scheiternText;
+            set { this.scheiternText = value; }
         }
 
         public override string ToString() {
