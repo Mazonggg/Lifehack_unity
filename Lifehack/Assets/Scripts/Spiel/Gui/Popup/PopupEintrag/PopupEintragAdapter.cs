@@ -16,7 +16,7 @@ namespace Lifehack.Spiel.Gui.Popup.PopupEintrag {
         }
 
         public string GetPopupEintragTitel() {
-            throw new System.NotImplementedException();
+            return StringHelfer.Ucfirst(this.GetKurzInfo());
         }
 
         abstract protected string GetKurzInfo();
