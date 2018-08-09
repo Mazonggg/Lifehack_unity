@@ -15,7 +15,7 @@ namespace Lifehack.Spiel.Gui.Form.FormEintrag.Input.Model.Prozess {
         }
 
         public override void OnPointerClick(PointerEventData eventData) {
-            FormModulAdapter.Instance.GetInhalt(new List<IDatenbankEintrag>() { this.eintrag });
+            FormModul.Instance.GetInhalt(new List<IDatenbankEintrag>() { this.eintrag });
         }
     }
 }

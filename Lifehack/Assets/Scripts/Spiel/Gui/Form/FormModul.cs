@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Lifehack.Spiel.Gui.Form {
 
-    public class FormModulAdapter : ModulAdapter<IDatenbankEintrag, IDatenbankEintrag> {
+    public class FormModul : Modul<IDatenbankEintrag, IDatenbankEintrag> {
 
         public GameObject content;
 
@@ -23,23 +23,23 @@ namespace Lifehack.Spiel.Gui.Form {
         niederlassungFormPrefab,
         gebaeudeFormPrefab;
 
-        static FormModulAdapter _instance;
-        public static FormModulAdapter Instance {
-            get { return FormModulAdapter._instance; }
+        static FormModul _instance;
+        public static FormModul Instance {
+            get { return FormModul._instance; }
         }
 
         void Start() {
-            FormModulAdapter._instance = this;
+            FormModul._instance = this;
             gameObject.SetActive(false);
         }
 
         public override void LeereInhalt() {
-            PopupModulAdapter.Instance.LeereInhalt();
+            PopupModul.Instance.LeereInhalt();
         }
 
         public override void GetInhalt(List<IDatenbankEintrag> eintraege) {
             this.LeereInhalt();
-            PopupModulAdapter.Instance.SetInhalt(this.ErzeugeEintragAdapters(eintraege), this);
+            PopupModul.Instance.SetInhalt(this.ErzeugeEintragAdapters(eintraege), this);
         }
 
         public override string GetPopupTitel() {

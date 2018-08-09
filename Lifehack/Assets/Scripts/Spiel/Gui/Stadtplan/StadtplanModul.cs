@@ -14,23 +14,21 @@ using Lifehack.Model.Konstanten;
 
 namespace Lifehack.Spiel.Gui.Stadtplan {
 
-    public class StadtplanModulAdapter : ModulAdapter<IKartenelement, IKartenelement> {
+    public class StadtplanModul : Modul<IKartenelement, IKartenelement> {
 
         public GameObject kartenelementKachelPrefab;
         public Sprite[] kartenelementSprites;
 
-        static StadtplanModulAdapter _instance;
-        public static StadtplanModulAdapter Instance {
-            get { return StadtplanModulAdapter._instance; }
+        static StadtplanModul _instance;
+        public static StadtplanModul Instance {
+            get { return StadtplanModul._instance; }
         }
 
         void Start() {
-            StadtplanModulAdapter._instance = this;
+            StadtplanModul._instance = this;
 
-            JSONNode json = AustauschAbrufer.Instance.Json;
-
-            this.SetKonfiguration(json[AustauschKonstanten.KONFIGURATION]);
-            this.SammleAbmessungen(json[AustauschKonstanten.KARTE]);
+            this.SetKonfiguration(AustauschAbrufer.Instance.Konfiguration);
+            this.SammleAbmessungen(AustauschAbrufer.Instance.Karte);
             this.PlatziereKacheln(ModelHandler.Instance.Kartenelemente);
         }
 
@@ -67,14 +65,14 @@ namespace Lifehack.Spiel.Gui.Stadtplan {
         }
 
         public override void GetInhalt(List<IKartenelement> eintraege) {
-            if (MenueModulAdapter.Instance.gameObject.activeInHierarchy) {
-                MenueModulAdapter.Instance.SchliesseModul();
+            if (MenueModul.Instance.gameObject.activeInHierarchy) {
+                MenueModul.Instance.SchliesseModul();
                 IDatenbankEintrag datenbankEintrag = eintraege[0];
                 List<IDatenbankEintrag> datenbankEintraege = new List<IDatenbankEintrag>();
                 foreach (var eintrag in eintraege) {
                     datenbankEintraege.Add(eintrag);
                 }
-                FormModulAdapter.Instance.GetInhalt(datenbankEintraege);
+                FormModul.Instance.GetInhalt(datenbankEintraege);
             }
         }
 
@@ -86,7 +84,7 @@ namespace Lifehack.Spiel.Gui.Stadtplan {
             int kachelId = 0;
             GameObject neuesGameObject = new GameObject();
             neuesGameObject.name = EnumHandler.AlsString(datenbankEintrag.Tabelle());
-            foreach (Rect feld in StadtplanModulAdapter.Instance.GetAbmessung(datenbankEintrag.Id).Felder) {
+            foreach (Rect feld in StadtplanModul.Instance.GetAbmessung(datenbankEintrag.Id).Felder) {
                 var kachel = Instantiate(this.kartenelementKachelPrefab);
                 if (typeof(Umwelt).IsAssignableFrom(datenbankEintrag.GetType())) {
                     kachel.AddComponent<UmweltKachelAdapter>();
@@ -116,8 +114,8 @@ namespace Lifehack.Spiel.Gui.Stadtplan {
         }
 
         Vector2 GetObjektScale(Sprite sprite, Vector2 feld) {
-            float breite = feld.x / (sprite.rect.width / StadtplanModulAdapter.Instance.KachelGroesse);
-            float hoehe = feld.y / (sprite.rect.height / StadtplanModulAdapter.Instance.KachelGroesse);
+            float breite = feld.x / (sprite.rect.width / StadtplanModul.Instance.KachelGroesse);
+            float hoehe = feld.y / (sprite.rect.height / StadtplanModul.Instance.KachelGroesse);
             return new Vector2(breite, hoehe);
         }
     }

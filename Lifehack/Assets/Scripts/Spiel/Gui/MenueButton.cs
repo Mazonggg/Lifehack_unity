@@ -13,7 +13,7 @@ namespace Lifehack.Spiel.Gui {
     public class MenueButton : MonoBehaviour, IPointerClickHandler {
 
         public void OnPointerClick(PointerEventData eventData) {
-            MenueModulAdapter.Instance.GetInhalt(
+            MenueModul.Instance.GetInhalt(
                 new List<IDatenbankEintrag> {
                     ItemFabrik.Instance.ErzeugeLeeresEintragObjekt(),
                     InstitutFabrik.Instance.ErzeugeLeeresEintragObjekt(),

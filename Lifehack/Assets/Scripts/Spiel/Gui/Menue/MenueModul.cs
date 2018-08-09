@@ -9,17 +9,17 @@ using Lifehack.Model.Konstanten;
 
 namespace Lifehack.Spiel.Gui.Menue {
 
-    public class MenueModulAdapter : ModulAdapter<IDatenbankEintrag, IDatenbankEintrag> {
+    public class MenueModul : Modul<IDatenbankEintrag, IDatenbankEintrag> {
 
         public GameObject menueEintragPrefab;
 
-        static MenueModulAdapter _instance;
-        public static MenueModulAdapter Instance {
-            get { return MenueModulAdapter._instance; }
+        static MenueModul _instance;
+        public static MenueModul Instance {
+            get { return MenueModul._instance; }
         }
 
         void Start() {
-            MenueModulAdapter._instance = this;
+            MenueModul._instance = this;
         }
 
         public override void LeereInhalt() {
@@ -27,7 +27,7 @@ namespace Lifehack.Spiel.Gui.Menue {
         }
 
         public override void GetInhalt(List<IDatenbankEintrag> eintraege) {
-            PopupModulAdapter.Instance.SetInhalt(this.ErzeugeEintragAdapters(eintraege), this);
+            PopupModul.Instance.SetInhalt(this.ErzeugeEintragAdapters(eintraege), this);
         }
 
         public override string GetPopupTitel() {
@@ -36,7 +36,7 @@ namespace Lifehack.Spiel.Gui.Menue {
 
         protected override GameObject ErzeugeEintragAdapter(IDatenbankEintrag datenbankEintrag) {
             var menueEintrag = Instantiate(this.menueEintragPrefab);
-            menueEintrag.GetComponentInChildren<MenueEintragAdapter>().Tabelle = datenbankEintrag.Tabelle();
+            menueEintrag.GetComponentInChildren<MenueEintragAdapter>().Eintrag = datenbankEintrag;
             menueEintrag.GetComponentInChildren<Text>().text = StringHelfer.Ucfirst(EnumHandler.AlsString(datenbankEintrag.Tabelle()));
             return menueEintrag;
         }

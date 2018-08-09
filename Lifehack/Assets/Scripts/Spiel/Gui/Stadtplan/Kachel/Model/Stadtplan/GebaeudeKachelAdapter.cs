@@ -16,7 +16,7 @@ namespace Lifehack.Spiel.Gui.Stadtplan.Model.Stadtplan {
         }
 
         public void OnPointerClick(PointerEventData eventData) {
-            StadtplanModulAdapter.Instance.GetInhalt(new List<IKartenelement>() { this.Kartenelement });
+            StadtplanModul.Instance.GetInhalt(new List<IKartenelement>() { this.Kartenelement });
         }
     }
 }

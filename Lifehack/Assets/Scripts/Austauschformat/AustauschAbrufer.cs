@@ -24,8 +24,14 @@ namespace Lifehack.Austauschformat {
         }
 
         JSONNode json;
-        public JSONNode Json {
-            get { return this.json; }
+        public JSONNode Information {
+            get { return this.json[AustauschKonstanten.INFORMATION]; }
+        }
+        public JSONNode Karte {
+            get { return this.json[AustauschKonstanten.KARTE]; }
+        }
+        public JSONNode Konfiguration {
+            get { return this.json[AustauschKonstanten.KONFIGURATION]; }
         }
 
         void Start() {

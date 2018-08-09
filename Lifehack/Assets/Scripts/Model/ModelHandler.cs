@@ -85,7 +85,7 @@ namespace Lifehack.Model {
 
         void Start() {
             ModelHandler._instance = this;
-            JSONNode jsonInformation = AustauschAbrufer.Instance.Json[AustauschKonstanten.INFORMATION];
+            JSONNode jsonInformation = AustauschAbrufer.Instance.Information;
             this.institute = new DatenbankEintragParser<Institut>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.INSTITUT)], InstitutFabrik.Instance);
             this.alleItems = new DatenbankEintragParser<Item>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.ITEM)], ItemFabrik.Instance);
             this.aufgaben = new DatenbankEintragParser<Aufgabe>().ArrayZuObjekten(jsonInformation[EnumHandler.AlsString(TabellenName.AUFGABE)], AufgabeFabrik.Instance);

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Lifehack.Spiel.Gui.Form.FormEintrag {
 
-    abstract public class FormAdapter<T> : MonoBehaviour, IForm where T : IDatenbankEintrag {
+    abstract public class FormAdapter<T> : MonoBehaviour, IForm<T> where T : IDatenbankEintrag {
 
         T eintrag;
         public T Eintrag {
@@ -16,7 +16,7 @@ namespace Lifehack.Spiel.Gui.Form.FormEintrag {
 
         void Start() {
             this.InitForm();
-            PopupModulAdapter.Instance.SetzeTitel(this.GetPopupTitel());
+            PopupModul.Instance.SetzeTitel(this.GetPopupTitel());
         }
 
         abstract protected void InitForm();

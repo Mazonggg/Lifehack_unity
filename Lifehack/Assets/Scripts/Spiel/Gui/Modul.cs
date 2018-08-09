@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Lifehack.Spiel.Gui {
 
-    abstract public class ModulAdapter<T, U> : MonoBehaviour, IModul<T>, IPopupTitelgeber where U : IDatenbankEintrag {
+    abstract public class Modul<T, U> : MonoBehaviour, IModul<T>, IPopupTitelgeber where U : IDatenbankEintrag {
 
         public GameObject oeffnendesModul, schliessendesModul;
 

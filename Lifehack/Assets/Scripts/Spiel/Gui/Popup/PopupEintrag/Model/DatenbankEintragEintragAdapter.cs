@@ -10,7 +10,7 @@ namespace Lifehack.Spiel.Gui.Popup.PopupEintrag.Model {
     abstract public class DatenbankEintragPopupEintragAdapter<T> : PopupEintragAdapter<T> where T : IDatenbankEintrag {
 
         public override void OnPointerClick(PointerEventData eventData) {
-            FormModulAdapter.Instance.GetInhalt(new List<IDatenbankEintrag>() { this.eintrag });
+            FormModul.Instance.GetInhalt(new List<IDatenbankEintrag>() { this.eintrag });
         }
 
         public override string GetPopupTitel() {

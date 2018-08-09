@@ -15,23 +15,23 @@ using Lifehack.Model.Konstanten;
 
 namespace Lifehack.Spiel.Gui.Popup {
 
-    public class PopupModulAdapter : ModulAdapter<IDatenbankEintrag, IDatenbankEintrag> {
+    public class PopupModul : Modul<IDatenbankEintrag, IDatenbankEintrag> {
 
         public GameObject content, popupTitel;
 
         public GameObject popupEintragPrefab;
 
 
-        static PopupModulAdapter _instance;
-        public static PopupModulAdapter Instance {
-            get { return PopupModulAdapter._instance; }
+        static PopupModul _instance;
+        public static PopupModul Instance {
+            get { return PopupModul._instance; }
         }
 
         const int gesamtPlatz = 440;
         const int zwischenRaum = 30;
 
         void Start() {
-            PopupModulAdapter._instance = this;
+            PopupModul._instance = this;
             gameObject.SetActive(false);
         }
 

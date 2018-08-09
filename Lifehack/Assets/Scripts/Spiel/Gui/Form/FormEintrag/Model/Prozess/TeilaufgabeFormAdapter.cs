@@ -22,15 +22,15 @@ namespace Lifehack.Spiel.Gui.Form.FormEintrag.Model.Prozess {
 
         void AuswahlOeffnen() {
             foreach (Item item in ModelHandler.Instance.ItemsInBesitz) {
-                GameObject itemEintrag = FormModulAdapter.Instance.GetComponent<InputFabrik>().ErzeugeFormInput(item);
+                GameObject itemEintrag = FormModul.Instance.GetComponent<InputFabrik>().ErzeugeFormInput(item);
                 itemEintrag.transform.SetParent(auswahlContainer.transform);
             }
-            PopupModulAdapter.Instance.SetzeTitel("Benötigtes Item auswählen");
+            PopupModul.Instance.SetzeTitel("Benötigtes Item auswählen");
             this.WechselInhalt(false);
         }
 
         public void WaehleItem(Item item) {
-            PopupModulAdapter.Instance.SetzeTitel(this.GetPopupTitel());
+            PopupModul.Instance.SetzeTitel(this.GetPopupTitel());
             this.WechselInhalt(true);
             this.ZeigeAbschlussAn(ModelHandler.Instance.SchliesseTeilaufgabeAb(this.Eintrag, item));
         }

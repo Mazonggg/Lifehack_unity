@@ -13,7 +13,7 @@ namespace Lifehack.Spiel.Gui.Form.FormEintrag.Model.Einrichtung {
 
         protected override void InitForm() {
             foreach (Teilaufgabe teilaufgabe in ModelHandler.Instance.GetInstitutNaechsteTeilaufgaben(this.Eintrag.Institut.InstitutArt)) {
-                var teilaufgabeEintrag = FormModulAdapter.Instance.GetComponent<InputFabrik>().ErzeugeFormInput(teilaufgabe);
+                var teilaufgabeEintrag = FormModul.Instance.GetComponent<InputFabrik>().ErzeugeFormInput(teilaufgabe);
                 teilaufgabeEintrag.transform.SetParent(teilaufgabeAuswahlContainer.transform);
             }
         }
