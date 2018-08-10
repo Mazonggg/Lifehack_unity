@@ -25,7 +25,7 @@ namespace Lifehack.Spiel.Gui.Form.FormEintrag {
             return StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag.Tabelle()));
         }
 
-        public string GetEintragText() {
+        public string GetEintragInhalt() {
             return StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag.Tabelle()));
         }
     }

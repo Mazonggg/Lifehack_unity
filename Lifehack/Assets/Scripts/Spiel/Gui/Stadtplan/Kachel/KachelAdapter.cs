@@ -14,7 +14,7 @@ namespace Lifehack.Spiel.Gui.Stadtplan.Kachel {
             set { this.kartenelement = value; }
         }
 
-        public override string GetEintragText() {
+        public override string GetEintragInhalt() {
             return StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag.Tabelle()));
         }
     }

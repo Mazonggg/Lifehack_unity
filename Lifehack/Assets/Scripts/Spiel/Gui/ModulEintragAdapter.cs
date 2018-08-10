@@ -11,7 +11,7 @@ namespace Lifehack.Spiel.Gui {
             set { this.eintrag = value; }
         }
 
-        abstract public string GetEintragText();
+        abstract public string GetEintragInhalt();
     }
 }
 

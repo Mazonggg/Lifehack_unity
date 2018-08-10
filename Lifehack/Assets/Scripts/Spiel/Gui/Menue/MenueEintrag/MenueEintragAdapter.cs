@@ -14,7 +14,7 @@ namespace Lifehack.Spiel.Gui.Menue.MenueEintrag {
             set { this.eintrag = value; Debug.Log("tabelle:\n" + this.eintrag); }
         }
 
-        public string GetEintragText() {
+        public string GetEintragInhalt() {
             return StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag.Tabelle()));
         }
 

@@ -7,7 +7,7 @@ namespace Lifehack.Spiel.Gui.Popup.PopupEintrag {
 
     abstract public class PopupEintragAdapter<T> : ModulEintragAdapter<T>, IPopupEintrag<T>, IPopupTitelgeber, IPointerClickHandler where T : IDatenbankEintrag{
         
-        public override string GetEintragText() {
+        public override string GetEintragInhalt() {
             return StringHelfer.Ucfirst(this.GetKurzInfo());
         }
 

@@ -95,7 +95,7 @@ namespace Lifehack.Spiel.Gui.Popup {
 
         GameObject SetzeButtonText(GameObject popupEintrag) {
             var popupButton = popupEintrag.transform.GetChild(0).gameObject;
-            popupButton.GetComponentInChildren<Text>().text = popupButton.GetComponent<IPopupEintrag>().GetEintragText();
+            popupButton.GetComponentInChildren<Text>().text = popupButton.GetComponent<IPopupEintrag>().GetEintragInhalt();
             return popupEintrag;
         }
     }
