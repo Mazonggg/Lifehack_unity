@@ -24,6 +24,10 @@ namespace Lifehack.Spiel.Gui.Form.FormEintrag {
         public virtual string GetPopupTitel() {
             return StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag.Tabelle()));
         }
+
+        public string GetEintragText() {
+            return StringHelfer.Ucfirst(EnumHandler.AlsString(this.eintrag.Tabelle()));
+        }
     }
 }
 
