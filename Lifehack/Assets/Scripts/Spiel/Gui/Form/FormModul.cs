@@ -46,24 +46,24 @@ namespace Lifehack.Spiel.Gui.Form {
             return "FormModul";
         }
 
-        protected override GameObject ErzeugeEintragAdapter(IDatenbankEintrag datenbankEintrag) {
+        protected override GameObject ErzeugeEintragAdapter(IDatenbankEintrag eintrag) {
             GameObject form = null;
-            if (typeof(Aufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
+            if (typeof(Aufgabe).IsAssignableFrom(eintrag.GetType())) {
                 form = Instantiate(aufgabeFormPrefab);
-                form.GetComponent<AufgabeFormAdapter>().Eintrag = (Aufgabe)datenbankEintrag;
-            } else if (typeof(Teilaufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
+                form.GetComponent<AufgabeFormAdapter>().Eintrag = (Aufgabe)eintrag;
+            } else if (typeof(Teilaufgabe).IsAssignableFrom(eintrag.GetType())) {
                 form = Instantiate(teilaufgabeFormPrefab);
-                form.GetComponent<TeilaufgabeFormAdapter>().Eintrag = (Teilaufgabe)datenbankEintrag;
-            } else if (typeof(Item).IsAssignableFrom(datenbankEintrag.GetType())) {
+                form.GetComponent<TeilaufgabeFormAdapter>().Eintrag = (Teilaufgabe)eintrag;
+            } else if (typeof(Item).IsAssignableFrom(eintrag.GetType())) {
                 form = Instantiate(itemFormPrefab);
-                form.GetComponent<ItemFormAdapter>().Eintrag = (Item)datenbankEintrag;
-            } else if (typeof(Institut).IsAssignableFrom(datenbankEintrag.GetType())) {
+                form.GetComponent<ItemFormAdapter>().Eintrag = (Item)eintrag;
+            } else if (typeof(Institut).IsAssignableFrom(eintrag.GetType())) {
                 form = Instantiate(institutFormPrefab);
-                form.GetComponent<InstitutFormAdapter>().Eintrag = (Institut)datenbankEintrag;
-            } else if (typeof(Niederlassung).IsAssignableFrom(datenbankEintrag.GetType())) {
+                form.GetComponent<InstitutFormAdapter>().Eintrag = (Institut)eintrag;
+            } else if (typeof(Niederlassung).IsAssignableFrom(eintrag.GetType())) {
                 form = Instantiate(niederlassungFormPrefab);
-                form.GetComponent<NiederlassungFormAdapter>().Eintrag = (Niederlassung)datenbankEintrag;
-            } else if (typeof(Gebaeude).IsAssignableFrom(datenbankEintrag.GetType())) {
+                form.GetComponent<NiederlassungFormAdapter>().Eintrag = (Niederlassung)eintrag;
+            } else if (typeof(Gebaeude).IsAssignableFrom(eintrag.GetType())) {
                 form = Instantiate(gebaeudeFormPrefab);
             }
             return form;

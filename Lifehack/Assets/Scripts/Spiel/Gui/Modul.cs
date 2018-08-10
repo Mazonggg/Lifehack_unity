@@ -16,7 +16,7 @@ namespace Lifehack.Spiel.Gui {
         abstract public void LeereInhalt();
         abstract public void GetInhalt(List<T> eintraege);
         abstract public string GetPopupTitel();
-        abstract protected GameObject ErzeugeEintragAdapter(U datenbankEintrag);
+        abstract protected GameObject ErzeugeEintragAdapter(U eintrag);
 
         public void SchliesseModul() {
             this.schliessendesModul.SetActive(false);
@@ -28,9 +28,9 @@ namespace Lifehack.Spiel.Gui {
             gameObject.SetActive(true);
         }
 
-        protected List<GameObject> ErzeugeEintragAdapters(List<U> datenbankEintraege) {
+        protected List<GameObject> ErzeugeEintragAdapters(List<U> eintraege) {
             List<GameObject> adapters = new List<GameObject>();
-            foreach (var datenbankEintrag in datenbankEintraege) {
+            foreach (var datenbankEintrag in eintraege) {
                 adapters.Add(this.ErzeugeEintragAdapter(datenbankEintrag));
             }
             return adapters;

@@ -34,10 +34,10 @@ namespace Lifehack.Spiel.Gui.Menue {
             return "Menü";
         }
 
-        protected override GameObject ErzeugeEintragAdapter(IDatenbankEintrag datenbankEintrag) {
+        protected override GameObject ErzeugeEintragAdapter(IDatenbankEintrag eintrag) {
             var menueEintrag = Instantiate(this.menueEintragPrefab);
-            menueEintrag.GetComponentInChildren<MenueEintragAdapter>().Eintrag = datenbankEintrag;
-            menueEintrag.GetComponentInChildren<Text>().text = StringHelfer.Ucfirst(EnumHandler.AlsString(datenbankEintrag.Tabelle()));
+            menueEintrag.GetComponentInChildren<MenueEintragAdapter>().Eintrag = eintrag;
+            menueEintrag.GetComponentInChildren<Text>().text = StringHelfer.Ucfirst(EnumHandler.AlsString(eintrag.Tabelle()));
             return menueEintrag;
         }
     }

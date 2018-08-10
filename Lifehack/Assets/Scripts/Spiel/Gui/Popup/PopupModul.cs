@@ -68,27 +68,27 @@ namespace Lifehack.Spiel.Gui.Popup {
             return "";
         }
 
-        protected override GameObject ErzeugeEintragAdapter(IDatenbankEintrag datenbankEintrag) {
+        protected override GameObject ErzeugeEintragAdapter(IDatenbankEintrag eintrag) {
             var popupEintrag = Instantiate(this.popupEintragPrefab);
-            this.ErzeugePopupButton(popupEintrag, datenbankEintrag);
+            this.ErzeugePopupButton(popupEintrag, eintrag);
             return this.SetzeButtonText(popupEintrag);
         }
 
-        void ErzeugePopupButton(GameObject popupEintrag, IDatenbankEintrag datenbankEintrag) {
+        void ErzeugePopupButton(GameObject popupEintrag, IDatenbankEintrag eintrag) {
             var popupButton = popupEintrag.transform.GetChild(0).gameObject;
-            if (typeof(Aufgabe).IsAssignableFrom(datenbankEintrag.GetType())) {
+            if (typeof(Aufgabe).IsAssignableFrom(eintrag.GetType())) {
                 popupButton.AddComponent<AufgabePopupEintragAdapter>();
-                popupButton.GetComponent<AufgabePopupEintragAdapter>().Eintrag = (Aufgabe)datenbankEintrag;
-            } else if (typeof(Item).IsAssignableFrom(datenbankEintrag.GetType())) {
+                popupButton.GetComponent<AufgabePopupEintragAdapter>().Eintrag = (Aufgabe)eintrag;
+            } else if (typeof(Item).IsAssignableFrom(eintrag.GetType())) {
                 popupButton.AddComponent<ItemPopupEintragAdapter>();
-                popupButton.GetComponent<ItemPopupEintragAdapter>().Eintrag = (Item)datenbankEintrag;
-            } else if (typeof(Institut).IsAssignableFrom(datenbankEintrag.GetType())) {
+                popupButton.GetComponent<ItemPopupEintragAdapter>().Eintrag = (Item)eintrag;
+            } else if (typeof(Institut).IsAssignableFrom(eintrag.GetType())) {
                 popupButton.AddComponent<InstitutPopupEintragAdapter>();
-                popupButton.GetComponent<InstitutPopupEintragAdapter>().Eintrag = (Institut)datenbankEintrag;
-            } else if (typeof(Kartenelement).IsAssignableFrom(datenbankEintrag.GetType())) {
+                popupButton.GetComponent<InstitutPopupEintragAdapter>().Eintrag = (Institut)eintrag;
+            } else if (typeof(Kartenelement).IsAssignableFrom(eintrag.GetType())) {
                 popupButton.AddComponent<KartenelementPopupEintragAdapter>();
-                popupButton.GetComponent<KartenelementPopupEintragAdapter>().Eintrag = (Kartenelement)datenbankEintrag;
-                GameObject popupInfo = this.ErzeugeInfoEintrag(datenbankEintrag.ToString());
+                popupButton.GetComponent<KartenelementPopupEintragAdapter>().Eintrag = (Kartenelement)eintrag;
+                GameObject popupInfo = this.ErzeugeInfoEintrag(eintrag.ToString());
                 popupInfo.transform.SetParent(popupEintrag.transform);
             }
         }

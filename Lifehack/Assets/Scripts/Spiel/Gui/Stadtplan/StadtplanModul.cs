@@ -80,21 +80,21 @@ namespace Lifehack.Spiel.Gui.Stadtplan {
             return "StadtplanModul";
         }
 
-        protected override GameObject ErzeugeEintragAdapter(IKartenelement datenbankEintrag) {
+        protected override GameObject ErzeugeEintragAdapter(IKartenelement eintraege) {
             int kachelId = 0;
             GameObject neuesGameObject = new GameObject();
-            neuesGameObject.name = EnumHandler.AlsString(datenbankEintrag.Tabelle());
-            foreach (Rect feld in StadtplanModul.Instance.GetAbmessung(datenbankEintrag.Id).Felder) {
+            neuesGameObject.name = EnumHandler.AlsString(eintraege.Tabelle());
+            foreach (Rect feld in StadtplanModul.Instance.GetAbmessung(eintraege.Id).Felder) {
                 var kachel = Instantiate(this.kartenelementKachelPrefab);
-                if (typeof(Umwelt).IsAssignableFrom(datenbankEintrag.GetType())) {
+                if (typeof(Umwelt).IsAssignableFrom(eintraege.GetType())) {
                     kachel.AddComponent<UmweltKachelAdapter>();
-                    kachel.GetComponent<UmweltKachelAdapter>().Kartenelement = (Umwelt)datenbankEintrag;
+                    kachel.GetComponent<UmweltKachelAdapter>().Kartenelement = (Umwelt)eintraege;
                 } else {
                     kachel.AddComponent<GebaeudeKachelAdapter>();
-                    kachel.GetComponent<GebaeudeKachelAdapter>().Kartenelement = (Gebaeude)datenbankEintrag;
+                    kachel.GetComponent<GebaeudeKachelAdapter>().Kartenelement = (Gebaeude)eintraege;
                 }
-                kachel.name = datenbankEintrag.KartenelementArt.ToString() + "-" + datenbankEintrag.Id + "_" + kachelId++;
-                var sprite = this.GetSprite(datenbankEintrag.KartenelementAussehen);
+                kachel.name = eintraege.KartenelementArt.ToString() + "-" + eintraege.Id + "_" + kachelId++;
+                var sprite = this.GetSprite(eintraege.KartenelementAussehen);
                 kachel.GetComponent<SpriteRenderer>().sprite = sprite;
                 kachel.transform.position = new Vector3(feld.x + (feld.width / 2), feld.y - (feld.height / 2), -1);
                 kachel.transform.localScale = this.GetObjektScale(sprite, feld.size) * 4;
