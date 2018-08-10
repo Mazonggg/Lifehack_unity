@@ -9,7 +9,7 @@ namespace Lifehack.Spiel.Gui {
         void OeffneModul();
     }
 
-    public interface IModul<T> : IModul {
+    public interface IModul<T> : IModul where T : IDatenbankEintrag {
         void GetInhalt(List<T> eintraege);
     }
 }
