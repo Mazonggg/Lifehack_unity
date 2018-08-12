@@ -12,6 +12,8 @@ using Lifehack.Anwendung.Spiel.Popup.PopupEintrag.Model.Prozess;
 using Lifehack.Model;
 using Lifehack.Anwendung.Spiel.Popup.PopupEintrag;
 using Lifehack.Model.Konstanten;
+using Lifehack.Anwendung.Spiel.Form;
+using System.Collections;
 
 namespace Lifehack.Anwendung.Spiel.Popup {
 
@@ -32,6 +34,13 @@ namespace Lifehack.Anwendung.Spiel.Popup {
 
         void Start() {
             PopupModul._instance = this;
+            StartCoroutine(this.WarteAufFormModul());
+        }
+
+        private IEnumerator WarteAufFormModul(){
+            while (FormModul.Instance == null) {
+                yield return new WaitForSeconds(0.01f);
+            }
             gameObject.SetActive(false);
         }
 
